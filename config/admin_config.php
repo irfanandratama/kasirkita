@@ -7,5 +7,5 @@ return [
     'project_description' => 'create multi authentication guards with dashboard panel',
     'enable_breadcrumb' => true,
     'enable_registration' => false,
-    'theme_name' => 'adminlte2',
+    'theme_name' => 'stisla',
 ];

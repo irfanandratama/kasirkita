@@ -21,4 +21,8 @@ class Business extends Model
     public function cashier() {
         return $this->hasMany(Cashier::class);  
     }
+
+    public function categoryProduct() {
+        return $this->hasMany(CategoryProduct::class);  
+    }
 }

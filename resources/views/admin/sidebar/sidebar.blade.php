@@ -1,72 +1,44 @@
+<li class="menu-header">Dashboard</li>
 <li @if ($pageSlug == 'dashboard') class="active " @endif>
-    <a href="{{ route('admin.dashboard')  }}">
-        <i class="tim-icons icon-chart-pie-36"></i>
-        <p>{{ __('Dashboard') }}</p>
-    </a>
+  <a href="{{route('management.dashboard')}}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
 </li>
-<li>
-    <a data-toggle="collapse" href="#laravel-examples" aria-expanded="false">
-        <i class="tim-icons icon-single-02" ></i>
-        <span class="nav-link-text" >{{ __('User') }}</span>
-        <b class="caret mt-1"></b>
-    </a>
 
-    <div  @if ($pageSlug == 'profile' or $pageSlug == 'users') class="collapse show" @endif class="collapse hide" id="laravel-examples">
-        <ul class="nav pl-4">
-            <li @if ($pageSlug == 'profile') class="active " @endif>
-                <a href="{{ route('admin.profile')  }}">
-                    <i class="tim-icons icon-single-02"></i>
-                    <p>{{ __('Profile') }}</p>
-                </a>
-            </li>
-            <li @if ($pageSlug == 'users') class="active " @endif>
-                <a href="{{ route('admin.user.index')  }}">
-                    <i class="tim-icons icon-bullet-list-67"></i>
-                    <p>{{ __('User Management') }}</p>
-                </a>
-            </li>
-        </ul>
-    </div>
+<li class="menu-header">Akun</li>
+<li>
+  <a href="" class="nav-link"><i class="far fa-user"></i><span>Profile</span></a>
 </li>
-<!-- <li @if ($pageSlug == 'icons') class="active " @endif>
-    <a href="">
-        <i class="tim-icons icon-atom"></i>
-        <p>{{ __('Icons') }}</p>
-    </a>
+<li @if ($pageSlug == 'listAdmin' or $pageSlug == 'addAdmin') class="dropdown active" @endif class="dropdown">
+  <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-users-cog"></i> <span>Admin</span></a>
+  <ul class="dropdown-menu">
+    <li @if ($pageSlug == 'listAdmin') class="active " @endif>
+      <a class="nav-link" href="{{route('admin.index')}}">Daftar Admin</a>
+    </li>
+    <li @if ($pageSlug == 'addAdmin') class="active " @endif>
+      <a class="nav-link" href="{{route('admin.create')}}">Tambah Admin</a>
+    </li>
+  </ul>
 </li>
-<li @if ($pageSlug == 'maps') class="active " @endif>
-    <a href="">
-        <i class="tim-icons icon-pin"></i>
-        <p>{{ __('Maps') }}</p>
-    </a>
+
+<!-- <li class="menu-header">Produk</li>
+<li  @if ($pageSlug == 'listProduct' or $pageSlug == 'addProduct') class="dropdown active" @endif class="dropdown">
+  <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-boxes"></i> <span>Produk</span></a>
+  <ul class="dropdown-menu">
+    <li @if ($pageSlug == 'listProduct') class="active " @endif>
+      <a class="nav-link" href="{{route('management-product.index')}}">Daftar Produk</a>
+    </li>
+    <li @if ($pageSlug == 'addProduct') class="active " @endif>
+      <a class="nav-link" href="{{route('management-product.create')}}">Tambah Produk</a>
+    </li>
+  </ul>
 </li>
-<li @if ($pageSlug == 'notifications') class="active " @endif>
-    <a href="">
-        <i class="tim-icons icon-bell-55"></i>
-        <p>{{ __('Notifications') }}</p>
-    </a>
-</li>
-<li @if ($pageSlug == 'tables') class="active " @endif>
-    <a href="">
-        <i class="tim-icons icon-puzzle-10"></i>
-        <p>{{ __('Table List') }}</p>
-    </a>
-</li>
-<li @if ($pageSlug == 'typography') class="active " @endif>
-    <a href="">
-        <i class="tim-icons icon-align-center"></i>
-        <p>{{ __('Typography') }}</p>
-    </a>
-</li>
-<li @if ($pageSlug == 'rtl') class="active " @endif>
-    <a href="">
-        <i class="tim-icons icon-world"></i>
-        <p>{{ __('RTL Support') }}</p>
-    </a>
-</li>
-<li class=" {{ $pageSlug == 'upgrade' ? 'active' : '' }}">
-    <a href="">
-        <i class="tim-icons icon-spaceship"></i>
-        <p>{{ __('Upgrade to PRO') }}</p>
-    </a>
+<li @if ($pageSlug == 'listCategory' or $pageSlug == 'addCategory') class="dropdown active" @endif class="dropdown">
+  <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="far fa-folder"></i> <span>Kategori Produk</span></a>
+  <ul class="dropdown-menu">
+    <li @if ($pageSlug == 'listCategory') class="active " @endif>
+      <a class="nav-link" href="{{route('management-category-product.index')}}">Daftar Kategori</a>
+    </li>
+    <li @if ($pageSlug == 'addCategory') class="active " @endif>
+      <a class="nav-link" href="{{route('management-category-product.create')}}">Tambah Kategori</a>
+    </li>
+  </ul>
 </li> -->

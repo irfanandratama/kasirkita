@@ -1,72 +1,69 @@
-@extends('layouts.app', ['page' => __('Cashier Management'), 'pageSlug' => 'cashier'])
+@extends('layouts.app', ['pageSlug' => 'listCashier'])
 
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card ">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-8">
-                            <h4 class="card-title">{{ __('Cashier List') }}</h4>
-                        </div>
-                        <div class="col-4 text-right">
-                            <a href="{{ route('management-cashier.create') }}" class="btn btn-sm btn-primary">{{ __('Add user') }}</a>
-                        </div>
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>Daftar Kasir</h1>
+            <div class="section-header-breadcrumb">
+                <div class="breadcrumb-item active"><a href="#">Akun</a></div>
+                <div class="breadcrumb-item"><a href="#">Kasir</a></div>
+                <div class="breadcrumb-item">Daftar Kasir</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                    <h4>Data Kasir</h4>
                     </div>
-                </div>
-                <div class="card-body">
-                    @include('alerts.success')
+                    <div class="col-12 text-right">
+                        <a href="{{ route('management-cashier.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> <span>Tambah Kasir</span></a>
+                    </div>
+                    <div class="card-body">
+                    @include('alerts.notification')
+                    <div class="table-responsive">
+                        <table class="table table-striped" id="table-1">
+                        <thead>                                 
+                            <tr>
+                            <th class="text-center">
+                                ID
+                            </th>
+                            <th>Nama Kasir</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                            <th>Tanggal Dibuat</th>
+                            <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>   
+                        @foreach ($cashier as $row)                              
+                            <tr>
+                                <td class="text-center">{{ $row->id }}</td>
+                                <td>{{ $row->name }}</td>
+                                <td><a href="mailto:{{ $row->email }}">{{ $row->email }}</a></td>
+                                <td><div class="badge badge-success">Aktif</div></td>
+                                <td>{{ $row->created_at->format('d/m/Y H:i') }}</td>
+                                <td>
+                                    <form action="{{ route('management-cashier.delete', $row->id ) }}" method="post">
+                                        @csrf
+                                        @method('delete')
 
-                    <div class="">
-                        <table class="table tablesorter " id="">
-                            <thead class=" text-primary">
-                                <th scope="col">{{ __('Id') }}</th>
-                                <th scope="col">{{ __('Nama') }}</th>
-                                <th scope="col">{{ __('Email') }}</th>
-                                <th scope="col">{{ __('Bisnis') }}</th>
-                                <th scope="col">{{ __('Creation Date') }}</th>
-                            </thead>
-                            <tbody>
-                                @foreach ($cashier as $row)
-                                    <tr>
-                                        <td>{{ $row->id }}</td>
-                                        <td>{{ $row->name }}</td>
-                                        <td>
-                                            <a href="mailto:{{ $row->email }}">{{ $row->email }}</a>
-                                        </td>
-                                        <td>
-                                        @if($row->business()->first())
-                                            {{$row->business()->first()->name}}
-                                        @else
-                                            -not set-
-                                        @endif
-                                        </td>
-                                        <td>{{ $row->created_at->format('d/m/Y H:i') }}</td>
-                                        <td class="text-right">
-                                                <div class="dropdown">
-                                                    <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <i class="fas fa-ellipsis-v"></i>
-                                                    </a>
-                                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                        <form action="{{ route('management-cashier.delete', $row->id ) }}" method="post">
-                                                            @csrf
-                                                            @method('delete')
-
-                                                            <a class="dropdown-item" href="">{{ __('Edit') }}</a>
-                                                            <button type="button" class="dropdown-item" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
-                                                                        {{ __('Delete') }}
-                                                            </button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
+                                        <a href="{{ route('management-cashier.edit', $row->id) }}" class="btn btn-icon btn-primary"><i class="fas fa-edit"></i> Ubah</a>
+                                        <button type="submit" class="btn btn-icon btn-danger icon-left"></i> Hapus
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
                         </table>
+                    </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+</div>
 @endsection

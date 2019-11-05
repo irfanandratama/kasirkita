@@ -13,9 +13,9 @@ class AdminSeeder extends Seeder
     public function run()
     {
         DB::table('admins')->insert([
-            'name' => 'ihul',
-            'email' => 'ihul@gmail.com',
-            'password' => bcrypt('ihul1234'),
+            'name' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('kasirq1234'),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
             'last_login' => Carbon::now()

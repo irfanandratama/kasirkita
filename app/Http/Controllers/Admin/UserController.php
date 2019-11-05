@@ -32,7 +32,7 @@ class UserController extends Controller
 
         if(!$admins){
             \Session::flash('status', 'Data tidak ditemukan');
-            return redirect(route('profil'));
+            return redirect(route('admin.profil'));
         }
 
         $this->validate($request, [
@@ -45,44 +45,36 @@ class UserController extends Controller
         $admins->save();
 
         \Session::flash('status', 'Data Berhasil Disimpan');
-        return redirect(route('profile'));
+        return redirect(route('admin.profile'));
     }
 
     public function index()
     {
-        $page_title = "User List";
+        $admin = Admin::orderBy('name', 'asc')->get();
 
-        $management = Management::orderBy('name', 'asc')->get();
-
-        return view('admin.users.index',
+        return view('admin.admins.index',
             compact(
-                'page_title',
-                'management',
+                'admin'
         ));
     }
 
     public function create()
     {
-        $businessType = BusinessType::get();
-
-        return view('admin.users.create',
-            compact(
-                'businessType',
-        ));
+        return view('admin.admins.create');
     }
 
     public function delete($id)
     {
-        $user = Manejeman::where('id', $id)->first();
+        $user = Management::where('id', $id)->first();
 
         if(!$user){
             \Session::flash('status', 'Data tidak ditemukan');
-            return redirect(route('user.index'));
+            return redirect(route('admin.user.index'));
         }
 
         $user->delete();
 
         \Session::flash('status', 'Data Berhasil Dihapus');
-        return redirect(route('user.index'));
+        return redirect(route('admin.user.index'));
     }
 }
