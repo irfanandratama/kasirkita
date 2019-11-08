@@ -85,6 +85,8 @@ Route::namespace('Management')->group(function () {
         ->name('management-product.store');
     Route::delete('/management/product/delete/{id}', 'ProductController@delete')
         ->name('management-product.delete');
+        Route::get('/management/product/detail/{id}', 'ProductController@detail')
+        ->name('management-product.detail');
     Route::get('/management/product/edit/{id}', 'ProductController@edit')
         ->name('management-product.edit');
     Route::put('/management/product/update/{id}', 'ProductController@update')
@@ -103,6 +105,20 @@ Route::namespace('Management')->group(function () {
         ->name('management-category-product.edit');
     Route::put('/management/kategori-produk/update/{id}', 'CategoryProductController@update')
         ->name('management-category-product.update');
+
+    //Outlet
+    Route::get('/management/outlet/index', 'OutletController@index')
+        ->name('management-outlet.index');
+    Route::get('/management/outlet/create', 'OutletController@create')
+        ->name('management-outlet.create');
+    Route::post('/management/outlet/store', 'OutletController@store')
+        ->name('management-outlet.store');
+    Route::delete('/management/outlet/delete/{id}', 'OutletController@delete')
+        ->name('management-outlet.delete');
+    Route::get('/management/outlet/edit/{id}', 'OutletController@edit')
+        ->name('management-outlet.edit');
+    Route::put('/management/outlet/update/{id}', 'OutletController@update')
+        ->name('management-outlet.update');
 });
 
 Route::namespace('Cashier')->group(function(){

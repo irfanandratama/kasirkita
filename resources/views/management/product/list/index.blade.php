@@ -54,7 +54,7 @@
                                     <form action="{{route('management-product.delete', $row->id)}}" method="post" id="delete">
                                         @csrf
                                         @method('delete')
-                                        <a href="{{route('management-product.edit', $row->id)}}" class="btn btn-icon btn-primary"><i class="fas fa-edit"></i> Ubah</a>
+                                        <a href="{{route('management-product.detail', $row->id)}}" class="btn btn-icon btn-info"><i class="fas fa-edit"></i> Detail</a>
                                         <button type="submit" class="btn btn-icon btn-danger icon-left">Hapus</button>
                                     </form>
                                 </td>

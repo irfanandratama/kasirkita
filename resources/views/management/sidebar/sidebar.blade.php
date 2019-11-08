@@ -42,3 +42,16 @@
     </li>
   </ul>
 </li>
+
+<li class="menu-header">Outlet</li>
+<li  @if ($pageSlug == 'listOutlet' or $pageSlug == 'addOutlet') class="dropdown active" @endif class="dropdown">
+  <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-store"></i> <span>Outlet</span></a>
+  <ul class="dropdown-menu">
+    <li @if ($pageSlug == 'listOutlet') class="active " @endif>
+      <a class="nav-link" href="{{route('management-outlet.index')}}">Daftar Outlet</a>
+    </li>
+    <li @if ($pageSlug == 'addOutlet') class="active " @endif>
+      <a class="nav-link" href="{{route('management-outlet.create')}}">Tambah Outlet</a>
+    </li>
+  </ul>
+</li>

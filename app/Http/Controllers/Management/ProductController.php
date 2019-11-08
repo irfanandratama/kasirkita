@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Models\Product;
+use App\Models\ProductDetail;
+use App\Models\Outlet;
 use App\Models\CategoryProduct;
 use Auth;
 use File;
@@ -19,7 +21,8 @@ class ProductController extends Controller
     
     public function index()
     {
-        $produk = Product::orderBy('id', 'asc')->get();
+        $bisnis = Auth::user()->business_id;
+        $produk = Product::where('business_id', $bisnis)->orderBy('id', 'asc')->get();
         return view('management.product.list.index',
             compact(
                 'produk'
@@ -30,9 +33,11 @@ class ProductController extends Controller
     {
         $bisnis = Auth::user()->business_id;
         $kategori = CategoryProduct::where('business_id', $bisnis)->get();
+        $outlet = Outlet::where('business_id', $bisnis)->get();
         return view('management.product.list.create',
             compact(
-                'kategori'
+                'kategori',
+                'outlet'
         ));
     }
 
@@ -54,14 +59,24 @@ class ProductController extends Controller
 
         $price = str_replace(".", '', $request->get('price'));
 
+        $outlets = $request->get('outlet');
+
         $product = new Product();
         $product->name = $request->get('name');
         $product->price = $price;
         $product->category_id = $request->get('category_id');
-        $product->image = $fileName;
         $product->business_id = $bisnis;
+        $product->image = $fileName;
         $product->save();
 
+        foreach ($outlets as $outlet) {
+            $detail = new ProductDetail();
+            $detail->product_id = $product->id;
+            $detail->outlet_id = $outlet;
+            $detail->save();
+        }
+        
+        
         \Session::flash('success', 'Berhasil Menambahkan Produk');
         return redirect(route('management-product.index'));
     }
@@ -80,6 +95,22 @@ class ProductController extends Controller
 
         \Session::flash('danger', 'Data Dihapus');
         return redirect(route('management-product.index'));
+    }
+
+    public function detail($id)
+    {
+        $product = Product::where('id', $id)->first();
+        $details = ProductDetail::where('product_id', $id)->get();
+        if(!$product){
+            \Session::flash('danger', 'Data tidak ditemukan');
+            return redirect(route('management-product.index'));
+        }
+        return view('management.product.list.detail',
+            compact(
+                'product',
+                'details'
+            )
+        );
     }
 
     public function edit($id)

@@ -74,4 +74,8 @@ class Cashier extends Authenticatable implements MustVerifyEmail
     public function business() {
         return $this->belongsTo(Business::class);
     }
+
+    public function outlet() {
+        return $this->belongsTo(Outlet::class);  
+    }
 }

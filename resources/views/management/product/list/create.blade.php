@@ -47,6 +47,16 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group">
+                                    <label>Outlet</label>
+                                    <select class="form-control selectric" name='outlet[]' required="" multiple="multiple">
+                                        <option disabled>Pilih Outlet Produk</option>
+                                        @foreach ($outlet as $cabang)
+                                        <option value={{$cabang->id}}>{{$cabang->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
                                 <div class="text-right">
                                     <button type="submit" class="btn btn-icon icon-left btn-success">
                                         <i class="fas fa-check"></i> Simpan

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 
 use App\Models\Cashier;
 use App\Models\Management;
+use App\Models\Outlet;
 use Auth;
 
 class CashierController extends Controller
@@ -30,7 +31,12 @@ class CashierController extends Controller
 
     public function create()
     {
-        return view('management.cashier.create');
+        $bisnis = Auth::user()->business_id;
+        $outlet = Outlet::where('business_id', $bisnis)->get();
+        return view('management.cashier.create',
+            compact(
+                'outlet'
+            ));
     }
 
     public function store(Request $request)
@@ -46,6 +52,7 @@ class CashierController extends Controller
         $cashier = new Cashier();
         $cashier->name = $request->get('name');
         $cashier->email = $request->get('email');
+        $cashier->outlet_id = $request->get('outlet');
         $cashier->business_id = $business_id;
         $cashier->password = Hash::make($request->get('password'));
         $cashier->save();

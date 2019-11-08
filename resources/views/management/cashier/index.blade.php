@@ -32,6 +32,7 @@
                             </th>
                             <th>Nama Kasir</th>
                             <th>Email</th>
+                            <th>Outlet</th>
                             <th>Status</th>
                             <th>Tanggal Dibuat</th>
                             <th>Action</th>
@@ -43,6 +44,7 @@
                                 <td class="text-center">{{ $row->id }}</td>
                                 <td>{{ $row->name }}</td>
                                 <td><a href="mailto:{{ $row->email }}">{{ $row->email }}</a></td>
+                                <td>{{ $row->outlet->name }}</td>
                                 <td><div class="badge badge-success">Aktif</div></td>
                                 <td>{{ $row->created_at->format('d/m/Y H:i') }}</td>
                                 <td>

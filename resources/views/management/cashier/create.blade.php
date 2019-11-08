@@ -16,51 +16,57 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Form Tambah Kasir</h4>
+                        <h4 class="section-title">Form Tambah Kasir</h4>
                     </div>
                     <div class="card-body">
                         <form method="post" action="{{ route('management-cashier-create.store')}}" autocomplete="off">
                             @csrf
                             <div class="pl-lg-4">
-                                <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-name">{{ __('Name') }}</label>
-                                    <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" value="{{ old('name') }}" required autofocus>
-                                    @include('alerts.feedback', ['field' => 'name'])
+                                <div class="form-group">
+                                    <label>Outlet</label>
+                                    <select class="form-control selectric" name='outlet' required="" autofocus>
+                                        <option disabled>Pilih Outlet Kasir</option>
+                                        @foreach ($outlet as $cabang)
+                                        <option value={{$cabang->id}}>{{$cabang->name}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                                <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-email">{{ __('Email') }}</label>
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-name">Nama Kasir</label>
+                                    <input type="text" name="name" id="input-name" class="form-control form-control-alternative" placeholder="Name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-email">Email</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
                                             <i class="fas fa-envelope"></i>
                                             </div>
                                         </div>
-                                        <input type="email" name="email" id="input-email" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" value="{{ old('email') }}" required>
+                                        <input type="email" name="email" id="input-email" class="form-control form-control-alternative" placeholder="Email" required>
                                     </div>
-                                    @include('alerts.feedback', ['field' => 'email'])
                                 </div>
                                 <div class="row">
-                                    <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }} col-6">
-                                        <label class="form-control-label" for="input-password">{{ __('Password') }}</label>
+                                    <div class="form-group col-6">
+                                        <label class="form-control-label" for="input-password">Password</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
                                                 <i class="fas fa-lock"></i>
                                                 </div>
                                             </div>
-                                            <input type="password" name="password" id="input-password" class="form-control form-control-alternative{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ __('Password') }}" value="" required>
+                                            <input type="password" name="password" id="input-password" class="form-control form-control-alternative" placeholder="Password" required>
                                         </div>
-                                        @include('alerts.feedback', ['field' => 'password'])
                                     </div>
                                     <div class="form-group col-6">
-                                        <label class="form-control-label" for="input-password-confirmation">{{ __('Confirm Password') }}</label>
+                                        <label class="form-control-label" for="input-password-confirmation">Konfirmasi Password</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
                                                 <i class="fas fa-redo"></i>
                                                 </div>
                                             </div>
-                                            <input type="password" name="password_confirmation" id="input-password-confirmation" class="form-control form-control-alternative" placeholder="{{ __('Confirm Password') }}" value="" required>
+                                            <input type="password" name="password_confirmation" id="input-password-confirmation" class="form-control form-control-alternative" placeholder="Konfirmasi Password" required>
                                         </div>
                                     </div>
                                 </div>

@@ -16,7 +16,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Ubah Kategori Produk</h4>
+                        <h4>Ubah Data Kategori Produk</h4>
                     </div>
                     <div class="card-body">
                         <form method="post" action="{{route('management-category-product.update', $kategori->id)}}" autocomplete="off">
