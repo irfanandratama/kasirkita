@@ -36,7 +36,7 @@ class CategoryProductController extends Controller
         $business_id = auth()->user()->business_id;
 
         $this->validate($request, [
-            'name' => 'required', 'string', 'max:255',
+            'name' => 'required', 'string', 'max:255'
         ]);
 
         $category = new CategoryProduct();
@@ -78,7 +78,7 @@ class CategoryProductController extends Controller
         $kategori = CategoryProduct::where('id', $id)->first();
 
         $this->validate($request, [
-            'name' => 'required', 'string', 'max:255',
+            'name' => 'required', 'string', 'max:255'
         ]);
 
         $kategori->name = $request->get('name');

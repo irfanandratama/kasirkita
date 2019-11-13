@@ -125,4 +125,16 @@ Route::namespace('Cashier')->group(function(){
 
     Route::get('/cashier/dashboard', 'DashboardController@index')
         ->name('cashier.dashboard');
+
+    //Stok Masuk
+    Route::get('/cashier/stock/index', 'StockController@index')
+        ->name('cashier-stock.index');
+    Route::get('/cashier/stock/create', 'StockController@create')
+        ->name('cashier-stock.create');
+    Route::post('/cashier/stock/store', 'StockController@store')
+        ->name('cashier-stock.store');
+    Route::post('/cashier/stock/detail/{id}', 'StockController@detail')
+        ->name('cashier-stock.detail');
+        
+
 });

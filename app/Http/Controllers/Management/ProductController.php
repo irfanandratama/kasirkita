@@ -84,6 +84,7 @@ class ProductController extends Controller
     public function delete($id)
     {
         $product = Product::where('id', $id)->first();
+        $details = ProductDetail::where('product_id', $id)->get();
 
         if(!$product){
             \Session::flash('danger', 'Data tidak ditemukan');
@@ -92,6 +93,10 @@ class ProductController extends Controller
 
         File::delete(public_path('assets/img/product/' . $product->image));
         $product->delete();
+
+        foreach ($details as $detail){
+            $detail->delete();
+        }
 
         \Session::flash('danger', 'Data Dihapus');
         return redirect(route('management-product.index'));

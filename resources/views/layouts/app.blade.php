@@ -9,7 +9,7 @@
     @elseif (Auth::guard('management')->check())
     <title>KasirQ &mdash; {{Auth::user()->business->name}}</title>
     @elseif (Auth::guard('cashier')->check())
-    <title>Kasir &mdash; {{Auth::user()->business->name}}</title>
+    <title>Kasir {{Auth::user()->business->name}} &mdash; {{Auth::user()->name}}</title>
     @endif
   @else
   <title>KasirQ &mdash; Kasir Kita</title>

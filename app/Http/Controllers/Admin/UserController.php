@@ -22,7 +22,7 @@ class UserController extends Controller
 
         return view('admin.profile.edit',
             compact(
-                'page_title',
+                'page_title'
         ));
     }
 

@@ -1,6 +1,19 @@
 <li class="menu-header">Dashboard</li>
 <li @if ($pageSlug == 'dashboard') class="active " @endif>
-  <a href="{{route('management.dashboard')}}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+  <a href="{{route('cashier.dashboard')}}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+</li>
+
+<li class="menu-header">Inventori</li>
+<li  @if ($pageSlug == 'stockHistory' or $pageSlug == 'addActivity') class="dropdown active" @endif class="dropdown">
+  <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-boxes"></i> <span>Kelola Stok</span></a>
+  <ul class="dropdown-menu">
+    <li @if ($pageSlug == 'stockHistory') class="active " @endif>
+      <a class="nav-link" href="{{route('cashier-stock.index')}}">Riwayat Stok</a>
+    </li>
+    <li @if ($pageSlug == 'addActivity') class="active " @endif>
+      <a class="nav-link" href="{{route('cashier-stock.create')}}">Tambah Aktifitas</a>
+    </li>
+  </ul>
 </li>
 
 <!-- <li class="menu-header">Akun</li>

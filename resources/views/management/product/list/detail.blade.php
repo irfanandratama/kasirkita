@@ -5,7 +5,7 @@
     <section class="section">
         <div class="section-header">
         <div class="section-header-back">
-            <a href="{{route('management-product.index')}}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+            <a href="{{ URL::previous() }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
         </div>
         <h1>{{$product->name}}</h1>
         <div class="section-header-breadcrumb">
@@ -44,7 +44,7 @@
                     <h4>Data Produk</h4>
                 </div>
                 <div class="col-12 text-right">
-                    <a href="" class="btn btn-icon icon-left btn-primary"><i class="fas fa-edit"></i> <span>Ubah Produk</span></a>
+                    <a href="{{route('management-product.edit', $product->id)}}" class="btn btn-icon icon-left btn-primary"><i class="fas fa-edit"></i> <span>Ubah Produk</span></a>
                 </div>
                 <div class="card-body">
                     <!-- <p class="text-muted">General settings such as, site title, site description, address and so on.</p> -->
@@ -87,8 +87,8 @@
                     </div>
                 </div>
                 <div class="card-footer bg-whitesmoke text-md-right">
-                    <button class="btn btn-primary" id="save-btn">Save Changes</button>
-                    <button class="btn btn-secondary" type="button">Reset</button>
+                    <!-- <button class="btn btn-primary" id="save-btn">Save Changes</button>
+                    <button class="btn btn-secondary" type="button">Reset</button> -->
                 </div>
                 </div>
             </form>

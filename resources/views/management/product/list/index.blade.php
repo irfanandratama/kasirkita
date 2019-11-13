@@ -49,7 +49,7 @@
                                     
                                 </td>
                                 <td>Rp. {{ number_format($row->price, 0, '.', '.')}}</td>
-                                <td>{{$row->category->name}}</td>
+                                <td>{{$row->category['name']}}</td>
                                 <td>
                                     <form action="{{route('management-product.delete', $row->id)}}" method="post" id="delete">
                                         @csrf

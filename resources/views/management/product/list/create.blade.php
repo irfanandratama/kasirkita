@@ -33,7 +33,7 @@
                                 <div class="form-group">
                                     <label>Kategori</label>
                                     <select class="form-control selectric" name='category_id' required="">
-                                        <option>Pilih Kategori Produk</option>
+                                        <option disabled selected>Pilih Kategori Produk</option>
                                         @foreach ($kategori as $kategori)
                                         <option value={{$kategori->id}}>{{$kategori->name}}</option>
                                         @endforeach

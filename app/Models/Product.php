@@ -16,4 +16,12 @@ class Product extends Model
     public function category() {
         return $this->belongsTo(CategoryProduct::class);  
     }
+
+    public function productDetail() {
+        return $this->hasMany(ProductDetail::class);  
+    }
+
+    public function stockHistory() {
+        return $this->hasMany(StockHistory::class);  
+    }
 }

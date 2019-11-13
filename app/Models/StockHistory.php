@@ -4,19 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ProductDetail extends Model
+class StockHistory extends Model
 {
     public $timestamps = true;
 
     protected $fillable = [
-        'stock', 'product_id', 'outlet_id'
+        'product_id', 'type', 'quantity', 'note'
     ];
-
-    public function outlet() {
-        return $this->belongsTo(Outlet::class);  
-    }
 
     public function product() {
         return $this->belongsTo(Product::class);  
+    }
+
+    public function outlet() {
+        return $this->belongsTo(Outlet::class);  
     }
 }

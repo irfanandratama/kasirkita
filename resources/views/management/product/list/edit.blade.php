@@ -52,7 +52,7 @@
                                     <button type="submit" class="btn btn-icon icon-left btn-success">
                                         <i class="fas fa-check"></i> Simpan
                                     </button>
-                                    <a href="{{route('management-product.index')}}" class="btn btn-outline-secondary">Batal</a>
+                                    <a href="{{ URL::previous() }}" class="btn btn-outline-secondary">Batal</a>
                                 </div>
                             </div>
                         </form>
