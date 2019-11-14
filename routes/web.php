@@ -133,7 +133,7 @@ Route::namespace('Cashier')->group(function(){
         ->name('cashier-stock.create');
     Route::post('/cashier/stock/store', 'StockController@store')
         ->name('cashier-stock.store');
-    Route::post('/cashier/stock/detail/{id}', 'StockController@detail')
+    Route::get('/cashier/stock/detail/{id}', 'StockController@detail')
         ->name('cashier-stock.detail');
         
 

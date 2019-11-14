@@ -73,14 +73,14 @@ class StockController extends Controller
 
     public function detail($id)
     {
-        $stock = StockHistory::where('id', $id)->first();
-        if(!$stock){
+        $history = StockHistory::where('id', $id)->first();
+        if(!$history){
             \Session::flash('danger', 'Data tidak ditemukan');
             return redirect(route('management-product.index'));
         }
         return view('cashier.stock.detail',
             compact(
-                'stock'
+                'history'
             )
         );
     }

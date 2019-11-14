@@ -19,4 +19,8 @@ class StockHistory extends Model
     public function outlet() {
         return $this->belongsTo(Outlet::class);  
     }
+
+    public function cashier() {
+        return $this->belongsTo(Cashier::class);  
+    }
 }
