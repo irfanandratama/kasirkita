@@ -81,19 +81,18 @@ class RegisterController extends Controller
             'name' => 'required', 'string', 'max:255',
             'email' => 'required', 'string', 'email', 'max:255', 'unique:users',
             'phone' => 'required', 'numeric',
-            'password' => 'required', 'string', 'min:8',
+            'password' => 'required', 'numeric', 'min:8',
             'businessName' => 'required', 'string', 'max:255',
             'business_type_id' => 'required',
         ]);
 
         $businessType = BusinessType::orderBy('name', 'asc')->get();
-      
+
         $business = new Business();
         $business->name = $request->get('businessName');
         $business->business_type_id = $request->get('business_type_id');
         $business->save();
-      
-      
+
         $manejemen = new Management();
         $manejemen->name = $request->get('name');
         $manejemen->email = $request->get('email');

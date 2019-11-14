@@ -352,10 +352,10 @@
                     <input type="text" class="form-control" name="name" placeholder="Nama Lengkap">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="email" placeholder="Email">
+                    <input type="email" class="form-control" name="email" placeholder="Email">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="phone" placeholder="Nomor Handphone">
+                    <input type="tel" pattern="^\d{12}$" class="form-control" name="phone" placeholder="Nomor Handphone">
                 </div>
                 <div class="form-group">
                     <input type="password" class="form-control" name="password" placeholder="Password">

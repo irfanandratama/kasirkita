@@ -18,7 +18,7 @@ class CreateManagementsTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->integer('business_id')->default(0);
-            $table->integer('phone');
+            $table->string('phone');
             $table->string('password');
             $table->rememberToken();
             $table->dateTime('last_login')->nullable();
