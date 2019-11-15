@@ -35,6 +35,7 @@
                                     <label>Kategori</label>
                                     <select class="form-control selectric" name='category_id' required="">
                                         <option>Pilih Kategori Produk</option>
+                                        <option value='0'>Tanpa Kategori</option>
                                         @foreach ($kategori as $kategori)
                                         <option value={{$kategori->id}} {{ $kategori->id == $product->category_id ? 'selected' : '' }}>{{$kategori->name}}</option>
                                         @endforeach

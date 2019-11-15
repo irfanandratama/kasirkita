@@ -67,7 +67,11 @@
                     <div class="form-group row align-items-center">
                         <label for="site-description" class="form-control-label col-sm-3 text-md-right">Kategori :</label>
                         <div class="col-sm-6 col-md-9">
-                            <h5>{{$product->category->name}}</h5>
+                            @if ($product->category_id == 0)
+                                <h5 class="text-secondary mb-2">Tidak Berkategori</h5>
+                            @else
+                                <h5>{{$product->category->name}}</h5>
+                            @endif
                         </div>
                     </div>
                     <hr>

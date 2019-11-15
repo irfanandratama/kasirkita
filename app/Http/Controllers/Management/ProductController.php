@@ -59,7 +59,6 @@ class ProductController extends Controller
         $price = str_replace(".", '', $request->get('price'));
 
         $outlets = $request->get('outlet');
-        $category = $request->get('category_id');
 
         $product = new Product();
         $product->name = $request->get('name');
@@ -67,7 +66,7 @@ class ProductController extends Controller
         $product->business_id = $bisnis;
         $product->image = $fileName;
 
-        if (!empty($category)) {
+        if (!empty($request->get('category_id'))) {
             $product->category_id = $request->get('category_id');
         }
         
@@ -155,22 +154,16 @@ class ProductController extends Controller
             $fileName = $imageName . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('assets/img/product'), $fileName);
 
-            $price = str_replace(".", '', $request->get('price'));
-
-            $product->name = $request->get('name');
-            $product->price = $price;
-            $product->category_id = $request->get('category_id');
             $product->image = $fileName;
-            $product->save();
 
-        }else {
-            $price = str_replace(".", '', $request->get('price'));
-
-            $product->name = $request->get('name');
-            $product->price = $price;
-            $product->category_id = $request->get('category_id');
-            $product->save();
         }
+
+        $price = str_replace(".", '', $request->get('price'));
+
+        $product->name = $request->get('name');
+        $product->price = $price;
+        $product->category_id = $request->get('category_id');
+        $product->save();
 
         \Session::flash('success', 'Data Berhasil Disimpan');
         return redirect(route('management-product.index'));
