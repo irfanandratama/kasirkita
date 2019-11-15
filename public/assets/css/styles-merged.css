@@ -6397,7 +6397,7 @@ p, ul, ol {
 a {
   -webkit-transition: .3s all;
   transition: .3s all;
-  color: #7ed321;
+  color: #007bff;
 }
 
 a:hover, a:focus, a:active {
@@ -6478,7 +6478,7 @@ a:hover, a:focus, a:active {
 }
 
 .probootstrap-navbar .dropdown.open > a, .probootstrap-navbar .dropdown:hover > a, .probootstrap-navbar .dropdown:focus > a, .probootstrap-navbar .dropdown:active > a {
-  border-top: 2px solid #7ed321;
+  border-top: 2px solid #007bff;
   -webkit-transition: .3s all;
   transition: .3s all;
 }
@@ -6528,7 +6528,7 @@ a:hover, a:focus, a:active {
   border: none;
   -webkit-box-shadow: none;
   box-shadow: none;
-  background: #7ed321;
+  background: #007bff;
   background: #303841 !important;
   border-radius: 0;
   -webkit-box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.15);
@@ -6600,7 +6600,7 @@ a:hover, a:focus, a:active {
 }
 
 .probootstrap-navbar .navbar-nav > li > a:hover, .probootstrap-navbar .navbar-nav > li > a:focus, .probootstrap-navbar .navbar-nav > li > a:active {
-  border-top: 2px solid #7ed321;
+  border-top: 2px solid #007bff;
 }
 
 @media screen and (max-width: 480px) {
@@ -6621,7 +6621,7 @@ a:hover, a:focus, a:active {
   border-radius: 4px;
   padding: 10px 20px;
   margin-top: 30px;
-  background: #7ed321;
+  background: #007bff;
   color: #ffffff;
 }
 
@@ -6634,8 +6634,8 @@ a:hover, a:focus, a:active {
 
 .probootstrap-navbar .navbar-nav > li.probootstra-cta-button > a.btn-ghost {
   background: transparent;
-  color: #7ed321;
-  border-top: 1px solid #7ed321 !important;
+  color: #007bff;
+  border-top: 1px solid #007bff !important;
 }
 
 .probootstrap-navbar .navbar-nav > li.probootstra-cta-button.last > a {
@@ -6810,7 +6810,7 @@ a:hover, a:focus, a:active {
 }
 
 .probootstrap-hero.probootstrap-hero-colored {
-  background: #7ed321;
+  background: #007bff;
 }
 
 .probootstrap-hero.probootstrap-hero-colored h1 {
@@ -6953,7 +6953,7 @@ a:hover, a:focus, a:active {
 }
 
 .probootstrap-showcase-nav ul li.active > a {
-  color: #7ed321;
+  color: #007bff;
   padding-left: 0px;
   display: block;
 }
@@ -6986,8 +6986,8 @@ a:hover, a:focus, a:active {
 }
 
 .btn.btn-primary {
-  border: 1px solid #7ed321;
-  background: #7ed321;
+  border: 1px solid #007bff;
+  background: #007bff;
   color: #ffffff;
 }
 
@@ -6997,25 +6997,25 @@ a:hover, a:focus, a:active {
 
 .btn.btn-primary:focus, .btn.btn-primary:active {
   outline: none;
-  border: 1px solid #7ed321;
+  border: 1px solid #007bff;
 }
 
 .btn.btn-ghost {
   background: transparent;
-  border: 1px solid #7ed321;
-  color: #7ed321;
+  border: 1px solid #007bff;
+  color: #007bff;
 }
 
 .btn.btn-ghost:hover {
-  background: #7ed321;
+  background: #007bff;
   color: #ffffff;
 }
 
 .btn.btn-ghost:focus, .btn.btn-ghost:active {
   outline: none;
   background: transparent;
-  color: #7ed321;
-  border: 1px solid #7ed321;
+  color: #007bff;
+  border: 1px solid #007bff;
 }
 
 .probootstrap-section {
@@ -7074,7 +7074,7 @@ a:hover, a:focus, a:active {
 
 .probootstrap-cta {
   padding: 3em 0;
-  background: #7ed321;
+  background: #007bff;
   color: #ffffff;
 }
 
@@ -7128,7 +7128,7 @@ a:hover, a:focus, a:active {
 
 .probootstrap-cta .btn.btn-ghost:hover {
   background: #ffffff;
-  color: #7ed321;
+  color: #007bff;
 }
 
 .probootstrap-footer {
@@ -7208,7 +7208,7 @@ a:hover, a:focus, a:active {
 .service .icon i {
   font-size: 60px;
   color: rgba(0, 0, 0, 0.2);
-  color: #7ed321;
+  color: #007bff;
 }
 
 .service h3 {
@@ -7274,7 +7274,7 @@ a:hover, a:focus, a:active {
 .probootstrap-form .form-control:active, .probootstrap-form .form-control:focus {
   -webkit-box-shadow: none;
   box-shadow: none;
-  border-color: #7ed321;
+  border-color: #007bff;
 }
 
 .probootstrap-form textarea.form-control {
@@ -7546,7 +7546,7 @@ a:hover, a:focus, a:active {
   display: block;
   text-transform: none;
   letter-spacing: normal;
-  color: #7ed321;
+  color: #007bff;
   font-size: 14px;
 }
 
@@ -7556,7 +7556,7 @@ a:hover, a:focus, a:active {
 
 .probootstrap-pricing .probootstrap-price-wrap .probootstrap-price {
   font-size: 50px;
-  color: #7ed321;
+  color: #007bff;
   font-weight: 100;
   display: block;
   margin-bottom: 10px;
@@ -7697,14 +7697,14 @@ a:hover, a:focus, a:active {
 
 .owl-theme .owl-controls .owl-nav [class*="owl-"] i {
   font-size: 24px;
-  background: #7ed321 !important;
+  background: #007bff !important;
   padding: 12px;
   -webkit-transition: .5s all;
   transition: .5s all;
 }
 
 .owl-theme .owl-controls .owl-nav [class*="owl-"]:hover i, .owl-theme .owl-controls .owl-nav [class*="owl-"]:focus i {
-  background: #7ed321 !important;
+  background: #007bff !important;
 }
 
 .owl-theme .owl-dots {

@@ -26,7 +26,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#" title="uiCookies:Inspire">Inspire</a>
+          <a class="navbar-brand" href="#" title="uiCookies:Inspire" style="background: url({{ asset('assets/img/logo/logo.png') }}) no-repeat left center; background-size:cover; width:218px;">Inspire</a>
         </div>
 
         <div id="navbar-collapse" class="navbar-collapse collapse">
