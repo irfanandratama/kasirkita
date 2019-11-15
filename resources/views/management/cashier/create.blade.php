@@ -25,7 +25,7 @@
                                 <div class="form-group">
                                     <label>Outlet</label>
                                     <select class="form-control selectric" name='outlet' required="" autofocus>
-                                        <option disabled>Pilih Outlet Kasir</option>
+                                        <option selected disabled>Pilih Outlet Kasir</option>
                                         @foreach ($outlet as $cabang)
                                         <option value={{$cabang->id}}>{{$cabang->name}}</option>
                                         @endforeach

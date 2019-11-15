@@ -48,7 +48,6 @@ class ProductController extends Controller
         $this->validate($request, [
             'name' => 'required', 'string', 'max:255',
             'price' => 'required', 'numeric',
-            'category_id' => 'required',
             'image' => 'required', 'image',
         ]);
 
@@ -60,13 +59,18 @@ class ProductController extends Controller
         $price = str_replace(".", '', $request->get('price'));
 
         $outlets = $request->get('outlet');
+        $category = $request->get('category_id');
 
         $product = new Product();
         $product->name = $request->get('name');
         $product->price = $price;
-        $product->category_id = $request->get('category_id');
         $product->business_id = $bisnis;
         $product->image = $fileName;
+
+        if (!empty($category)) {
+            $product->category_id = $request->get('category_id');
+        }
+        
         $product->save();
 
         foreach ($outlets as $outlet) {

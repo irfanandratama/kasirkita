@@ -49,7 +49,13 @@
                                     
                                 </td>
                                 <td>Rp. {{ number_format($row->price, 0, '.', '.')}}</td>
-                                <td>{{$row->category['name']}}</td>
+                                <td>
+                                @if ($row->category_id == '0')
+                                    <div class="text-secondary mb-2">Tidak Berkategori</div>
+                                @else
+                                    <div class="text-primary mb-2">{{$row->category['name']}}</div>
+                                @endif
+                                </td>
                                 <td>
                                     <form action="{{route('management-product.delete', $row->id)}}" method="post" id="delete">
                                         @csrf
