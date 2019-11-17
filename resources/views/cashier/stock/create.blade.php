@@ -24,7 +24,9 @@
                             @method('post')
                             <div class="pl-lg-4">
                                 <div class="form-group">
-                                    <label>Produk</label>
+                                    <label>Produk
+                                            <span class="text-danger" data-toggle="tooltip" data-placement="right" title="Tidak boleh kosong ya...">*</span>
+                                    </label>
                                     <select class="form-control selectric" name='product_id' required="">
                                         <option selected disabled>Pilih Produk</option>
                                         @foreach ($details as $detail)
@@ -34,7 +36,9 @@
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label>Jenis Aktifitas</label>
+                                    <label>Jenis Aktifitas
+                                            <span class="text-danger" data-toggle="tooltip" data-placement="right" title="Tidak boleh kosong ya...">*</span>
+                                    </label>
                                     <select class="form-control selectric" name='type' required="">
                                         <option selected disabled>Pilih Jenis Aktifitas</option>
                                         <option value="masuk">Stok Masuk</option>
@@ -43,12 +47,16 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Kuantitas</label>
+                                    <label>Kuantitas
+                                            <span class="text-danger" data-toggle="tooltip" data-placement="right" title="Tidak boleh kosong ya...">*</span>
+                                    </label>
                                     <input name="quantity" type="text" placeholder="Kuantitas Produk" class="form-control" required="">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Catatan</label>
+                                    <label>Keterangan
+                                            <span class="text-danger" data-toggle="tooltip" data-placement="right" title="Tidak boleh kosong ya...">*</span>
+                                    </label>
                                     <textarea class="form-control" name="note" required=""></textarea>
                                 </div>
 

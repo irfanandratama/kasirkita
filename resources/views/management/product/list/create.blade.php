@@ -23,11 +23,15 @@
                             @csrf
                             <div class="pl-lg-4">
                                 <div class="form-group">
-                                    <label>Nama Produk</label>
+                                    <label>Nama Produk
+                                            <span class="text-danger" data-toggle="tooltip" data-placement="right" title="Tidak boleh kosong ya...">*</span>
+                                    </label>
                                     <input name="name" type="text" placeholder="Nama Produk" class="form-control" required="" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <label>Harga Produk (Rp.)</label>
+                                    <label>Harga Produk (Rp.)
+                                            <span class="text-danger" data-toggle="tooltip" data-placement="right" title="Tidak boleh kosong ya...">*</span>
+                                    </label>
                                     <input name="price" type="text" placeholder="Harga Produk" class="form-control uang" required="">
                                 </div>
                                 <div class="form-group">
@@ -40,7 +44,9 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Foto Produk</label>
+                                    <label>Foto Produk
+                                            <span class="text-danger" data-toggle="tooltip" data-placement="right" title="Tidak boleh kosong ya...">*</span>
+                                    </label>
                                     <div id="image-preview" class="image-preview">
                                         <label for="image-upload" id="image-label">Choose File</label>
                                         <input class="form-control" type="file" name="image" id="image-upload" required="">
@@ -48,7 +54,9 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Outlet</label>
+                                    <label>Outlet
+                                            <span class="text-danger" data-toggle="tooltip" data-placement="right" title="Tidak boleh kosong ya...">*</span>
+                                    </label>
                                     <select class="form-control selectric" name='outlet[]' required="" multiple="multiple">
                                         <option disabled>Pilih Outlet Produk</option>
                                         @foreach ($outlet as $cabang)

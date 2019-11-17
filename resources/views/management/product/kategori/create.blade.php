@@ -23,7 +23,9 @@
                             @csrf
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-name">Nama Kategori</label>
+                                    <label class="form-control-label" for="input-name">Nama Kategori
+                                            <span class="text-danger" data-toggle="tooltip" data-placement="right" title="Tidak boleh kosong ya...">*</span>
+                                    </label>
                                     <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" value="{{ old('name') }}" required autofocus>
                                     @include('alerts.feedback', ['field' => 'name'])
                                 </div>

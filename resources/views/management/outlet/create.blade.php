@@ -23,11 +23,15 @@
                             @csrf
                             <div class="pl-lg-4">
                                 <div class="form-group">
-                                    <label>Nama Outlet</label>
+                                    <label>Nama Outlet
+                                            <span class="text-danger" data-toggle="tooltip" data-placement="right" title="Tidak boleh kosong ya...">*</span>
+                                    </label>
                                     <input name="name" type="text" placeholder="Nama Outlet" class="form-control" required="" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <label>Alamat Outlet</label>
+                                    <label>Alamat Outlet
+                                            <span class="text-danger" data-toggle="tooltip" data-placement="right" title="Tidak boleh kosong ya...">*</span>
+                                    </label>
                                     <input name="address" type="text" placeholder="Alamat" class="form-control" required="" autofocus>
                                 </div>
 

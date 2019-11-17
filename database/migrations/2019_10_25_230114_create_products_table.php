@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->integer('category_id')->default('0');
             $table->integer('business_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -31,6 +32,8 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropSoftDeletes(); //add this line
+        });
     }
 }
