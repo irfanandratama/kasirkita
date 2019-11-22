@@ -1,0 +1,68 @@
+.produk {
+    overflow: auto;
+    max-height: 355px;
+    padding: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.item {
+    width: 144px;
+    height: 144px;
+    position: relative;
+    margin: 5px 5px;
+    
+}
+
+.item img {
+    width: 144px;
+    height: 144px;
+    object-fit: cover;
+    box-shadow: 0px 10px 20px -5px rgba(0,0,0,.3);
+    
+}
+
+.price {
+    background: white;
+    font-weight: bold;
+    border: none;
+    color: black;
+    padding: 6px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    border-radius: 5px;
+    
+}
+.caption {
+    bottom: 0%;
+    padding: 0px;
+    
+}
+
+.tambah {
+    top: 2px;
+    padding: 0px;
+}
+
+.gradasi {
+    position: absolute;
+    top: 50%;
+    object-fit: cover;
+    width: 100%;
+    height: 50%;
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.8));
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.keranjang label{
+    margin: 0px;
+    font-weight: bold;
+}

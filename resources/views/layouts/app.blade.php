@@ -30,6 +30,8 @@
   <link rel="stylesheet" href="{{ asset(config('admin_config.theme_name')) }}/assets/modules/chocolat/dist/css/chocolat.css">
   <link rel="stylesheet" href="{{ asset(config('admin_config.theme_name')) }}/assets/modules/prism/prism.css">
 
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{ asset(config('admin_config.theme_name')) }}/assets/css/style.css">
   <link rel="stylesheet" href="{{ asset(config('admin_config.theme_name')) }}/assets/css/components.css">
@@ -87,7 +89,16 @@
   <script src="{{ asset(config('admin_config.theme_name')) }}/assets/modules/chocolat/dist/js/jquery.chocolat.min.js"></script>
   <script src="{{ asset(config('admin_config.theme_name')) }}/assets/modules/prism/prism.js"></script>
 
+  <script src="{{ asset(config('admin_config.theme_name')) }}/assets/modules/cleave-js/dist/cleave.min.js"></script>
+  <script src="{{ asset(config('admin_config.theme_name')) }}/assets/modules/cleave-js/dist/addons/cleave-phone.us.js"></script>
+  <script src="{{ asset(config('admin_config.theme_name')) }}/assets/modules/jquery-pwstrength/jquery.pwstrength.min.js"></script>
+  <script src="{{ asset(config('admin_config.theme_name')) }}/assets/modules/bootstrap-daterangepicker/daterangepicker.js"></script>
+  <script src="{{ asset(config('admin_config.theme_name')) }}/assets/modules/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+  <script src="{{ asset(config('admin_config.theme_name')) }}/assets/modules/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
+  <script src="{{ asset(config('admin_config.theme_name')) }}/assets/modules/select2/dist/js/select2.full.min.js"></script>
+
   <!-- Page Specific JS File -->
+  <script src="{{ asset(config('admin_config.theme_name')) }}/assets/js/page/forms-advanced-forms.js"></script>
   <script src="{{ asset(config('admin_config.theme_name')) }}/assets/js/page/index.js"></script>
   <script src="{{ asset(config('admin_config.theme_name')) }}/assets/js/page/features-post-create.js"></script>
   <script src="{{ asset(config('admin_config.theme_name')) }}/assets/js/page/bootstrap-modal.js"></script>

@@ -3,6 +3,12 @@
   <a href="{{route('cashier.dashboard')}}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
 </li>
 
+<div class="mt-4 mb-4 p-3 hide-sidebar-mini">
+  <a href="{{route('cashier-transaction.index')}}" class="btn btn-primary btn-lg btn-block btn-icon-split">
+    <i class="fas fa-store"></i> TRANSAKSI
+  </a>
+</div>
+
 <li class="menu-header">Inventori</li>
 <li  @if ($pageSlug == 'stockHistory' or $pageSlug == 'addActivity') class="dropdown active" @endif class="dropdown">
   <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-boxes"></i> <span>Kelola Stok</span></a>

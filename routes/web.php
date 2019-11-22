@@ -126,6 +126,16 @@ Route::namespace('Cashier')->group(function(){
     Route::get('/cashier/dashboard', 'DashboardController@index')
         ->name('cashier.dashboard');
 
+    //Transaksi
+    Route::get('/cashier/transaction/index', 'TransactionController@index')
+        ->name('cashier-transaction.index');
+    Route::post('/cashier/transaction/invoice', 'TransactionController@invoice')
+        ->name('cashier-transaction.invoice');
+    Route::post('/cashier/transaction/store', 'TransactionController@store')
+        ->name('cashier-transaction.store');
+    Route::get('/cashier/transaction/print', 'TransactionController@print')
+        ->name('cashier-transaction.print');
+
     //Stok Masuk
     Route::get('/cashier/stock/index', 'StockController@index')
         ->name('cashier-stock.index');
