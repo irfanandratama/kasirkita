@@ -44,8 +44,8 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <h2 class="probootstrap-animate" data-animate-effect="fadeInRight">We'd like to help and talk with you</h2>
-            <a href="#" role="button" class="btn btn-primary btn-lg btn-ghost probootstrap-animate" data-animate-effect="fadeInLeft">Contact Us</a>
+            <h2 class="probootstrap-animate" data-animate-effect="fadeInRight">Butuh Bantuan</h2>
+            <a href="#" role="button" class="btn btn-primary btn-lg btn-ghost probootstrap-animate" data-animate-effect="fadeInLeft">Hubungi Kami</a>
           </div>
         </div>
       </div>
@@ -53,46 +53,7 @@
     <footer class="probootstrap-footer">
       <div class="container">
         <div class="row">
-          <div class="col-md-6">
-            <div class="row">
-              <div class="col-md-4 probootstrap-animate">
-                <div class="probootstrap-footer-widget">
-                  <h3>Links</h3>
-                  <ul>
-                    <li><a href="#">Knowledge Base</a></li>
-                    <li><a href="#">Career</a></li>
-                    <li><a href="#">Press Releases</a></li>
-                    <li><a href="#">Terms of services</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-md-4 probootstrap-animate">
-                <div class="probootstrap-footer-widget">
-                  <h3>Links</h3>
-                  <ul>
-                    <li><a href="#">Knowledge Base</a></li>
-                    <li><a href="#">Career</a></li>
-                    <li><a href="#">Press Releases</a></li>
-                    <li><a href="#">Terms of services</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-md-4 probootstrap-animate">
-                <div class="probootstrap-footer-widget">
-                  <h3>Links</h3>
-                  <ul>
-                    <li><a href="#">Knowledge Base</a></li>
-                    <li><a href="#">Career</a></li>
-                    <li><a href="#">Press Releases</a></li>
-                    <li><a href="#">Terms of services</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
+          
           
           <div class="col-md-6 probootstrap-animate">
             <div class="probootstrap-footer-widget">
@@ -112,7 +73,7 @@
         <!-- END row -->
         <div class="row">
           <div class="col-md-12 copyright probootstrap-animate">
-            <p><small>&copy; 2017 <a href="#">uiCookies:Inspire</a>. All Rights Reserved. <br> Designed &amp; Developed with <i class="icon icon-heart"></i> by <a href="https://uicookies.com/">uicookies.com</a></small></p>
+            <p><small>KasirQ &copy; 2017 .</small></p>
           </div>
         </div>
       </div>
