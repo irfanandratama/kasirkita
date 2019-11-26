@@ -108,6 +108,7 @@ class TransactionController extends Controller
     {
         $pdf = PDF::loadview('cashier.transaction.print');
         return $pdf->stream('invoice.pdf');
+        // return view('cashier.transaction.print');
         // $outlet = Auth::user()->outlet_id;
         // $produk = ProductDetail::where('outlet_id', $outlet)->orderBy('id', 'asc')->get();
         // return view('cashier.transaction.index',
