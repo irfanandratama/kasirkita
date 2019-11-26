@@ -71,64 +71,49 @@
     <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3 text-center section-heading probootstrap-animate" data-animate-effect="fadeIn">
-        <h2>Platform Features</h2>
-        <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
+        <h2>Fitur <img src="{{ asset('assets/img/logo/logo.png') }}" alt="Image" class="img-responsive"></h2>
+        <p class="lead">Fitur dari KasirQ dibagi kepada 3 Aktor</p>
         </div>
     </div>
     <!-- END row -->
     <div class="row probootstrap-gutter60">
         <div class="col-md-4 probootstrap-animate" data-animate-effect="fadeInLeft">
         <div class="service text-center">
-            <div class="icon"><i class="icon-mobile3"></i></div>
+            <div class="icon"><i class="icon-user2"></i></div>
             <div class="text">
-            <h3>Responsive Design</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
+            <h3>Admin</h3>
+            <p>Mengelola KasirQ</p>
             </div>  
         </div>
         </div>
         <div class="col-md-4 probootstrap-animate" data-animate-effect="fadeIn">
         <div class="service text-center">
-            <div class="icon"><i class="icon-presentation"></i></div>
+            <div class="icon"><i class="icon-profile-male"></i></div>
             <div class="text">
-            <h3>Business Solutions</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
+            <h3>Manager</h3>
+            <p>Mengelola Akun Kasir
+                <br>Mengelola Outlet
+                <br>Mengelola Produk
+                <br>Melihat Laporan Harian
+                <br>Melihat Laporan Bulanan
+                <br>Melihat Laporan Peroutlet
+                <br>Rekap Laporan
+                <br>Melihat Stok tiap outlet
+                <br>Menambah Kategori
+            </p>
             </div>
         </div>
         </div>
         <div class="col-md-4 probootstrap-animate" data-animate-effect="fadeInRight">
         <div class="service text-center">
-            <div class="icon"><i class="icon-circle-compass"></i></div>
+            <div class="icon"><i class="icon-users2"></i></div>
             <div class="text">
-            <h3>Brand Identity</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
-            </div>
-        </div>
-        </div>
-
-        <div class="col-md-4 probootstrap-animate" data-animate-effect="fadeInLeft">
-        <div class="service text-center">
-            <div class="icon"><i class="icon-lightbulb"></i></div>
-            <div class="text">
-            <h3>Creative Ideas</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
-            </div>  
-        </div>
-        </div>
-        <div class="col-md-4 probootstrap-animate">
-        <div class="service text-center">
-            <div class="icon"><i class="icon-magnifying-glass2"></i></div>
-            <div class="text">
-            <h3>Search Engine Friendly</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
-            </div>
-        </div>
-        </div>
-        <div class="col-md-4 probootstrap-animate" data-animate-effect="fadeInRight">
-        <div class="service text-center">
-            <div class="icon"><i class="icon-browser2"></i></div>
-            <div class="text">
-            <h3>Easy Customization</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
+            <h3>Kasir</h3>
+            <p>Mengelola Transaksi
+                <br>Mengelola Stok
+                <br>Melihat Laporan Bulanan
+                <br>Melihat Keuangan
+            </p>
             </div>
         </div>
         </div>
@@ -140,8 +125,8 @@
     <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3 text-center section-heading probootstrap-animate">
-        <h2>More Features</h2>
-        <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
+        <h2>Fitur Lainnya</h2>
+        <p class="lead">KasirQ juga mempunyai fitur yang membantu Aktor dan dikelola sistem.</p>
         </div>
     </div>
     <!-- END row -->
@@ -167,95 +152,27 @@
 
         <div class="col-md-5 col-md-pull-7">
         <div class="service left-icon probootstrap-animate" data-animate-effect="fadeInLeft">
-            <div class="icon"><i class="icon-mobile3"></i></div>
+            <div class="icon"><i class="icon-users"></i></div>
             <div class="text">
-            <h3>Responsive Design</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit iusto provident.</p>
+            <h3>Multi Level Login</h3>
+            <p>Login pada KasirQ dibagi menjadi 3 yaitu Admin, Manager, dan Kasir.</p>
             </div>  
         </div>
         <div class="service left-icon probootstrap-animate" data-animate-effect="fadeInLeft">
             <div class="icon"><i class="icon-presentation"></i></div>
             <div class="text">
-            <h3>Business Solutions</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit iusto provident.</p>
+            <h3>Laporan</h3>
+            <p>KasirQ mengelola data penjualan dan menjadikan laporan.</p>
             </div>
         </div>
         <div class="service left-icon probootstrap-animate" data-animate-effect="fadeInLeft">
-            <div class="icon"><i class="icon-circle-compass"></i></div>
+            <div class="icon"><i class="icon-presentation"></i></div>
             <div class="text">
-            <h3>Brand Identity</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit iusto provident.</p>
+            <h3>Grafik Laporan</h3>
+            <p>Laporan di Kasir dalam bentuk grafik agar memudahkan untuk melihat naik turun penjualan.</p>
             </div>
         </div>
         </div>
-    </div>
-    </div>
-</section>
-
-<section class="probootstrap-section probootstrap-border-top probootstrap-bg-white">
-    <div class="container">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3 text-center section-heading probootstrap-animate">
-        <h2>What People Says</h2>
-        <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4 probootstrap-animate" data-animate-effect="fadeIn">
-        <div class="probootstrap-testimony-wrap text-center">
-            <figure>
-            <img src="{{ asset('assets/img/person_1.jpg') }}" alt="Free Bootstrap Template by uicookies.com">
-            </figure>
-            <blockquote class="quote">&ldquo;Design must be functional and functionality must be translated into visual aesthetics, without any reliance on gimmicks that have to be explained.&rdquo; <cite class="author">&mdash; Ferdinand A. Porsche <br> <span>Design Lead at AirBNB</span></cite></blockquote>
-
-        </div>
-        </div>
-        <div class="col-md-4 probootstrap-animate" data-animate-effect="fadeIn">
-        <div class="probootstrap-testimony-wrap text-center">
-            <figure>
-            <img src="{{ asset('assets/img/person_2.jpg') }}" alt="Free Bootstrap Template by uicookies.com">
-            </figure>
-            <blockquote class="quote">&ldquo;Creativity is just connecting things. When you ask creative people how they did something, they feel a little guilty because they didn’t really do it, they just saw something. It seemed obvious to them after a while.&rdquo; <cite class="author">&mdash; Steve Jobs <br> <span>Co-Founder Square</span></cite></blockquote>
-        </div>
-        </div>
-        <div class="col-md-4 probootstrap-animate" data-animate-effect="fadeIn">
-        <div class="probootstrap-testimony-wrap text-center">
-            <figure>
-            <img src="{{ asset('assets/img/person_3.jpg') }}" alt="Free Bootstrap Template by uicookies.com">
-            </figure>
-            <blockquote class="quote">&ldquo;I think design would be better if designers were much more skeptical about its applications. If you believe in the potency of your craft, where you choose to dole it out is not something to take lightly.&rdquo; <cite class="author">&mdash; Frank Chimero <br> <span>Creative Director at Twitter</span></cite></blockquote>
-        </div>
-        </div>
-        
-    </div>
-    </div>
-</section>
-
-<section class="probootstrap-section proboostrap-clients probootstrap-bg-white probootstrap-border-top">
-    <div class="container">
-    <div class="row">
-        <div class="col-md-6 section-heading probootstrap-animate">
-        <h2>Our Clients</h2>
-        <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
-        </div>
-    </div>
-    <!-- END row -->
-    <div class="row">
-        <div class="col-md-3 col-sm-6 col-xs-6 text-center client-logo probootstrap-animate" data-animate-effect="fadeIn">
-        <img src="{{ asset('assets/img/client_1.png') }}" class="img-responsive" alt="Free Bootstrap Template by uicookies.com">
-        </div>
-        <div class="col-md-3 col-sm-6 col-xs-6 text-center client-logo probootstrap-animate" data-animate-effect="fadeIn">
-        <img src="{{ asset('assets/img/client_2.png') }}" class="img-responsive" alt="Free Bootstrap Template by uicookies.com">
-        </div>
-        <div class="clearfix visible-sm-block visible-xs-block"></div>
-        <div class="col-md-3 col-sm-6 col-xs-6 text-center client-logo probootstrap-animate" data-animate-effect="fadeIn">
-        <img src="{{ asset('assets/img/client_3.png') }}" class="img-responsive" alt="Free Bootstrap Template by uicookies.com">
-        </div>
-        <div class="col-md-3 col-sm-6 col-xs-6 text-center client-logo probootstrap-animate" data-animate-effect="fadeIn">
-        <img src="{{ asset('assets/img/client_4.png') }}" class="img-responsive" alt="Free Bootstrap Template by uicookies.com">
-        </div>
-        
     </div>
     </div>
 </section>
