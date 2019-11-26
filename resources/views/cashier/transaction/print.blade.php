@@ -162,6 +162,7 @@ ul {
 .notices {
     padding-left: 6px;
     border-left: 6px solid #6b777e;
+    font-size: 14px"
 }
 
 
@@ -249,7 +250,7 @@ ul {
                 <div class="block col-sm-12 col-xs-12">
                     <li class="col-sm-1 col-xs-1 no-padding">5</li>
                     <li class="col-sm-8 col-xs-8 no-padding">Item 2</li>
-                    <li class="col-sm-3 col-xs-3 text-right">150.000</li>
+                    <li class="col-sm-3 col-xs-3 text-right">150,000</li>
                 </div>
 
                 <div class="block col-sm-12 col-xs-12">
