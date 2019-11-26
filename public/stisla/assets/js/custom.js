@@ -35,10 +35,10 @@ $('.clear').click(function() {
 
 function notNull() {
     if ($('#item').val() <= '0') {
-        $('.bayar').attr('disabled', true);
+        $('.bayar').attr('disabled', true).addClass('disabled');
         $('.keranjang').append('<div class="text-center kosong"><label class="text-secondary mb-2">&mdash; Kosong &mdash;</label></div>');
     }else {
-        $('.bayar').attr('disabled', false);
+        $('.bayar').attr('disabled', false).removeClass('disabled');
         $('.kosong').remove();
     }
 

@@ -46,7 +46,7 @@
                                     @csrf
                                     @method('delete')
 
-                                    <a href="{{route('management-outlet.edit', $row->id)}}" class="btn btn-icon btn-primary"><i class="fas fa-edit"></i> Ubah</a>
+                                    <a href="{{route('management-outlet.detail', $row->id)}}" class="btn btn-icon btn-info"><i class="fas fa-edit"></i> Ubah</a>
                                     <button type="submit" class="btn btn-icon btn-danger icon-left"></i> Hapus
                                     </button>
                                 </form>

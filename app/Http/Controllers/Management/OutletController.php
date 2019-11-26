@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Management;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Outlet;
+use App\Models\Cashier;
+use App\Models\ProductDetail;
 use Auth;
 
 class OutletController extends Controller
@@ -88,5 +90,20 @@ class OutletController extends Controller
 
         \Session::flash('success', 'Data Berhasil Disimpan');
         return redirect(route('management-outlet.index'));
+    }
+
+    public function detail($id)
+    {
+        $outlet = Outlet::where('id', $id)->first();
+        $cashier = Cashier::where('outlet_id', $id)->get();
+        $product = Productdetail::where('outlet_id', $id)->get();
+
+        return view('management.outlet.detail',
+            compact(
+                'outlet',
+                'cashier',
+                'product'
+            )
+        );
     }
 }

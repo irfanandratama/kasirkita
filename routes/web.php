@@ -85,7 +85,7 @@ Route::namespace('Management')->group(function () {
         ->name('management-product.store');
     Route::delete('/management/product/delete/{id}', 'ProductController@delete')
         ->name('management-product.delete');
-        Route::get('/management/product/detail/{id}', 'ProductController@detail')
+    Route::get('/management/product/detail/{id}', 'ProductController@detail')
         ->name('management-product.detail');
     Route::get('/management/product/edit/{id}', 'ProductController@edit')
         ->name('management-product.edit');
@@ -119,6 +119,8 @@ Route::namespace('Management')->group(function () {
         ->name('management-outlet.edit');
     Route::put('/management/outlet/update/{id}', 'OutletController@update')
         ->name('management-outlet.update');
+    Route::get('/management/outlet/detail/{id}', 'OutletController@detail')
+        ->name('management-outlet.detail');
 });
 
 Route::namespace('Cashier')->group(function(){
