@@ -149,7 +149,7 @@ class TransactionController extends Controller
             )
         );
         \Session::flash('success', 'Transaksi Berhasil');
-        return $pdf->stream('invoice.pdf');
+        return $pdf->download('invoice.pdf');
         sleep(3);
         return redirect(route('cashier-transaction.index'));
         
