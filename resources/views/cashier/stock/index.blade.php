@@ -60,6 +60,9 @@
                         @endforeach
                         </tbody>
                         </table>
+                        <nav class="mt-4" aria-label="navigation">
+                            {{ $transaction->links() }}
+                        </nav>
                     </div>
                     </div>
                 </div>
