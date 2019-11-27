@@ -22,7 +22,7 @@ class ProductController extends Controller
     public function index()
     {
         $bisnis = Auth::user()->business_id;
-        $produk = Product::where('business_id', $bisnis)->orderBy('id', 'asc')->pagination(10);
+        $produk = Product::where('business_id', $bisnis)->orderBy('id', 'asc')->paginate(10);
         return view('management.product.list.index',
             compact(
                 'produk'
