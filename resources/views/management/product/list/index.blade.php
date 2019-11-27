@@ -69,7 +69,7 @@
                         </tbody>
                         </table>
                         <nav class="mt-4" aria-label="navigation">
-                            {{ $transaction->links() }}
+                            {{$produk->links()}}
                         </nav>
                     </div>
                     </div>
