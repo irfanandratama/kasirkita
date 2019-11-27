@@ -35,16 +35,8 @@
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{ asset(config('admin_config.theme_name')) }}/assets/css/style.css">
   <link rel="stylesheet" href="{{ asset(config('admin_config.theme_name')) }}/assets/css/components.css">
-<!-- Start GA -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-94034622-3');
-</script>
-<!-- /END GA --></head>
+    @yield ('style')
+</head>
 
 <body>
   @auth()
@@ -54,7 +46,7 @@
         @include('layouts.navbars.navbar')
 
         @include('layouts.sidebar')
-        
+
         @yield('content')
         </div>
     </div>
@@ -76,7 +68,7 @@
   <script src="{{ asset(config('admin_config.theme_name')) }}/assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
   <script src="{{ asset(config('admin_config.theme_name')) }}/assets/modules/moment.min.js"></script>
   <script src="{{ asset(config('admin_config.theme_name')) }}/assets/js/stisla.js"></script>
-  
+
   <!-- JS Libraies -->
   <script src="{{ asset(config('admin_config.theme_name')) }}/assets/modules/jquery.sparkline.min.js"></script>
   <script src="{{ asset(config('admin_config.theme_name')) }}/assets/modules/chart.min.js"></script>
@@ -102,7 +94,7 @@
   <script src="{{ asset(config('admin_config.theme_name')) }}/assets/js/page/index.js"></script>
   <script src="{{ asset(config('admin_config.theme_name')) }}/assets/js/page/features-post-create.js"></script>
   <script src="{{ asset(config('admin_config.theme_name')) }}/assets/js/page/bootstrap-modal.js"></script>
-  
+
   <!-- Template JS File -->
   <script src="{{ asset(config('admin_config.theme_name')) }}/assets/js/scripts.js"></script>
   <script src="{{ asset(config('admin_config.theme_name')) }}/assets/js/custom.js"></script>
@@ -113,7 +105,7 @@
         // Format mata uang.
         $( '.uang' ).mask('000.000.000.000', {reverse: true});
     })
-    
+
     function ConfirmDelete()
     {
       var x = confirm("Are you sure you want to delete?");

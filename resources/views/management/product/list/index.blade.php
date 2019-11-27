@@ -1,5 +1,10 @@
 @extends('layouts.app', ['pageSlug' => 'listProduct'])
 
+@section('style')
+    <link rel="stylesheet"
+          href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+@endsection
+
 @section('content')
 <div class="main-content">
     <section class="section">
@@ -25,7 +30,7 @@
                     @include('alerts.notification')
                     <div class="table-responsive">
                         <table class="table table-striped" id="table-1">
-                        <thead>                                 
+                        <thead>
                             <tr>
                             <th class="text-center">
                                 #
@@ -38,34 +43,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach ($produk as $row)                              
-                            <tr>
-                                <td class="text-center">{{$loop->iteration}}</td>
-                                <td>{{$row->name}}</td>
-                                <td>
-                                    <div class="gallery gallery-md">
-                                        <div class="gallery-item" data-image="{{ asset('assets/img/product/' . $row->image) }}" data-title="{{$row->name}}"></div>
-                                    </div>
-                                    
-                                </td>
-                                <td>Rp. {{ number_format($row->price, 0, '.', '.')}}</td>
-                                <td>
-                                @if ($row->category_id == '0')
-                                    <div class="text-secondary mb-2">Tidak Berkategori</div>
-                                @else
-                                    <div class="text-primary mb-2">{{$row->category['name']}}</div>
-                                @endif
-                                </td>
-                                <td>
-                                    <form action="{{route('management-product.delete', $row->id)}}" method="post" id="delete">
-                                        @csrf
-                                        @method('delete')
-                                        <a href="{{route('management-product.detail', $row->id)}}" class="btn btn-icon btn-info"><i class="fas fa-edit"></i> Detail</a>
-                                        <button type="submit" class="btn btn-icon btn-danger icon-left">Hapus</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
+
                         </tbody>
                         </table>
                         <nav class="mt-4" aria-label="navigation">
@@ -78,4 +56,24 @@
         </div>
     </section>
 </div>
+@endsection
+@section('script')
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var dt = $('#table-1').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{{route('management-product.data')}}',
+                columns: [
+                    {data: 'id', name: 'id'},
+                    {data: 'name', name: 'name'},
+                    {data: 'foto', name: 'foto', orderable: false, searchable: false, align: 'center'},
+                    {data: 'harga', name: 'price'},
+                    {data: 'kategori', name: 'category_id'},
+                    {data: 'action', name: 'action', orderable: false, searchable: false, align: 'center'},
+                ]
+            });
+        });
+    </script>
 @endsection

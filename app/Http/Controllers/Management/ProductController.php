@@ -11,6 +11,7 @@ use App\Models\Outlet;
 use App\Models\CategoryProduct;
 use Auth;
 use File;
+use Yajra\DataTables\DataTables;
 
 class ProductController extends Controller
 {
@@ -18,7 +19,7 @@ class ProductController extends Controller
     {
         $this->middleware('auth:management');
     }
-    
+
     public function index()
     {
         $bisnis = Auth::user()->business_id;
@@ -26,7 +27,7 @@ class ProductController extends Controller
         return view('management.product.list.index',
             compact(
                 'produk'
-        ));
+            ));
     }
 
     public function create()
@@ -38,7 +39,7 @@ class ProductController extends Controller
             compact(
                 'kategori',
                 'outlet'
-        ));
+            ));
     }
 
     public function store(Request $request)
@@ -52,7 +53,7 @@ class ProductController extends Controller
         ]);
 
         $image = $request->file('image');
-        $imageName = str_replace(" ", "-", $bisnis . '-'. $request->get('category_id') . '-' . $request->get('name'));
+        $imageName = str_replace(" ", "-", $bisnis . '-' . $request->get('category_id') . '-' . $request->get('name'));
         $fileName = $imageName . '.' . $image->getClientOriginalExtension();
         $image->move(public_path('assets/img/product'), $fileName);
 
@@ -69,7 +70,7 @@ class ProductController extends Controller
         if (!empty($request->get('category_id'))) {
             $product->category_id = $request->get('category_id');
         }
-        
+
         $product->save();
 
         foreach ($outlets as $outlet) {
@@ -78,8 +79,8 @@ class ProductController extends Controller
             $detail->outlet_id = $outlet;
             $detail->save();
         }
-        
-        
+
+
         \Session::flash('success', 'Berhasil Menambahkan Produk');
         return redirect(route('management-product.index'));
     }
@@ -89,7 +90,7 @@ class ProductController extends Controller
         $product = Product::where('id', $id)->first();
         $details = ProductDetail::where('product_id', $id)->get();
 
-        if(!$product){
+        if (!$product) {
             \Session::flash('danger', 'Data tidak ditemukan');
             return redirect(route('management-product.index'));
         }
@@ -97,7 +98,7 @@ class ProductController extends Controller
         File::delete(public_path('assets/img/product/' . $product->image));
         $product->delete();
 
-        foreach ($details as $detail){
+        foreach ($details as $detail) {
             $detail->delete();
         }
 
@@ -109,7 +110,7 @@ class ProductController extends Controller
     {
         $product = Product::where('id', $id)->first();
         $details = ProductDetail::where('product_id', $id)->get();
-        if(!$product){
+        if (!$product) {
             \Session::flash('danger', 'Data tidak ditemukan');
             return redirect(route('management-product.index'));
         }
@@ -150,7 +151,7 @@ class ProductController extends Controller
             File::delete(public_path('assets/img/product/' . $product->image));
 
             $image = $request->file('image');
-            $imageName = str_replace(" ", "-", $bisnis . '-'. $request->get('category_id') . '-' . $request->get('name'));
+            $imageName = str_replace(" ", "-", $bisnis . '-' . $request->get('category_id') . '-' . $request->get('name'));
             $fileName = $imageName . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('assets/img/product'), $fileName);
 
@@ -167,5 +168,34 @@ class ProductController extends Controller
 
         \Session::flash('success', 'Data Berhasil Disimpan');
         return redirect(route('management-product.index'));
+    }
+
+    public function data()
+    {
+        $bisnis = Auth::user()->business_id;
+        return DataTables::of(Product::where('business_id', $bisnis))
+            ->addColumn('action', function ($data) {
+                $del = '<a href="#" data-id="' . $data->id . '" class="btn btn-icon btn-danger icon-left"><i class="fa fa-">Hapus</i></a>';
+                $edit = '<a href="' . route('management-product.detail', $data->id) . '"
+                                                       class="btn btn-icon btn-info"><i class="fas fa-edit"></i> Detail</a>';
+                return $edit . '&nbsp' . $del;
+            })
+            ->addColumn('foto', function ($data) {
+                return "
+                    <img src=\"".asset('assets/img/product/' . $data->image)."\" width='50px' />
+                ";
+            })
+            ->addColumn('harga', function ($data) {
+                return "Rp. ".number_format($data->price, 0, '.', '.');
+            })
+            ->addColumn('kategori', function ($data) {
+                if ($data->category_id == '0'){
+                    return "<div class=\"text-secondary mb-2\">Tidak Berkategori</div>";
+                }else{
+                    return "<div class=\"text-primary mb-2\">".$data->category['name']."</div>";
+                }
+            })
+            ->rawColumns(['action','foto','harga','kategori'])
+            ->make(true);
     }
 }

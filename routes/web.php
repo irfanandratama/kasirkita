@@ -79,6 +79,8 @@ Route::namespace('Management')->group(function () {
     //Product
     Route::get('/management/product/index', 'ProductController@index')
         ->name('management-product.index');
+    Route::get('/management/product/data', 'ProductController@data')
+        ->name('management-product.data');
     Route::get('/management/product/create', 'ProductController@create')
         ->name('management-product.create');
     Route::post('/management/product/store', 'ProductController@store')
@@ -149,6 +151,6 @@ Route::namespace('Cashier')->group(function(){
         ->name('cashier-stock.store');
     Route::get('/cashier/stock/detail/{id}', 'StockController@detail')
         ->name('cashier-stock.detail');
-        
+
 
 });
