@@ -8,7 +8,7 @@ use App\Models\Outlet;
 use App\Models\Cashier;
 use App\Models\ProductDetail;
 use App\Models\Transaction;
-use App\Models\transactionDetail;
+use App\Models\TransactionDetail;
 use Auth;
 
 class OutletController extends Controller
