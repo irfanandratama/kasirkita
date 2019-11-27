@@ -20,7 +20,7 @@ class StockController extends Controller
     public function index()
     {
         $outlet = Auth::user()->outlet_id;
-        $history = StockHistory::where('outlet_id', $outlet)->orderBy('id', 'desc')->pagination(10);
+        $history = StockHistory::where('outlet_id', $outlet)->orderBy('id', 'desc')->paginate(10);
         return view('cashier.stock.index',
             compact(
                 'history'
