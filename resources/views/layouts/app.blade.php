@@ -106,6 +106,7 @@
   <!-- Template JS File -->
   <script src="{{ asset(config('admin_config.theme_name')) }}/assets/js/scripts.js"></script>
   <script src="{{ asset(config('admin_config.theme_name')) }}/assets/js/custom.js"></script>
+  @yield ('script')
   <script type="text/javascript">
     $(document).ready(function(){
 
@@ -121,6 +122,6 @@
       else
         return false;
     }
-</script>
+  </script>
 </body>
 </html>

@@ -82,4 +82,8 @@ class Cashier extends Authenticatable implements MustVerifyEmail
     public function stockHistory() {
         return $this->hasMany(StockHistory::class);  
     }
+
+    public function transaction() {
+        return $this->hasMany(Transaction::class);  
+    }
 }

@@ -121,6 +121,8 @@ Route::namespace('Management')->group(function () {
         ->name('management-outlet.update');
     Route::get('/management/outlet/detail/{id}', 'OutletController@detail')
         ->name('management-outlet.detail');
+    Route::get('/management/outlet/transactionDetail/{id}', 'OutletController@transactionDetail')
+        ->name('management-outlet.transactionDetail');
 });
 
 Route::namespace('Cashier')->group(function(){

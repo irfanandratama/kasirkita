@@ -12,6 +12,11 @@ class Transaction extends Model
         'cashier_id', 'customer_name', 'total', 'receipt', 'outlet_id'
     ];
 
+    public function cashier()
+    {
+        return $this->belongsTo(Cashier::class);
+    }
+
     public function transactionDetail() {
         return $this->hasMany(TransactiontDetail::class);  
     }

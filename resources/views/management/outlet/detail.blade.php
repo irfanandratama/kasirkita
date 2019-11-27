@@ -21,11 +21,50 @@
         <div class="card">
             <div class="card-body">
                 <div id="accordion">
+                <div class="accordion">
+                        <div class="accordion-header" role="button" data-toggle="collapse" data-target="#transactionHistory" aria-expanded="true">
+                            <h4>Riwayat Transaksi</h4>
+                        </div>
+                        <div class="accordion-body collapse show" id="transactionHistory" data-parent="#accordion">
+                            <div class="table-responsive">
+                                <table class="table table-striped" id="table-1">
+                                    <thead>                                 
+                                        <tr>
+                                        <th class="text-center">
+                                            ID Transaksi
+                                        </th>
+                                        <th>Tanggal, Jam</th>
+                                        <th>Kasir</th>
+                                        <th>Total Belanja</th>
+                                        <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach ($transaction as $row)                                 
+                                        <tr>
+                                        <td class="text-center">{{$row->id}}</td>
+                                        <td>{{ $row->created_at->format('d/m/Y H:i') }}</td>
+                                        <td>{{ $row->cashier->name }}</td>
+                                        <td>{{ $row->total }}</td>
+                                        <td>
+                                            <a href="{{ route('management-outlet.transactionDetail', $row->id)}}" class="btn btn-icon btn-info"><i class="fas fa-eye"></i> Detail</a>
+                                        </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                                <nav class="mt-4" aria-label="navigation">
+                                    {{ $transaction->links() }}
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="accordion">
-                        <div class="accordion-header" role="button" data-toggle="collapse" data-target="#panel-body-1" aria-expanded="true">
+                        <div class="accordion-header" role="button" data-toggle="collapse" data-target="#panel-body-1">
                             <h4>Data Outlet</h4>
                         </div>
-                        <div class="accordion-body collapse show" id="panel-body-1" data-parent="#accordion">
+                        <div class="accordion-body collapse" id="panel-body-1" data-parent="#accordion">
                             <div class="mb-0">
                                 <div class="text-right">
                                     <a href="{{route('management-outlet.edit', $outlet->id)}}" class="btn btn-icon icon-left btn-light"><i class="fas fa-edit"></i> <span>Ubah Data Outlet</span></a>
@@ -91,4 +130,7 @@
         </div>
     </section>
 </div>
+@endsection
+
+@section ('script')
 @endsection

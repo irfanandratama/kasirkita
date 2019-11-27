@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Outlet;
 use App\Models\Cashier;
 use App\Models\ProductDetail;
+use App\Models\Transaction;
+use App\Models\transactionDetail;
 use Auth;
 
 class OutletController extends Controller
@@ -98,11 +100,28 @@ class OutletController extends Controller
         $cashier = Cashier::where('outlet_id', $id)->get();
         $product = Productdetail::where('outlet_id', $id)->get();
 
+        $transaction = Transaction::where('outlet_id', $id)->paginate(6);
+
         return view('management.outlet.detail',
             compact(
                 'outlet',
                 'cashier',
-                'product'
+                'product',
+                'transaction'
+            )
+        );
+    }
+
+    public function transactionDetail($id)
+    {
+        $transaction = Transaction::where('id', $id)->first();
+        $detail = TransactionDetail::where('transaction_id', $id)->get();
+
+        // return $detail;
+        return view('management.outlet.transactionDetail',
+            compact(
+                'transaction',
+                'detail'
             )
         );
     }
