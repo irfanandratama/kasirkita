@@ -33,6 +33,11 @@ $('.clear').click(function() {
     $('#item').val(0);
 });
 
+$('.done').click(function()
+{
+    setTimeout(function(){ window.location.href="index"; }, 10000);       
+});
+
 function notNull() {
     if ($('#item').val() <= '0') {
         $('.bayar').attr('disabled', true).addClass('disabled');

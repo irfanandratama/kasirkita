@@ -11,97 +11,67 @@
             <div class="title"></div>
             <div class="text-wrapper clearfix">
                 <ul>
-                    <div class="block  col-xs-12 text-center company-detail">
+                    <div class="block col-sm-12 col-xs-12 text-center company-detail">
                         <li>
-                            <span class="company-name" style="font-size: 20px"><b>NAMA USAHA</b></span><br>
-                            <span class="company-address">Jl. Sana Sini 79 Jember</span><br>
-                            <span class="company-phone">(123) 456-789</span><br>
-                            <span class="company-email">namausaha@gmail.com</span>
+                            <span class="company-name" style="font-size: 20px"><b>{{$outlet->name}}</b></span><br>
+                            <span class="company-address">{{$outlet->address}}</span><br>
                         </li>
                     </div>
                     <div class="invoice-to">
-                        <div class="block  col-xs-12">
-                            <li>Kasir :</li>
+                        <div class="block col-sm-12 col-xs-12">
+                            <li>Kasir : {{$cashier->name}} - {{$cashier->id}}</li>
                         </div>
-                        <div class="block  col-xs-12">
-                            <li class="invoice-cashier">Nama Kasir</li>
-                        </div>
-                        <div class="block  col-xs-12">
-                            <li class="invoice-id" style="font-size: 16px"><b>ORDER 1234</b></li>
-                        </div>
-                        <div class="block  col-xs-12">
-                            <li class="invoice-date">Dicetak pada: 01/10/2018 15:30 WIB</li>
+                        <div class="block col-sm-12 col-xs-12">
+                            <li class="invoice-date">Dicetak pada: {{date('Y-m-d')}}</li>
                         </div>
                     </div>
 
                     <hr>
 
-                    <div class="block  col-xs-12">
-                        <li class="col-sm-1 col-xs-1 no-padding">1</li>
-                        <li class="col-sm-8 col-xs-8 no-padding">Item 1</li>
-                        <li class="col-sm-3 col-xs-3 text-right">6,000</li>
-                    </div>
-
-                    <div class="block  col-xs-12">
-                        <li class="col-sm-1 col-xs-1 no-padding">5</li>
-                        <li class="col-sm-8 col-xs-8 no-padding">Item 2</li>
-                        <li class="col-sm-3 col-xs-3 text-right">150,000</li>
-                    </div>
-
-                    <div class="block  col-xs-12">
-                        <li class="col-sm-1 col-xs-1 no-padding">4</li>
-                        <li class="col-sm-8 col-xs-8 no-padding">Item 3</li>
-                        <li class="col-sm-3 col-xs-3 text-right">80,000</li>
-                    </div>
-
-                    <div class="block  col-xs-12">
-                        <li class="col-sm-1 col-xs-1 no-padding">2</li>
-                        <li class="col-sm-8 col-xs-8 no-padding">Item 4</li>
-                        <li class="col-sm-3 col-xs-3 text-right">80,000</li>
-                    </div>
-
-                    <hr>
-
-                    <div class="block  col-xs-12">
-                        <li class=" col-xs-12" style="padding-left: 150px">SUBTOTAL</li>
-                        <li class="col-sm-3 col-xs-3">306,000</li>
-                    </div>
-
-                    <div class="block  col-xs-12">
-                        <li class="col-sm-9 col-xs-9" style="padding-left: 150px">PAJAK (10%)</li>
-                        <li class="col-sm-3 col-xs-3">30,600</li>
-                    </div>
-
-                    <div class="block  col-xs-12">
-                        <li class="col-sm-9 col-xs-9" style="padding-left: 200px"><b>TOTAL BELANJA</b></li>
-                        <li class="col-sm-3 col-xs-3"><b>336,600</b></li>
+                    <div class="block col-sm-12 col-xs-12">
+                        <table class="table table-striped table-hover table-md">
+                            <tr>
+                            <th data-width="40">#</th>
+                            <th>Item</th>
+                            <th class="text-center">Harga</th>
+                            <th class="text-center">Jumlah</th>
+                            <th class="text-right">Total</th>
+                            </tr>
+                            @foreach ($products as $row)
+                            <tr>
+                            <td>{{$loop->iteration}}</td>
+                            <input type="hidden" name="product_id[]" value="{{$row->item['id']}}">
+                            <td>{{$row->item['name']}}</td>
+                            <td class="text-center harga">Rp. {{ number_format($row->item['price'], 0, '.', '.')}}</td>
+                            <td class="text-center qty">{{$row->qty}}</td>
+                            <input type="hidden" name="qty[]" value="{{$row->qty}}">
+                            <td class="text-right amount" value="{{$row->item['price']*$row->qty}}">Rp. {{ number_format($row->item['price']*$row->qty, 0, '.', '.')}}</td>
+                            <input type="hidden" name="amount[]" value="{{$row->item['price']*$row->qty}}">
+                            </tr>
+                            @endforeach
+                        </table>
                     </div>
 
                     <hr>
 
-                    <div class="block  col-xs-12">
-                        <li class="col-sm-9 col-xs-9" style="padding-left: 200px">Tunai</li>
-                        <li class="col-sm-3 col-xs-t">350,000</li>
+                    <div class="block col-xs-6 total text-right">
+                        <li class="col-sm-9 col-xs-3" style="padding-left: 50px"><b>TOTAL BELANJA</b></li>
+                        <li class="col-xs-6"><b>Rp. {{ number_format($total, 0, '.', '.')}}</b></li>
                     </div>
 
-                    <div class="block  col-xs-12">
-                        <li class="col-sm-9 col-xs-9" style="padding-left: 200px">Kembali</li>
-                        <li class="col-sm-3 col-xs-3">13,400</li>
-                    </div>
-                    <div class="block  col-xs-12">
+                    <hr>
+                    <div class="block col-sm-12 col-xs-12">
                         <li class="notices">
                             NOTICE : <br> Barang yang sudah dibeli tidak dapat tukarkan kembali.
                         </li>
                     </div>
-                    <div class="block  col-xs-12 text-center note-invoice">
+                    <div class="block col-sm-12 col-xs-12 text-center note-invoice">
                         Terima Kasih
                     </div>
-                    <div class="invoice-footer col-md-12 col-xs-12"><strong id="get-watermark">Powered by</strong></div>
-                    <div class="img-receipt">
-                        <img class="img-responsive" src="logo.png">
-                    </div>
+                    <div class="invoice-footer col-md-12 col-xs-12"><strong id="get-watermark">Powered by KasirQ</strong></div>=
                 </ul>
             </div>
         </div>
     </div>
+    <script src="{{ ltrim(elixir('/assets/js/custom.js'), '/') }}"></script>
 </body></html>

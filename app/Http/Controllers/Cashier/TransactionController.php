@@ -8,6 +8,8 @@ use Auth;
 use App\Models\ProductDetail;
 use App\Models\Product;
 use App\Models\TransactionDetail;
+use App\Models\Outlet;
+use App\Models\Cashier;
 use App\Models\Transaction;
 use App\Models\VisitLog;
 use stdClass;
@@ -100,21 +102,56 @@ class TransactionController extends Controller
             $product->save();
         }
 
+        $run = true;
+
+        if ($run === true) {  // Depends on what "createUser" returns
+            return $this->print($request); // Might not be "$this"
+        }
+
         \Session::flash('success', 'Transaksi Berhasil');
         return redirect(route('cashier-transaction.index'));
     }
 
-    public function print()
+    public function print(Request $request)
     {
-        $pdf = PDF::loadview('cashier.transaction.print');
+        $item = $request->get('item');
+        $cashier_id = Auth::user()->id;
+        $outlet_id = Auth::user()->outlet_id;
+        $product_id = $request->get('product_id');
+
+        $outlet = Outlet::where('id', $outlet_id)->first();
+        $qty = $request->get('qty');
+        $cashier = Cashier::where('id', $cashier_id)->first();
+        $total = $request->get('total');
+
+        $products = [];
+        for ($i=0; $i < $item; $i++) {
+
+            $product = new stdClass();
+            
+            $quantity = $qty[$i];
+            $id = $product_id[$i];
+
+            $find_product=Product::find($id);
+
+            $product->item = $find_product;
+            $product->qty = $quantity;
+
+            array_push($products, $product);
+        }
+
+        $pdf = PDF::loadview('cashier.transaction.print',
+            compact(
+                'products',
+                'cashier',
+                'outlet',
+                'total'
+            )
+        );
+        \Session::flash('success', 'Transaksi Berhasil');
         return $pdf->stream('invoice.pdf');
-        // return view('cashier.transaction.print');
-        // $outlet = Auth::user()->outlet_id;
-        // $produk = ProductDetail::where('outlet_id', $outlet)->orderBy('id', 'asc')->get();
-        // return view('cashier.transaction.index',
-        //     compact(
-        //         'produk'
-        //     )
-        // );
+        sleep(3);
+        return redirect(route('cashier-transaction.index'));
+        
     }
 }

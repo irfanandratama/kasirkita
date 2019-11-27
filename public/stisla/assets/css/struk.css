@@ -1,4 +1,6 @@
-
+th, td {
+    font-size: 12px;
+}
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -9,10 +11,13 @@ div {
 }
 body {
     font-family: "Open Sans Condensed";
-    font-size: 16px;
+    font-size: 12px;
     line-height: 1.42857143;
     color: #333;
     background-color: #fff;
+}
+.total {
+    font-size: 12px; 
 }
 html {
     -ms-text-size-adjust: 100%;
@@ -36,7 +41,7 @@ html {
     }
 }
 .container.invoice {
-    width: 402px;
+    width: 500px;
     margin: 0 auto;
     padding: 0px;
 }
@@ -146,6 +151,7 @@ ul {
 }
 .notices {
     padding-left: 6px;
+    font-size: 12px;
     border-left: 6px solid #6b777e;
 }
 .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, 
