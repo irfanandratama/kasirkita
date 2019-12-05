@@ -182,7 +182,9 @@ class ProductController extends Controller
             })
             ->addColumn('foto', function ($data) {
                 return "
-                    <img src=\"".asset('assets/img/product/' . $data->image)."\" width='50px' />
+                    <div class='gallery gallery-md'>
+                        <img src=\"".asset('assets/img/product/' . $data->image)."\" style=\"object-fit:cover\" class='gallery-item'/>
+                    </div>
                 ";
             })
             ->addColumn('harga', function ($data) {
