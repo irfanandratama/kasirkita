@@ -91,7 +91,6 @@
 
   <!-- Page Specific JS File -->
   <script src="{{ asset(config('admin_config.theme_name')) }}/assets/js/page/forms-advanced-forms.js"></script>
-  <script src="{{ asset(config('admin_config.theme_name')) }}/assets/js/page/index.js"></script>
   <script src="{{ asset(config('admin_config.theme_name')) }}/assets/js/page/features-post-create.js"></script>
   <script src="{{ asset(config('admin_config.theme_name')) }}/assets/js/page/bootstrap-modal.js"></script>
 
