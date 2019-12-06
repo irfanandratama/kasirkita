@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Transaction;
 use App\Models\Outlet;
 use Auth;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -28,10 +29,30 @@ class DashboardController extends Controller
     {
         $bisnis = Auth::user()->business_id;
         $outlet = Outlet::where('business_id', $bisnis)->pluck('id');
-        $total = Transaction::where('outlet_id', $outlet)->whereR("DAY(created_at) = '" . Carbon::yesterday()->format('Y-m-d') . "'")->sum('total');
+        $today = Carbon::today()->format('Y-m-d');
+        $month = Carbon::now()->format('m');
+        $year = Carbon::now()->format('Y');
+        // $totalToday = Transaction::whereIn('outlet_id', $outlet)->whereRaw('Date(created_at) = CURDATE()')->sum('total');
+        $totalToday = Transaction::whereIn('outlet_id', $outlet)->whereDate('created_at', $today)->sum('total');
+
+        $totalMonth = Transaction::whereIn('outlet_id', $outlet)->whereMonth('created_at', $month)->sum('total');
+
+        $transaksi = Transaction::whereIn('outlet_id', $outlet)->whereDate('created_at', $today)->count();
+
+        $transactionRecord = [];
+        for ($i=1; $i <= 12; $i++) {
+
+            $transaction = Transaction::whereIn('outlet_id', $outlet)->whereMonth('created_at', $i)->count();
+
+            array_push($transactionRecord, $transaction);
+        }
+        // return $transactionRecord;
         return view('management.dashboard',
             compact(
-                'total'
+                'totalToday',
+                'totalMonth',
+                'transaksi',
+                'transactionRecord'
             )
         );
     }

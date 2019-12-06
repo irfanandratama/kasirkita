@@ -4,89 +4,47 @@
 <div class="main-content">
     <section class="section">
         <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="card card-statistic-2">
+                <div class="card-icon shadow-primary bg-primary">
+                    <i class="fas fa-archive"></i>
+                </div>
+                <div class="card-wrap">
+                    <div class="card-header">
+                    <h4>Total Transaksi Hari Ini</h4>
+                    </div>
+                    <div class="card-body">
+                    {{ $transaksi }}
+                    </div>
+                </div>
+                </div>
+            </div>
         <div class="col-lg-4 col-md-4 col-sm-12">
             <div class="card card-statistic-2">
-            <div class="card-stats">
-                <div class="card-stats-title">Order Statistics - 
-                <div class="dropdown d-inline">
-                    <a class="font-weight-600 dropdown-toggle" data-toggle="dropdown" href="#" id="orders-month">August</a>
-                    <ul class="dropdown-menu dropdown-menu-sm">
-                    <li class="dropdown-title">Select Month</li>
-                    <li><a href="#" class="dropdown-item">January</a></li>
-                    <li><a href="#" class="dropdown-item">February</a></li>
-                    <li><a href="#" class="dropdown-item">March</a></li>
-                    <li><a href="#" class="dropdown-item">April</a></li>
-                    <li><a href="#" class="dropdown-item">May</a></li>
-                    <li><a href="#" class="dropdown-item">June</a></li>
-                    <li><a href="#" class="dropdown-item">July</a></li>
-                    <li><a href="#" class="dropdown-item active">August</a></li>
-                    <li><a href="#" class="dropdown-item">September</a></li>
-                    <li><a href="#" class="dropdown-item">October</a></li>
-                    <li><a href="#" class="dropdown-item">November</a></li>
-                    <li><a href="#" class="dropdown-item">December</a></li>
-                    </ul>
+                <div class="card-icon shadow-primary bg-primary">
+                    <i class="fas fa-dollar-sign"></i>
                 </div>
+                <div class="card-wrap">
+                    <div class="card-header">
+                    <h4>Pendapatan Hari Ini</h4>
+                    </div>
+                    <div class="card-body">
+                    Rp. {{ number_format($totalToday, 0, '.', '.') }}
+                    </div>
                 </div>
-                <div class="card-stats-items">
-                <div class="card-stats-item">
-                    <div class="card-stats-item-count">24</div>
-                    <div class="card-stats-item-label">Pending</div>
-                </div>
-                <div class="card-stats-item">
-                    <div class="card-stats-item-count">12</div>
-                    <div class="card-stats-item-label">Shipping</div>
-                </div>
-                <div class="card-stats-item">
-                    <div class="card-stats-item-count">23</div>
-                    <div class="card-stats-item-label">Completed</div>
-                </div>
-                </div>
-            </div>
-            <div class="card-icon shadow-primary bg-primary">
-                <i class="fas fa-archive"></i>
-            </div>
-            <div class="card-wrap">
-                <div class="card-header">
-                <h4>Total Orders</h4>
-                </div>
-                <div class="card-body">
-                59
-                </div>
-            </div>
             </div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-12">
             <div class="card card-statistic-2">
-            <div class="card-chart">
-                <canvas id="balance-chart" height="80"></canvas>
-            </div>
-            <div class="card-icon shadow-primary bg-primary">
-                <i class="fas fa-dollar-sign"></i>
-            </div>
-            <div class="card-wrap">
-                <div class="card-header">
-                <h4>Pendapatan Hari Ini</h4>
-                </div>
-                <div class="card-body">
-                Rp. {{ number_format($total, 0, '.', '.') }}
-                </div>
-            </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-12">
-            <div class="card card-statistic-2">
-            <div class="card-chart">
-                <canvas id="sales-chart" height="80"></canvas>
-            </div>
             <div class="card-icon shadow-primary bg-primary">
                 <i class="fas fa-shopping-bag"></i>
             </div>
             <div class="card-wrap">
                 <div class="card-header">
-                <h4>Sales</h4>
+                <h4>Pendapatan Bulan ini</h4>
                 </div>
                 <div class="card-body">
-                4,732
+                Rp. {{ number_format($totalMonth, 0, '.', '.') }}
                 </div>
             </div>
             </div>
@@ -96,7 +54,7 @@
         <div class="col-lg-8">
             <div class="card">
             <div class="card-header">
-                <h4>Budget vs Sales</h4>
+                <h4>Transaksi & Pendapatan</h4>
             </div>
             <div class="card-body">
                 <canvas id="myChart" height="158"></canvas>
@@ -484,14 +442,15 @@
     <script>
         "use strict";
 
+        var transaksi = {{ json_encode($transactionRecord) }};
         var ctx = document.getElementById("myChart").getContext('2d');
         var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ["January", "February", "March", "April", "May", "June", "July", "August"],
+            labels: ["January", "February", "March", "April", "May", "June", "July", "August", 'September', 'Oktober', 'November', 'Desember'],
             datasets: [{
             label: 'Sales',
-            data: [3200, 1800, 4305, 3022, 6310, 5120, 5880, 6154],
+            data: [3, 1, 0, 2, 0, 0, 0, 4, 1, 5, 5, 4],
             borderWidth: 2,
             backgroundColor: 'rgba(63,82,227,.8)',
             borderWidth: 0,
@@ -503,7 +462,7 @@
             },
             {
             label: 'Budget',
-            data: [2207, 3403, 2200, 5025, 2302, 4208, 3880, 4880],
+            data: transaksi,
             borderWidth: 2,
             backgroundColor: 'rgba(254,86,83,.7)',
             borderWidth: 0,
