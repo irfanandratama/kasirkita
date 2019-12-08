@@ -135,6 +135,8 @@ Route::namespace('Cashier')->group(function(){
     //Transaksi
     Route::get('/cashier/transaction/index', 'TransactionController@index')
         ->name('cashier-transaction.index');
+    Route::get('/cashier/transaction/data', 'TransactionController@data')
+        ->name('cashier-transaction.data');
     Route::post('/cashier/transaction/invoice', 'TransactionController@invoice')
         ->name('cashier-transaction.invoice');
     Route::post('/cashier/transaction/store', 'TransactionController@store')

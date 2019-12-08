@@ -51,7 +51,7 @@
                       </div>
                     </div>
                   </div>
-                  
+
                   <div class="row mt-4">
                     <div class="col-md-12">
                       <div class="section-title">Detail Pesanan</div>
@@ -96,7 +96,7 @@
                     </div>
                   </div>
                 </div>
-              
+
                 <hr>
                 <div class="text-md-right">
                   <div class="float-lg-left mb-lg-0 mb-3">

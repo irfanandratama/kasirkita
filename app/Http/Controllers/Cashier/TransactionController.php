@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Cashier;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
@@ -21,11 +22,10 @@ class TransactionController extends Controller
     {
         $this->middleware('auth:cashier');
     }
-    
+
     public function index()
     {
-        $outlet = Auth::user()->outlet_id;
-        $produk = ProductDetail::where('outlet_id', $outlet)->orderBy('id', 'asc')->get();
+
         return view('cashier.transaction.index',
             compact(
                 'produk'
@@ -33,17 +33,29 @@ class TransactionController extends Controller
         );
     }
 
+    public function data(Request $request){
+        $outlet = Auth::user()->outlet_id;
+        $keyword = ($request->has('q')) ? $request->q : '';
+        $produk = Product::where('name','like',"%$keyword%")
+            ->whereHas('productDetail',  function (Builder $query) use ($outlet) {
+                $query->where('outlet_id',  $outlet);
+            })->orderBy('id', 'asc')->with(['productDetail' => function ($query) use ($outlet) {
+                $query->where('outlet_id', $outlet);
+            }])->get();
+        return $produk;
+    }
+
     public function invoice(Request $request)
     {
         $item = $request->get('item');
         $qty = $request->get('qty');
         $product_id =$request->get('product');
-        
+
         $products = [];
         for ($i=0; $i < $item; $i++) {
 
             $product = new stdClass();
-            
+
             $quantity = $qty[$i];
             $id = $product_id[$i];
 
@@ -80,7 +92,7 @@ class TransactionController extends Controller
         //     'amount' => 'required',
         //     'total' => 'required',
         // ]);
-        
+
         $transaction = new Transaction();
         $transaction->cashier_id = $cashier_id;
         $transaction->total = $request->get('total');
@@ -89,7 +101,7 @@ class TransactionController extends Controller
         $transaction->customer_name = $request->get('customer_name');
         $transaction->save();
 
-        for ($i=0; $i < $item; $i++) { 
+        for ($i=0; $i < $item; $i++) {
             $detail = new TransactionDetail();
             $detail->product_id = $product_id[$i];
             $detail->qty = $qty[$i];
@@ -128,7 +140,7 @@ class TransactionController extends Controller
         for ($i=0; $i < $item; $i++) {
 
             $product = new stdClass();
-            
+
             $quantity = $qty[$i];
             $id = $product_id[$i];
 
@@ -152,6 +164,6 @@ class TransactionController extends Controller
         return $pdf->download('invoice.pdf');
         sleep(3);
         return redirect(route('cashier-transaction.index'));
-        
+
     }
 }
