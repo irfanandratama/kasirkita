@@ -102,8 +102,8 @@ class ProductController extends Controller
             $detail->delete();
         }
 
-        \Session::flash('danger', 'Data Dihapus');
-        return redirect(route('management-product.index'));
+//        \Session::flash('danger', 'Data Dihapus');
+//        return redirect(route('management-product.index'));
     }
 
     public function detail($id)
@@ -175,7 +175,7 @@ class ProductController extends Controller
         $bisnis = Auth::user()->business_id;
         return DataTables::of(Product::where('business_id', $bisnis))
             ->addColumn('action', function ($data) {
-                $del = '<a href="#" data-id="' . $data->id . '" class="btn btn-icon btn-danger icon-left"><i class="fa fa-">Hapus</i></a>';
+                $del = '<a href="#" data-id="' . $data->id . '" class="btn btn-icon btn-danger hapus-data icon-left"><i class="fa fa-">Hapus</i></a>';
                 $edit = '<a href="' . route('management-product.detail', $data->id) . '"
                                                        class="btn btn-icon btn-info"><i class="fas fa-edit"></i> Detail</a>';
                 return $edit . '&nbsp' . $del;
