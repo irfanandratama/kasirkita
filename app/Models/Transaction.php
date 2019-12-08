@@ -20,4 +20,8 @@ class Transaction extends Model
     public function transactionDetail() {
         return $this->hasMany(TransactiontDetail::class);  
     }
+
+    public function outlet(){
+        return $this->belongsTo(Outlet::class);
+    }
 }

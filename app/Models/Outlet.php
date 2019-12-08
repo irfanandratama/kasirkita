@@ -21,4 +21,8 @@ class Outlet extends Model
     public function stockHistory() {
         return $this->hasMany(StockHistory::class);  
     }
+    
+    public function transaction() {
+        return $this->hasMany(Transaction::class);  
+    }
 }

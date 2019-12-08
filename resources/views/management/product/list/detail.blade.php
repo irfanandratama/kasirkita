@@ -29,10 +29,6 @@
                     <ul class="nav nav-pills flex-column">
                         <li class="nav-item"><a href="#" class="nav-link active">Data Produk</a></li>
                         <li class="nav-item"><a href="#" class="nav-link">Statistik Penjualan</a></li>
-                        <!-- <li class="nav-item"><a href="#" class="nav-link">Email</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">System</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Security</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Automation</a></li> -->
                     </ul>
                 </div>
             </div>

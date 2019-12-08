@@ -7,14 +7,14 @@
             <div class="col-lg-4 col-md-4 col-sm-12">
                 <div class="card card-statistic-2">
                 <div class="card-icon shadow-primary bg-primary">
-                    <i class="fas fa-archive"></i>
+                    <i class="fas fa-shopping-bag"></i>
                 </div>
                 <div class="card-wrap">
                     <div class="card-header">
-                    <h4>Total Transaksi Hari Ini</h4>
+                    <h4>Transaksi Hari Ini</h4>
                     </div>
                     <div class="card-body">
-                    {{ $transaksi }}
+                    {{ $transaksi->count() }} <label class="text-muted"><h6>Transaksi</h6></label>
                     </div>
                 </div>
                 </div>
@@ -37,7 +37,7 @@
         <div class="col-lg-4 col-md-4 col-sm-12">
             <div class="card card-statistic-2">
             <div class="card-icon shadow-primary bg-primary">
-                <i class="fas fa-shopping-bag"></i>
+                <i class="fas fa-dollar-sign"></i>
             </div>
             <div class="card-wrap">
                 <div class="card-header">
@@ -46,6 +46,7 @@
                 <div class="card-body">
                 Rp. {{ number_format($totalMonth, 0, '.', '.') }}
                 </div>
+                <label class="text-muted"><h6>{{ $transactionInMonth }} Transaksi</h6>
             </div>
             </div>
         </div>
@@ -54,7 +55,18 @@
         <div class="col-lg-8">
             <div class="card">
             <div class="card-header">
-                <h4>Transaksi & Pendapatan</h4>
+                <h4>
+                    Grafik Jumlah Transaksi Seluruh Outlet
+                    <span>
+                        <select class="form-control selectric">
+                            <option disabled>Pilih Periode</option>
+                            <option value="{{ $year }}" selected>Tahun {{ $year }}</option>
+                            <option value="{{ $year-1 }}">Tahun {{ $year-1 }}</option>
+                            <option value="{{ $year-2 }}">Tahun {{ $year-2 }}</option>
+                            <option value="{{ $year-3 }}">Tahun {{ $year-3 }}</option>
+                        </select>
+                    </span>
+                </h4>
             </div>
             <div class="card-body">
                 <canvas id="myChart" height="158"></canvas>
@@ -64,264 +76,42 @@
         <div class="col-lg-4">
             <div class="card gradient-bottom">
             <div class="card-header">
-                <h4>Top 5 Products</h4>
-                <div class="card-header-action dropdown">
-                <a href="#" data-toggle="dropdown" class="btn btn-danger dropdown-toggle">Month</a>
-                <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                    <li class="dropdown-title">Select Period</li>
-                    <li><a href="#" class="dropdown-item">Today</a></li>
-                    <li><a href="#" class="dropdown-item">Week</a></li>
-                    <li><a href="#" class="dropdown-item active">Month</a></li>
-                    <li><a href="#" class="dropdown-item">This Year</a></li>
-                </ul>
-                </div>
+                <h4>Top 5 Product {{ $year }}</h4>
             </div>
             <div class="card-body" id="top-5-scroll">
                 <ul class="list-unstyled list-unstyled-border">
+                @foreach ($topProduct as $row)
                 <li class="media">
-                    <img class="mr-3 rounded" width="55" src="{{ asset(config('admin_config.theme_name')) }}/assets/img/products/product-3-50.png" alt="product">
+                    <img class="mr-3 rounded" width="55" src="{{ asset('assets/img/product/' . $row->product->image) }}" alt="{{ $row->name }}">
                     <div class="media-body">
-                    <div class="float-right"><div class="font-weight-600 text-muted text-small">86 Sales</div></div>
-                    <div class="media-title">oPhone S9 Limited</div>
+                    <div class="float-right"><div class="font-weight-600 text-muted text-small">{{ $row->qty }} Stok Terjual</div></div>
+                    <div class="media-title">{{ $row->product->name }}</div>
                     <div class="mt-1">
                         <div class="budget-price">
-                        <div class="budget-price-square bg-primary" data-width="64%"></div>
-                        <div class="budget-price-label">$68,714</div>
+                        <div class="budget-price-square bg-primary" data-width="{{ $row->cnt/$transactionInYear*100 }}%"></div>
+                        <div class="budget-price-label">{{ number_format($row->cnt/$transactionInYear*100) }}%</div>
                         </div>
                         <div class="budget-price">
-                        <div class="budget-price-square bg-danger" data-width="43%"></div>
-                        <div class="budget-price-label">$38,700</div>
+                        <div class="budget-price-label">{{ $row->cnt }} Transaksi</div>
                         </div>
                     </div>
                     </div>
                 </li>
-                <li class="media">
-                    <img class="mr-3 rounded" width="55" src="{{ asset(config('admin_config.theme_name')) }}/assets/img/products/product-4-50.png" alt="product">
-                    <div class="media-body">
-                    <div class="float-right"><div class="font-weight-600 text-muted text-small">67 Sales</div></div>
-                    <div class="media-title">iBook Pro 2018</div>
-                    <div class="mt-1">
-                        <div class="budget-price">
-                        <div class="budget-price-square bg-primary" data-width="84%"></div>
-                        <div class="budget-price-label">$107,133</div>
-                        </div>
-                        <div class="budget-price">
-                        <div class="budget-price-square bg-danger" data-width="60%"></div>
-                        <div class="budget-price-label">$91,455</div>
-                        </div>
-                    </div>
-                    </div>
-                </li>
-                <li class="media">
-                    <img class="mr-3 rounded" width="55" src="{{ asset(config('admin_config.theme_name')) }}/assets/img/products/product-1-50.png" alt="product">
-                    <div class="media-body">
-                    <div class="float-right"><div class="font-weight-600 text-muted text-small">63 Sales</div></div>
-                    <div class="media-title">Headphone Blitz</div>
-                    <div class="mt-1">
-                        <div class="budget-price">
-                        <div class="budget-price-square bg-primary" data-width="34%"></div>
-                        <div class="budget-price-label">$3,717</div>
-                        </div>
-                        <div class="budget-price">
-                        <div class="budget-price-square bg-danger" data-width="28%"></div>
-                        <div class="budget-price-label">$2,835</div>
-                        </div>
-                    </div>
-                    </div>
-                </li>
-                <li class="media">
-                    <img class="mr-3 rounded" width="55" src="{{ asset(config('admin_config.theme_name')) }}/assets/img/products/product-3-50.png" alt="product">
-                    <div class="media-body">
-                    <div class="float-right"><div class="font-weight-600 text-muted text-small">28 Sales</div></div>
-                    <div class="media-title">oPhone X Lite</div>
-                    <div class="mt-1">
-                        <div class="budget-price">
-                        <div class="budget-price-square bg-primary" data-width="45%"></div>
-                        <div class="budget-price-label">$13,972</div>
-                        </div>
-                        <div class="budget-price">
-                        <div class="budget-price-square bg-danger" data-width="30%"></div>
-                        <div class="budget-price-label">$9,660</div>
-                        </div>
-                    </div>
-                    </div>
-                </li>
-                <li class="media">
-                    <img class="mr-3 rounded" width="55" src="{{ asset(config('admin_config.theme_name')) }}/assets/img/products/product-5-50.png" alt="product">
-                    <div class="media-body">
-                    <div class="float-right"><div class="font-weight-600 text-muted text-small">19 Sales</div></div>
-                    <div class="media-title">Old Camera</div>
-                    <div class="mt-1">
-                        <div class="budget-price">
-                        <div class="budget-price-square bg-primary" data-width="35%"></div>
-                        <div class="budget-price-label">$7,391</div>
-                        </div>
-                        <div class="budget-price">
-                        <div class="budget-price-square bg-danger" data-width="28%"></div>
-                        <div class="budget-price-label">$5,472</div>
-                        </div>
-                    </div>
-                    </div>
-                </li>
+                @endforeach
                 </ul>
             </div>
             <div class="card-footer pt-3 d-flex justify-content-center">
                 <div class="budget-price justify-content-center">
                 <div class="budget-price-square bg-primary" data-width="20"></div>
-                <div class="budget-price-label">Selling Price</div>
-                </div>
-                <div class="budget-price justify-content-center">
-                <div class="budget-price-square bg-danger" data-width="20"></div>
-                <div class="budget-price-label">Budget Price</div>
+                <div class="budget-price-label">Presentase penjualan dari total transaksi</div>
                 </div>
             </div>
             </div>
         </div>
         </div>
-        <div class="row">
-        <div class="col-md-6">
-            <div class="card">
+        <div class="card">
             <div class="card-header">
-                <h4>Best Products</h4>
-            </div>
-            <div class="card-body">
-                <div class="owl-carousel owl-theme" id="products-carousel">
-                <div>
-                    <div class="product-item pb-3">
-                    <div class="product-image">
-                        <img alt="image" src="{{ asset(config('admin_config.theme_name')) }}/assets/img/products/product-4-50.png" class="img-fluid">
-                    </div>
-                    <div class="product-details">
-                        <div class="product-name">iBook Pro 2018</div>
-                        <div class="product-review">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        </div>
-                        <div class="text-muted text-small">67 Sales</div>
-                        <div class="product-cta">
-                        <a href="#" class="btn btn-primary">Detail</a>
-                        </div>
-                    </div>  
-                    </div>
-                </div>
-                <div>
-                    <div class="product-item">
-                    <div class="product-image">
-                        <img alt="image" src="{{ asset(config('admin_config.theme_name')) }}/assets/img/products/product-3-50.png" class="img-fluid">
-                    </div>
-                    <div class="product-details">
-                        <div class="product-name">oPhone S9 Limited</div>
-                        <div class="product-review">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half"></i>
-                        </div>
-                        <div class="text-muted text-small">86 Sales</div>
-                        <div class="product-cta">
-                        <a href="#" class="btn btn-primary">Detail</a>
-                        </div>
-                    </div>  
-                    </div>
-                </div>
-                <div>
-                    <div class="product-item">
-                    <div class="product-image">
-                        <img alt="image" src="{{ asset(config('admin_config.theme_name')) }}/assets/img/products/product-1-50.png" class="img-fluid">
-                    </div>
-                    <div class="product-details">
-                        <div class="product-name">Headphone Blitz</div>
-                        <div class="product-review">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                        </div>
-                        <div class="text-muted text-small">63 Sales</div>
-                        <div class="product-cta">
-                        <a href="#" class="btn btn-primary">Detail</a>
-                        </div>
-                    </div>  
-                    </div>
-                </div>
-                </div>
-            </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card">
-            <div class="card-header">
-                <h4>Top Countries</h4>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                <div class="col-sm-6">
-                    <div class="text-title mb-2">July</div>
-                    <ul class="list-unstyled list-unstyled-border list-unstyled-noborder mb-0">
-                    <li class="media">
-                        <img class="img-fluid mt-1 img-shadow" src="{{ asset(config('admin_config.theme_name')) }}/assets/modules/flag-icon-css/flags/4x3/id.svg" alt="image" width="40">
-                        <div class="media-body ml-3">
-                        <div class="media-title">Indonesia</div>
-                        <div class="text-small text-muted">3,282 <i class="fas fa-caret-down text-danger"></i></div>
-                        </div>
-                    </li>
-                    <li class="media">
-                        <img class="img-fluid mt-1 img-shadow" src="{{ asset(config('admin_config.theme_name')) }}/assets/modules/flag-icon-css/flags/4x3/my.svg" alt="image" width="40">
-                        <div class="media-body ml-3">
-                        <div class="media-title">Malaysia</div>
-                        <div class="text-small text-muted">2,976 <i class="fas fa-caret-down text-danger"></i></div>
-                        </div>
-                    </li>
-                    <li class="media">
-                        <img class="img-fluid mt-1 img-shadow" src="{{ asset(config('admin_config.theme_name')) }}/assets/modules/flag-icon-css/flags/4x3/us.svg" alt="image" width="40">
-                        <div class="media-body ml-3">
-                        <div class="media-title">United States</div>
-                        <div class="text-small text-muted">1,576 <i class="fas fa-caret-up text-success"></i></div>
-                        </div>
-                    </li>
-                    </ul>
-                </div>
-                <div class="col-sm-6 mt-sm-0 mt-4">
-                    <div class="text-title mb-2">August</div>
-                    <ul class="list-unstyled list-unstyled-border list-unstyled-noborder mb-0">
-                    <li class="media">
-                        <img class="img-fluid mt-1 img-shadow" src="{{ asset(config('admin_config.theme_name')) }}/assets/modules/flag-icon-css/flags/4x3/id.svg" alt="image" width="40">
-                        <div class="media-body ml-3">
-                        <div class="media-title">Indonesia</div>
-                        <div class="text-small text-muted">3,486 <i class="fas fa-caret-up text-success"></i></div>
-                        </div>
-                    </li>
-                    <li class="media">
-                        <img class="img-fluid mt-1 img-shadow" src="{{ asset(config('admin_config.theme_name')) }}/assets/modules/flag-icon-css/flags/4x3/ps.svg" alt="image" width="40">
-                        <div class="media-body ml-3">
-                        <div class="media-title">Palestine</div>
-                        <div class="text-small text-muted">3,182 <i class="fas fa-caret-up text-success"></i></div>
-                        </div>
-                    </li>
-                    <li class="media">
-                        <img class="img-fluid mt-1 img-shadow" src="{{ asset(config('admin_config.theme_name')) }}/assets/modules/flag-icon-css/flags/4x3/de.svg" alt="image" width="40">
-                        <div class="media-body ml-3">
-                        <div class="media-title">Germany</div>
-                        <div class="text-small text-muted">2,317 <i class="fas fa-caret-down text-danger"></i></div>
-                        </div>
-                    </li>
-                    </ul>
-                </div>
-                </div>
-            </div>
-            </div>
-        </div>
-        </div>
-        <div class="row">
-        <div class="col-md-8">
-            <div class="card">
-            <div class="card-header">
-                <h4>Invoices</h4>
+                <h4>Riwayat Transaksi Hari Ini</h4>
                 <div class="card-header-action">
                 <a href="#" class="btn btn-danger">View More <i class="fas fa-chevron-right"></i></a>
                 </div>
@@ -330,115 +120,44 @@
                 <div class="table-responsive table-invoice">
                 <table class="table table-striped">
                     <tr>
-                    <th>Invoice ID</th>
-                    <th>Customer</th>
-                    <th>Status</th>
-                    <th>Due Date</th>
-                    <th>Action</th>
+                        <th class="text-center">ID Transaksi</th>
+                        <th>Customer</th>
+                        <th>Outlet</th>
+                        <th>Time</th>
+                        <th>Total Pembayaran</th>
+                        <th>Action</th>
                     </tr>
+                    @foreach ($transaksi as $row)
                     <tr>
-                    <td><a href="#">INV-87239</a></td>
-                    <td class="font-weight-600">Kusnadi</td>
-                    <td><div class="badge badge-warning">Unpaid</div></td>
-                    <td>July 19, 2018</td>
-                    <td>
-                        <a href="#" class="btn btn-primary">Detail</a>
-                    </td>
+                        <td class="text-center"><div class="text-primary mb-2">{{ $row->id}}</div></td>
+                        @if ($row->customer_name == '')
+                            <td class="font-weight-600 text-secondary">Tanpa Nama</td>
+                        @else
+                            <td class="font-weight-600">{{ $row->customer_name }}</td>
+                        @endif
+                        
+                        <td>{{ $row->outlet->name }}</td>
+                        <td>{{ $row->created_at->format('H:i') }}</td>
+                        <td>Rp. {{ number_format($row->total, 0, '.', '.')}}</td>
+                        <td>
+                            <a href="#" class="btn btn-primary">Detail</a>
+                        </td>
                     </tr>
-                    <tr>
-                    <td><a href="#">INV-48574</a></td>
-                    <td class="font-weight-600">Hasan Basri</td>
-                    <td><div class="badge badge-success">Paid</div></td>
-                    <td>July 21, 2018</td>
-                    <td>
-                        <a href="#" class="btn btn-primary">Detail</a>
-                    </td>
-                    </tr>
-                    <tr>
-                    <td><a href="#">INV-76824</a></td>
-                    <td class="font-weight-600">Muhamad Nuruzzaki</td>
-                    <td><div class="badge badge-warning">Unpaid</div></td>
-                    <td>July 22, 2018</td>
-                    <td>
-                        <a href="#" class="btn btn-primary">Detail</a>
-                    </td>
-                    </tr>
-                    <tr>
-                    <td><a href="#">INV-84990</a></td>
-                    <td class="font-weight-600">Agung Ardiansyah</td>
-                    <td><div class="badge badge-warning">Unpaid</div></td>
-                    <td>July 22, 2018</td>
-                    <td>
-                        <a href="#" class="btn btn-primary">Detail</a>
-                    </td>
-                    </tr>
-                    <tr>
-                    <td><a href="#">INV-87320</a></td>
-                    <td class="font-weight-600">Ardian Rahardiansyah</td>
-                    <td><div class="badge badge-success">Paid</div></td>
-                    <td>July 28, 2018</td>
-                    <td>
-                        <a href="#" class="btn btn-primary">Detail</a>
-                    </td>
-                    </tr>
+                    @endforeach
                 </table>
+                @if( $transaksi->isEmpty())
+                <div class="text-center"><label class="text-danger mb-2">&mdash; Belum ada transaksi hari ini &mdash;</label></div>                    
+                @endif
                 </div>
             </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card card-hero">
-            <div class="card-header">
-                <div class="card-icon">
-                <i class="far fa-question-circle"></i>
-                </div>
-                <h4>14</h4>
-                <div class="card-description">Customers need help</div>
-            </div>
-            <div class="card-body p-0">
-                <div class="tickets-list">
-                <a href="#" class="ticket-item">
-                    <div class="ticket-title">
-                    <h4>My order hasn't arrived yet</h4>
-                    </div>
-                    <div class="ticket-info">
-                    <div>Laila Tazkiah</div>
-                    <div class="bullet"></div>
-                    <div class="text-primary">1 min ago</div>
-                    </div>
-                </a>
-                <a href="#" class="ticket-item">
-                    <div class="ticket-title">
-                    <h4>Please cancel my order</h4>
-                    </div>
-                    <div class="ticket-info">
-                    <div>Rizal Fakhri</div>
-                    <div class="bullet"></div>
-                    <div>2 hours ago</div>
-                    </div>
-                </a>
-                <a href="#" class="ticket-item">
-                    <div class="ticket-title">
-                    <h4>Do you see my mother?</h4>
-                    </div>
-                    <div class="ticket-info">
-                    <div>Syahdan Ubaidillah</div>
-                    <div class="bullet"></div>
-                    <div>6 hours ago</div>
-                    </div>
-                </a>
-                <a href="features-tickets.html" class="ticket-item ticket-more">
-                    View All <i class="fas fa-chevron-right"></i>
-                </a>
-                </div>
-            </div>
-            </div>
-        </div>
         </div>
     </section>
 </div>
 @endsection
 @section('script')
+    <script>
+
+    </script>
     <script>
         "use strict";
 
@@ -447,10 +166,10 @@
         var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ["January", "February", "March", "April", "May", "June", "July", "August", 'September', 'Oktober', 'November', 'Desember'],
+            labels: ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agust", 'Sept', 'Okt', 'Nov', 'Desr'],
             datasets: [{
-            label: 'Sales',
-            data: [3, 1, 0, 2, 0, 0, 0, 4, 1, 5, 5, 4],
+            label: 'Transaksi',
+            data: transaksi,
             borderWidth: 2,
             backgroundColor: 'rgba(63,82,227,.8)',
             borderWidth: 0,
@@ -459,18 +178,6 @@
             pointRadius: 3.5,
             pointBackgroundColor: 'transparent',
             pointHoverBackgroundColor: 'rgba(63,82,227,.8)',
-            },
-            {
-            label: 'Budget',
-            data: transaksi,
-            borderWidth: 2,
-            backgroundColor: 'rgba(254,86,83,.7)',
-            borderWidth: 0,
-            borderColor: 'transparent',
-            pointBorderWidth: 0 ,
-            pointRadius: 3.5,
-            pointBackgroundColor: 'transparent',
-            pointHoverBackgroundColor: 'rgba(254,86,83,.8)',
             }]
         },
         options: {
@@ -486,9 +193,9 @@
                 },
                 ticks: {
                 beginAtZero: true,
-                stepSize: 1500,
+                stepSize: 20,
                 callback: function(value, index, values) {
-                    return '$' + value;
+                    return '' + value;
                 }
                 }
             }],

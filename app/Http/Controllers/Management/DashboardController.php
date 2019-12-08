@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Management;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
 use App\Models\Outlet;
+use App\Models\Product;
+use App\Models\TransactionDetail;
 use Auth;
 use Carbon\Carbon;
+use DB;
 
 class DashboardController extends Controller
 {
@@ -37,7 +40,7 @@ class DashboardController extends Controller
 
         $totalMonth = Transaction::whereIn('outlet_id', $outlet)->whereMonth('created_at', $month)->sum('total');
 
-        $transaksi = Transaction::whereIn('outlet_id', $outlet)->whereDate('created_at', $today)->count();
+        $transaksi = Transaction::whereIn('outlet_id', $outlet)->whereDate('created_at', $today)->get();
 
         $transactionRecord = [];
         for ($i=1; $i <= 12; $i++) {
@@ -46,13 +49,29 @@ class DashboardController extends Controller
 
             array_push($transactionRecord, $transaction);
         }
-        // return $transactionRecord;
+
+        $product = Product::where('business_id', $bisnis)->pluck('id');
+        $topProduct = TransactionDetail::whereIn('product_id', $product)
+            ->whereYear('created_at', $year)
+            ->select(DB::raw('SUM(qty) as qty'), DB::raw('COUNT(id) as cnt'), 'product_id')
+            ->groupBy('product_id')
+            ->orderBy('qty', 'desc')
+            ->take(5)
+            ->get();
+
+        $transactionInMonth = Transaction::whereIn('outlet_id', $outlet)->whereMonth('created_at', $month)->count();
+        $transactionInYear = Transaction::whereIn('outlet_id', $outlet)->whereYear('created_at', $year)->count();
+        // return $transaksi;
         return view('management.dashboard',
             compact(
                 'totalToday',
                 'totalMonth',
                 'transaksi',
-                'transactionRecord'
+                'transactionRecord',
+                'year',
+                'topProduct',
+                'transactionInYear',
+                'transactionInMonth'
             )
         );
     }
