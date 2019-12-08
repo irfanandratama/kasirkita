@@ -62,6 +62,12 @@ Route::namespace('Management')->group(function () {
     Route::put('/management/profile/edit/{id}', 'UserController@editProfile')
         ->name('management-profile.edit');
 
+    //Transaction History
+    Route::get('/management/trasaction/index', 'TransactionController@index')
+        ->name('management-transaction.index');
+    Route::get('/management/trasaction/detail/{id}', 'TransactionController@detail')
+        ->name('management-transaction.detail');
+
     //Cashier Management
     Route::get('/management/cashier/index', 'CashierController@index')
         ->name('management-cashier.index');

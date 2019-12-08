@@ -111,18 +111,4 @@ class OutletController extends Controller
             )
         );
     }
-
-    public function transactionDetail($id)
-    {
-        $transaction = Transaction::where('id', $id)->first();
-        $detail = TransactionDetail::where('transaction_id', $id)->get();
-
-        // return $detail;
-        return view('management.outlet.transactionDetail',
-            compact(
-                'transaction',
-                'detail'
-            )
-        );
-    }
 }

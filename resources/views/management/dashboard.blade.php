@@ -14,7 +14,7 @@
                     <h4>Transaksi Hari Ini</h4>
                     </div>
                     <div class="card-body">
-                    {{ $transaksi->count() }} <label class="text-muted"><h6>Transaksi</h6></label>
+                    {{ $transaksi->count() }} <label class="text-muted mb-2"><h6>Transaksi</h6></label>
                     </div>
                 </div>
                 </div>
@@ -46,7 +46,7 @@
                 <div class="card-body">
                 Rp. {{ number_format($totalMonth, 0, '.', '.') }}
                 </div>
-                <label class="text-muted"><h6>{{ $transactionInMonth }} Transaksi</h6>
+                <p class="text-muted text-sm"><small>{{ $transaksi->count() }} Transaksi</small></p>
             </div>
             </div>
         </div>
@@ -85,7 +85,7 @@
                     <img class="mr-3 rounded" width="55" src="{{ asset('assets/img/product/' . $row->product->image) }}" alt="{{ $row->name }}">
                     <div class="media-body">
                     <div class="float-right"><div class="font-weight-600 text-muted text-small">{{ $row->qty }} Stok Terjual</div></div>
-                    <div class="media-title">{{ $row->product->name }}</div>
+                    <div class="media-title"><a href="{{ route('management-product.detail', $row->product_id) }}">{{ $row->product->name }}</a></div>
                     <div class="mt-1">
                         <div class="budget-price">
                         <div class="budget-price-square bg-primary" data-width="{{ $row->cnt/$transactionInYear*100 }}%"></div>
@@ -102,8 +102,8 @@
             </div>
             <div class="card-footer pt-3 d-flex justify-content-center">
                 <div class="budget-price justify-content-center">
-                <div class="budget-price-square bg-primary" data-width="20"></div>
-                <div class="budget-price-label">Presentase penjualan dari total transaksi</div>
+                    <div class="budget-price-square bg-primary" data-width="20"></div>
+                    <div class="budget-price-label">Presentase transaksi</div>
                 </div>
             </div>
             </div>
@@ -113,7 +113,7 @@
             <div class="card-header">
                 <h4>Riwayat Transaksi Hari Ini</h4>
                 <div class="card-header-action">
-                <a href="#" class="btn btn-danger">View More <i class="fas fa-chevron-right"></i></a>
+                <a href="{{route('management-transaction.index')}}" class="btn btn-danger">View More <i class="fas fa-chevron-right"></i></a>
                 </div>
             </div>
             <div class="card-body p-0">
@@ -129,7 +129,7 @@
                     </tr>
                     @foreach ($transaksi as $row)
                     <tr>
-                        <td class="text-center"><div class="text-primary mb-2">{{ $row->id}}</div></td>
+                        <td class="text-center"><div class="text-primary mb-2">{{ $row->id }}</div></td>
                         @if ($row->customer_name == '')
                             <td class="font-weight-600 text-secondary">Tanpa Nama</td>
                         @else
@@ -140,7 +140,7 @@
                         <td>{{ $row->created_at->format('H:i') }}</td>
                         <td>Rp. {{ number_format($row->total, 0, '.', '.')}}</td>
                         <td>
-                            <a href="#" class="btn btn-primary">Detail</a>
+                            <a href="{{ route('management-transaction.detail', $row->id) }}" class="btn btn-primary">Detail</a>
                         </td>
                     </tr>
                     @endforeach

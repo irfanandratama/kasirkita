@@ -21,7 +21,12 @@
                             <div class="col-md-6">
                             <address>
                                 <strong >
-                                Customer {{ $transaction->name }}
+                                Customer
+                                @if ( $transaction->name == '')
+                                    <p class="font-weight-600 text-secondary">Tanpa Nama</p>
+                                @else
+                                    <p class="font-weight-600">{{ $transaction->name }}</p>
+                                @endif
                                 </strong>
                             </address>
                             </div>

@@ -40,7 +40,7 @@ class DashboardController extends Controller
 
         $totalMonth = Transaction::whereIn('outlet_id', $outlet)->whereMonth('created_at', $month)->sum('total');
 
-        $transaksi = Transaction::whereIn('outlet_id', $outlet)->whereDate('created_at', $today)->get();
+        $transaksi = Transaction::whereIn('outlet_id', $outlet)->whereDate('created_at', $today)->orderBy('created_at', 'desc')->get();
 
         $transactionRecord = [];
         for ($i=1; $i <= 12; $i++) {
