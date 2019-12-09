@@ -16,7 +16,7 @@
                         <div class="card-header">
                             <h4>Produk</h4>
                         </div>
-                        <input type="text" v-model="search" placeholder="Search Product">
+                        <input id="search-product" type="text" v-model="search" placeholder="Search Product">
 
                         <hr>
                         <div class="card-body produk">

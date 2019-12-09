@@ -12,7 +12,7 @@
     height: 144px;
     position: relative;
     margin: 5px 5px;
-    
+
 }
 
 .item img {
@@ -20,7 +20,7 @@
     height: 144px;
     object-fit: cover;
     box-shadow: 0px 10px 20px -5px rgba(0,0,0,.3);
-    
+
 }
 
 .price {
@@ -34,12 +34,12 @@
     display: inline-block;
     font-size: 10px;
     border-radius: 5px;
-    
+
 }
 .caption {
     bottom: 0%;
     padding: 0px;
-    
+
 }
 
 .tambah {
@@ -65,4 +65,14 @@
 .keranjang label{
     margin: 0px;
     font-weight: bold;
+}
+
+
+#search-product{
+    border: solid 0.5px #dcd5f5;
+    border-radius: 5px;
+    padding: 10px 5px;
+    margin: 10px 25px;
+    alignment: center;
+    color: #3f729b;
 }
