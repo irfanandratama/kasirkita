@@ -9,6 +9,10 @@
   </a>
 </div>
 
+<li @if ($pageSlug == 'history') class="active " @endif>
+    <a class="nav-link" href="{{route('cashier-history.index')}}"><i class="fas fa-history"></i> Riwayat Transaksi</a>
+  </li>
+
 <li class="menu-header">Inventori</li>
 <li  @if ($pageSlug == 'stockHistory' or $pageSlug == 'addActivity') class="dropdown active" @endif class="dropdown">
   <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-boxes"></i> <span>Kelola Stok</span></a>

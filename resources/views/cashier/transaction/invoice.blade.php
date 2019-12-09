@@ -102,7 +102,6 @@
                   <div class="float-lg-left mb-lg-0 mb-3">
                     <button type="submit" class="btn btn-primary btn-icon icon-left done"><i class="fas fa-check"></i> Selesai</button>
                   </div>
-                  <a href="{{route('cashier-transaction.print')}}" target="_blank" class="btn btn-info btn-icon icon-left"><i class="fas fa-print"></i> Print</a>
                   <a href="{{ URL::previous() }}" class="btn btn-danger btn-icon icon-left cencel"><i class="fas fa-times"></i> Cancel</a>
                 </div>
               </form>

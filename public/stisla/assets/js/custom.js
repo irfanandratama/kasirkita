@@ -38,12 +38,12 @@ $('.clear').click(function() {
     $('.imagecheck-input').prop("checked", false);
     $('div').remove('.dipilih');
     $('#item').val(0);
-});
+});*/
 
 $('.done').click(function()
 {
     setTimeout(function(){ window.location.href="index"; }, 10000);
-});*/
+});
 
 function notNull() {
     if ($('#item').val() <= '0') {

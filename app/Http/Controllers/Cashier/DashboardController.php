@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Cashier;
 
 use Illuminate\Http\Request;
+use App\Models\Transaction;
+use Auth;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -23,7 +26,17 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('cashier.dashboard', ['page_title' => 'Dashboard']);
+        $outlet = Auth::user()->outlet_id;
+        $today = Carbon::today()->format('Y-m-d');
+        $transaksi = Transaction::where('outlet_id', $outlet)->whereDate('created_at', $today)->orderBy('created_at', 'desc')->get();
+        $totalToday = Transaction::where('outlet_id', $outlet)->whereDate('created_at', $today)->sum('total');
+
+        return view('cashier.dashboard',
+            compact(
+                'transaksi',
+                'totalToday'
+            )
+        );
     }
     /**
      * redirect to dashboard.

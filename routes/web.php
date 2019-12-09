@@ -160,5 +160,10 @@ Route::namespace('Cashier')->group(function(){
     Route::get('/cashier/stock/detail/{id}', 'StockController@detail')
         ->name('cashier-stock.detail');
 
+    //History
+    Route::get('/cashier/history/index', 'HistoryController@index')
+        ->name('cashier-history.index');
+    Route::get('/cashier/history/detail/{id}', 'HistoryController@detail')
+        ->name('cashier-history.detail');
 
 });

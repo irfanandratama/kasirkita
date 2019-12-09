@@ -10,9 +10,9 @@
 </div>
 
 <li class="menu-header">Akun</li>
-<li>
-  <a href="" class="nav-link"><i class="far fa-user"></i><span>Profile</span></a>
-</li>
+<!-- <li @if ($pageSlug == 'profile') class="active " @endif>
+  <a href="{{route('management.profile')}}" class="nav-link"><i class="far fa-user"></i><span>Profile</span></a>
+</li> -->
 <li @if ($pageSlug == 'listCashier' or $pageSlug == 'addCashier') class="dropdown active" @endif class="dropdown">
   <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-users"></i> <span>Kasir</span></a>
   <ul class="dropdown-menu">
