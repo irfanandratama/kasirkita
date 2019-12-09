@@ -46,7 +46,7 @@
                 <div class="card-body">
                 Rp. {{ number_format($totalMonth, 0, '.', '.') }}
                 </div>
-                <p class="text-muted text-sm"><small>{{ $transaksi->count() }} Transaksi</small></p>
+                <p class="text-muted text-sm"><small>{{ $transactionInMonth }} Transaksi</small></p>
             </div>
             </div>
         </div>
