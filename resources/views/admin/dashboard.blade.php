@@ -88,7 +88,7 @@
             labels: ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agust", 'Sept', 'Okt', 'Nov', 'Des'],
             datasets: [{
             label: 'Pengunjung',
-            data: visit,
+            data: register,
             borderWidth: 2,
             backgroundColor: 'rgba(63,82,227,.8)',
             borderWidth: 0,
@@ -100,7 +100,7 @@
             },
             {
             label: 'Pendaftar',
-            data: register,
+            data: visit,
             borderWidth: 2,
             backgroundColor: 'rgba(254,86,83,.7)',
             borderWidth: 0,
