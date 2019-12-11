@@ -45,10 +45,24 @@ Route::namespace('Admin')->group(function () {
         ->name('admin.index');
     Route::get('/admin/create', 'UserController@create')
         ->name('admin.create');
-        Route::get('/admin/store', 'UserController@store')
+    Route::get('/admin/store', 'UserController@store')
         ->name('admin.store');
     Route::delete('/admin/user/delete/{id}', 'UserController@delete')
         ->name('user.delete');
+
+    //Management
+    Route::get('/admin/management/index', 'ManagementController@index')
+        ->name('admin-management.index');
+    Route::get('/admin/management/detail', 'ManagementController@detail')
+        ->name('admin-management.detail');
+
+    //Cahiers
+    Route::get('/admin/cashier/index', 'CashierController@index')
+        ->name('admin-cashier.index');
+
+    //Bssiness
+    Route::get('/admin/business/index', 'BusinessController@index')
+        ->name('admin-business.index');
 });
 
 Route::namespace('Management')->group(function () {

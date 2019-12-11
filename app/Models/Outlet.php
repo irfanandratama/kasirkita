@@ -25,4 +25,8 @@ class Outlet extends Model
     public function transaction() {
         return $this->hasMany(Transaction::class);  
     }
+    
+    public function business() {
+        return $this->belongsTo(Business::class);  
+    }
 }

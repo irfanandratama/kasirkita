@@ -25,4 +25,8 @@ class Business extends Model
     public function categoryProduct() {
         return $this->hasMany(CategoryProduct::class);  
     }
+
+    public function outlet() {
+        return $this->hasMany(Outlet::class);  
+    }
 }

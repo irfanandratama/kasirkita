@@ -1,14 +1,11 @@
 <li class="menu-header">Dashboard</li>
 <li @if ($pageSlug == 'dashboard') class="active " @endif>
-  <a href="{{route('management.dashboard')}}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+  <a href="{{route('admin.dashboard')}}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
 </li>
 
 <li class="menu-header">Akun</li>
-<li>
-  <a href="" class="nav-link"><i class="far fa-user"></i><span>Profile</span></a>
-</li>
 <li @if ($pageSlug == 'listAdmin' or $pageSlug == 'addAdmin') class="dropdown active" @endif class="dropdown">
-  <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-users-cog"></i> <span>Admin</span></a>
+  <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-users-cog"></i> <span>Akun Admin</span></a>
   <ul class="dropdown-menu">
     <li @if ($pageSlug == 'listAdmin') class="active " @endif>
       <a class="nav-link" href="{{route('admin.index')}}">Daftar Admin</a>
@@ -18,6 +15,19 @@
     </li>
   </ul>
 </li>
+
+<li @if ($pageSlug == 'management') class="active " @endif>
+  <a href="{{route('admin-management.index')}}" class="nav-link"><i class="fas fa-user-tie"></i><span>Akun Management</span></a>
+</li>
+<li @if ($pageSlug == 'cashier') class="active " @endif>
+  <a href="{{route('admin-cashier.index')}}" class="nav-link"><i class="fas fa-user"></i><span>Akun Kasir</span></a>
+</li>
+
+<li class="menu-header">Bisnis</li>
+<li @if ($pageSlug == 'business') class="active " @endif>
+  <a href="{{route('admin-business.index')}}" class="nav-link"><i class="fas fa-store"></i><span>Daftar Bisnis</span></a>
+</li>
+
 
 <!-- <li class="menu-header">Produk</li>
 <li  @if ($pageSlug == 'listProduct' or $pageSlug == 'addProduct') class="dropdown active" @endif class="dropdown">
