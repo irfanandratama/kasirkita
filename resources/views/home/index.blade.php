@@ -16,53 +16,6 @@
 
         <div class="row probootstrap-feature-showcase">
             <img src="{{ asset('assets/img/capture-management.png') }}" alt="Image" class="img-responsive">
-            <!-- <div class="col-md-4 col-md-push-8 probootstrap-showcase-nav probootstrap-animate">
-                <ul>
-                    <li class="active">
-                    <a href="#">Responsive Design</a>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
-                    </li>
-                    <li>
-                    <a href="#">Business Solution</a>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
-                    </li>
-                    <li>
-                    <a href="#">Brand Identity</a>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
-                    </li>
-                    <li>
-                    <a href="#">Creative Ideas</a>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
-                    </li>
-                    <li>
-                    <a href="#">Search Engine Friendly</a>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
-                    </li>
-                    <li>
-                    <a href="#">Easy Customization</a>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-md-8 col-md-pull-4 probootstrap-animate" style="position: relative;">
-                <div class="probootstrap-home-showcase-wrap">
-                    <div class="probootstrap-home-showcase-inner">
-                    <div class="probootstrap-chrome">
-                        <div><span></span><span></span><span></span></div>
-                    </div>
-                    <div class="probootstrap-image-showcase">
-                        <ul class="probootstrap-images-list">
-                        <li class="active"><img src="{{ asset('assets/img/img_showcase_2.jpg') }}" alt="Image" class="img-responsive"></li>
-                        <li><img src="{{ asset('assets/img/img_showcase_1.jpg') }}" alt="Image" class="img-responsive"></li>
-                        <li><img src="{{ asset('assets/img/img_showcase_2.jpg') }}" alt="Image" class="img-responsive"></li>
-                        <li><img src="{{ asset('assets/img/img_showcase_1.jpg') }}" alt="Image" class="img-responsive"></li>
-                        <li><img src="{{ asset('assets/img/img_showcase_2.jpg') }}" alt="Image" class="img-responsive"></li>
-                        <li><img src="{{ asset('assets/img/img_showcase_1.jpg') }}" alt="Image" class="img-responsive"></li>
-                        </ul>
-                    </div>
-                    </div>
-                </div>
-            </div> -->
         </div>
     </div>
 </section>
@@ -135,16 +88,16 @@
 
         <div class="owl-carousel owl-carousel-fullwidth border-rounded">
             <div class="item">
-            <img src="{{ asset('assets/img/img_showcase_1.jpg') }}" alt="Free HTML5 Bootstrap Template by GetTemplates.co">
+            <img src="{{ asset('assets/img/img_showcase_1.jpg') }}" alt="">
             </div>
             <div class="item">
-            <img src="{{ asset('assets/img/img_showcase_2.jpg') }}" alt="Free HTML5 Bootstrap Template by GetTemplates.co">
+            <img src="{{ asset('assets/img/img_showcase_2.png') }}" alt="">
             </div>
             <div class="item">
-            <img src="{{ asset('assets/img/img_showcase_1.jpg') }}" alt="Free HTML5 Bootstrap Template by GetTemplates.co">
+            <img src="{{ asset('assets/img/img_showcase_3.png') }}" alt="">
             </div>
             <div class="item">
-            <img src="{{ asset('assets/img/img_showcase_2.jpg') }}" alt="Free HTML5 Bootstrap Template by GetTemplates.co">
+            <img src="{{ asset('assets/img/img_showcase_4.png') }}" alt="">
             </div>
         </div>
 
@@ -212,29 +165,6 @@
                     </div>
                 </div>
             </div>
-
-            
-
-            <!-- <form method="POST" action="{{ route('admin.login') }}" class="probootstrap-form">
-                <div class="form-group">
-                    <input name="email" type="email" class="form-control" placeholder="Email">
-                </div> 
-                <div class="form-group">
-                    <input name="password" type="password" class="form-control" placeholder="Password">
-                </div> 
-                <div class="form-group clearfix mb40">
-                    <label for="remember" class="probootstrap-remember"><input type="checkbox" id="remember"> Remember Me</label>
-                    <a href="#" class="probootstrap-forgot">Forgot Password?</a>
-                </div>
-
-                <div class="form-group text-left">
-                    <div class="row">
-                        <div class="col-md-6">
-                        <input type="submit" class="btn btn-primary btn-block" value="Sign In">
-                        </div>
-                    </div>
-                </div>
-            </form> -->
             </div>
         </div>
         </div>
@@ -252,7 +182,6 @@
         <div class="probootstrap-modal-flex">
             <div class="probootstrap-modal-figure" style="background-image: url({{ asset('assets/img/modal_bg.jpg')}}"></div>
             <div class="probootstrap-modal-content">
-            <!-- menampilkan error validasi -->
             @if (count($errors) > 0)
             <div class="alert alert-danger">
                 <ul>
