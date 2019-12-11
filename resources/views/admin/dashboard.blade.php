@@ -85,7 +85,7 @@
         var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agust", 'Sept', 'Okt', 'Nov', 'Desr'],
+            labels: ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agust", 'Sept', 'Okt', 'Nov', 'Des'],
             datasets: [{
             label: 'Pengunjung',
             data: visit,
