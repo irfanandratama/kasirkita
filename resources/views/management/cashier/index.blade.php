@@ -41,7 +41,7 @@
                         <tbody>   
                         @foreach ($cashier as $row)                              
                             <tr>
-                                <td class="text-center">{{ $row->id }}</td>
+                                <td class="text-center">{{ $loop->iteration }}</td>
                                 <td>{{ $row->name }}</td>
                                 <td><a href="mailto:{{ $row->email }}">{{ $row->email }}</a></td>
                                 <td>{{ $row->outlet->name }}</td>

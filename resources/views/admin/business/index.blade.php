@@ -36,7 +36,7 @@
                                 <td>{{ $row->outlet->count() }} Outlet</td>
                                 <td>{{ $row->created_at->format('d/m/Y H:i') }}</td>
                                 <td>
-                                    <a href="" class="btn btn-icon btn-primary"><i class="fas fa-edit"></i> Detail</a>
+                                    <a href="{{ route('admin-business.detail', $row->id) }}" class="btn btn-icon btn-primary"><i class="fas fa-eye"></i> Detail</a>
                                 </td>
                             </tr>
                         @endforeach

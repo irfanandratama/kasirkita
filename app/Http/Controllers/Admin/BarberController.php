@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
-use App\Models\Cashier;
+use App\Models\Barber;
 use App\Models\Business;
 use App\Models\Outlet;
 
-class CashierController extends Controller
+class BarberController extends Controller
 {
     public function __construct()
     {
@@ -17,21 +18,21 @@ class CashierController extends Controller
 
     public function index()
     {
-        $cashier = Cashier::paginate(10);
-        return view('admin.cashier.index',
+        $barber = Barber::paginate(10);
+        return view('admin.barber.index',
             compact(
-                'cashier'
+                'barber'
         ));
     }
 
     public function detail($id)
     {
-        $cashier = Cashier::where('id', $id)->first();
+        $barber = Barber::where('id', $id)->first();
         $outlets = Outlet::all();
         $businesses = Business::all();
-        return view('admin.cashier.detail',
+        return view('admin.barber.detail',
             compact(
-                'cashier',
+                'barber',
                 'outlets',
                 'businesses'
         ));

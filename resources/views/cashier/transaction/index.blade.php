@@ -23,7 +23,7 @@
 
                             <div class="item" v-for="product in products">
                                 <label class="imagecheck mb-4 item">
-                                    <input v-if="product.product_detail[0].stock > 0" name="imagecheck" type="checkbox" v-model="selected" :value="product"
+                                    <input v-if="product.product_detail[0].stock > 0 || product.category.name == 'Jasa'" name="imagecheck" type="checkbox" v-model="selected" :value="product"
                                            class="imagecheck-input"/>
                                     <figure class="imagecheck-figure">
                                         <img :src="assets+'/'+product.image"
@@ -32,8 +32,8 @@
                                     <div class="gradasi"></div>
                                     <div class="carousel-caption d-none d-md-block caption">
                                         <h6>@{{ product.name }}</h6>
-                                        <label v-if="product.product_detail[0].stock == 0" class="price" style="color:red;">Stock Kosong</label>
-                                        <label v-if="product.product_detail[0].stock > 0"
+                                        <label v-if="product.product_detail[0].stock == 0 && product.category.name !== 'Jasa'" class="price" style="color:red;">Stock Kosong</label>
+                                        <label v-if="product.product_detail[0].stock > 0 || product.category.name == 'Jasa'"
                                             class="price">Rp. @{{ product.price}}</label>
                                     </div>
                                 </label>

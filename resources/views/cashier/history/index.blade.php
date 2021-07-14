@@ -27,6 +27,7 @@
                                 ID Transaksi
                             </th>
                             <th>Customer</th>
+                            <th>Barber</th>
                             <th>Waktu</th>
                             <th>Total Pembayaran</th>
                             <th>Action</th>
@@ -41,6 +42,13 @@
                                 @else
                                     <td class="font-weight-600">{{ $row->customer_name }}</td>
                                 @endif
+                                @foreach ($barber as $row2)
+                                    @if ($row->barber_id !== $row2->id)
+                                        <td class="font-weight-600 text-secondary">Tanpa nama</td>
+                                    @else
+                                        <td class="font-weight-600">{{ $row2->name }}</td>
+                                    @endif
+                                @endforeach
                                 <td>{{ $row->created_at->format('Y-M-d H:i') }}</td>
                                 <td>Rp. {{ number_format($row->total, 0, '.', '.')}}</td>
                                 <td>

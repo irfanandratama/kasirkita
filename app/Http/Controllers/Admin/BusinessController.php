@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Business;
+use App\Models\BusinessType;
 
 class BusinessController extends Controller
 {
@@ -19,6 +20,17 @@ class BusinessController extends Controller
         return view('admin.business.index',
             compact(
                 'business'
+        ));
+    }
+
+    public function detail($id)
+    {
+        $business = Business::where('id', $id)->first();
+        $businessTypes = BusinessType::all();
+        return view('admin.business.detail',
+            compact(
+                'business',
+                'businessTypes'
         ));
     }
 }

@@ -45,24 +45,40 @@ Route::namespace('Admin')->group(function () {
         ->name('admin.index');
     Route::get('/admin/create', 'UserController@create')
         ->name('admin.create');
-    Route::get('/admin/store', 'UserController@store')
+    Route::post('/admin/store', 'UserController@store')
         ->name('admin.store');
     Route::delete('/admin/user/delete/{id}', 'UserController@delete')
         ->name('user.delete');
+    Route::get('/admin/detail/{id}', 'UserController@detail')
+        ->name('admin.detail');
 
     //Management
     Route::get('/admin/management/index', 'ManagementController@index')
         ->name('admin-management.index');
-    Route::get('/admin/management/detail', 'ManagementController@detail')
+    Route::get('/admin/management/create', 'ManagementController@create')
+        ->name('admin-management.create');
+    Route::post('/admin/management/store', 'ManagementController@store')
+        ->name('admin-management.store');
+    Route::get('/admin/management/detail/{id}', 'ManagementController@detail')
         ->name('admin-management.detail');
 
     //Cahiers
     Route::get('/admin/cashier/index', 'CashierController@index')
         ->name('admin-cashier.index');
+    Route::get('/admin/cashier/detail/{id}', 'CashierController@detail')
+        ->name('admin-cashier.detail');
 
     //Bssiness
     Route::get('/admin/business/index', 'BusinessController@index')
         ->name('admin-business.index');
+    Route::get('/admin/business/detail/{id}', 'BusinessController@detail')
+        ->name('admin-business.detail');
+    
+    //Barber
+    Route::get('/admin/barber/index', 'BarberController@index')
+        ->name('admin-barber.index');
+    Route::get('/admin/barber/detail/{id}', 'BarberController@detail')
+        ->name('admin-barber.detail');
 });
 
 Route::namespace('Management')->group(function () {
@@ -99,6 +115,8 @@ Route::namespace('Management')->group(function () {
     //Product
     Route::get('/management/product/index', 'ProductController@index')
         ->name('management-product.index');
+    Route::post('management/product', 'ProductController@search')
+        ->name('management-product.search');
     Route::get('/management/product/data', 'ProductController@data')
         ->name('management-product.data');
     Route::get('/management/product/create', 'ProductController@create')
@@ -145,6 +163,20 @@ Route::namespace('Management')->group(function () {
         ->name('management-outlet.detail');
     Route::get('/management/outlet/transactionDetail/{id}', 'OutletController@transactionDetail')
         ->name('management-outlet.transactionDetail');
+
+    // Barber
+    Route::get('/management/barber/index', 'BarberController@index')
+        ->name('management-barber.index');
+    Route::get('/management/barber/create', 'BarberController@create')
+        ->name('management-barber.create');
+    Route::post('/management/barber/create/store', 'BarberController@store')
+        ->name('management-barber-create.store');
+    Route::delete('/management/barber/delete/{id}', 'BarberController@delete')
+        ->name('management-barber.delete');
+    Route::get('/management/barber/edit/{id}', 'BarberController@edit')
+        ->name('management-barber.edit');
+    Route::put('/management/barber/update/{id}', 'BarberController@update')
+        ->name('management-barber.update');
 });
 
 Route::namespace('Cashier')->group(function(){

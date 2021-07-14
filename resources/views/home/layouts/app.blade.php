@@ -26,13 +26,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#" title="uiCookies:Inspire" style="background: url({{ asset('assets/img/logo/logo.png') }}) no-repeat left center; background-size:cover; width:218px;">Inspire</a>
+          {{-- <a class="navbar-brand" href="#" title="uiCookies:Inspire" style="background: url({{ asset('assets/img/logo/logo.png') }}) no-repeat left center; background-size:cover; width:218px;">Inspire</a> --}}
         </div>
 
         <div id="navbar-collapse" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="{{ route('admin.login') }}">Home</a></li>
-            <li><a href="#">Team</a></li>
+            <li><a href="{{ route('admin.register') }}">Team</a></li>
           </ul>
         </div>
       </div>
@@ -40,7 +40,7 @@
 
     @yield('content')
 
-    <section class="probootstrap-cta">
+    {{-- <section class="probootstrap-cta">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -49,7 +49,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> --}}
     <footer class="probootstrap-footer">
       <div class="container">
         <div class="row">

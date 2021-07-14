@@ -1,26 +1,25 @@
 @extends('home.layouts.app')
 @section('content')
 
-<section class="probootstrap-hero">
+<section class="probootstrap-hero" style="background-image: url({{ asset('assets/img/barber.jpg') }})">
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 text-center probootstrap-hero-text pb0 probootstrap-animate" data-animate-effect="fadeIn">
-            <h1>Tumbuhkan Bisnis Anda Dengan KasirQ</h1>
-            <p>Nikmati kebebasan mengelola bisnis dari mana saja dengan aplikasi kasir online KasirQ. Mulai sekarang.</p>
+            <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 row text-center probootstrap-hero-text pb0 probootstrap-animate" data-animate-effect="fadeIn">
+            {{-- <h1>Cukur ya di sini aja!</h1> --}}
+            {{-- <p>Nikmati kebebasan mengelola bisnis dari mana saja dengan aplikasi kasir online KasirQ. Mulai sekarang.</p> --}}
             <p>
                 <a href="#" class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#loginModal">Masuk</a>
                 <a href="#" class="btn btn-primary btn-ghost btn-lg" role="button" data-toggle="modal" data-target="#signupModal">Daftar</a>
             </p>
             </div>
-        </div>
-
+        </div>  
         <div class="row probootstrap-feature-showcase">
-            <img src="{{ asset('assets/img/capture-management.png') }}" alt="Image" class="img-responsive">
+            <img src="{{ asset('assets/img/barber2.jpg') }}" alt="Image" class="img-responsive">
         </div>
     </div>
 </section>
 
-<section class="probootstrap-section probootstrap-bg-white probootstrap-zindex-above-showcase">
+{{-- <section class="probootstrap-section probootstrap-bg-white probootstrap-zindex-above-showcase">
     <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3 text-center section-heading probootstrap-animate" data-animate-effect="fadeIn">
@@ -128,7 +127,7 @@
         </div>
     </div>
     </div>
-</section>
+</section> --}}
 
 <!-- Modal login -->
 <div class="modal fadeInUp probootstrap-animated" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">

@@ -16,11 +16,24 @@
   </ul>
 </li>
 
-<li @if ($pageSlug == 'management') class="active " @endif>
-  <a href="{{route('admin-management.index')}}" class="nav-link"><i class="fas fa-user-tie"></i><span>Akun Management</span></a>
+<li @if ($pageSlug == 'listManagement' or $pageSlug == 'addManagement' or $pageSlug == 'management') class="dropdown active " @endif class="dropdown">
+  <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-users-cog"></i><span>Akun Manajemen</span></a>
+  <ul class="dropdown-menu">
+    <li @if ($pageSlug == 'listManagement') class="active " @endif>
+      <a class="nav-link" href="{{route('admin-management.index')}}">Daftar Manajemen</a>
+    </li>
+    <li @if ($pageSlug == 'addManagement') class="active " @endif>
+      <a class="nav-link" href="{{route('admin-management.create')}}">Tambah Manajemen</a>
+    </li>
+  </ul>
 </li>
+
 <li @if ($pageSlug == 'cashier') class="active " @endif>
   <a href="{{route('admin-cashier.index')}}" class="nav-link"><i class="fas fa-user"></i><span>Akun Kasir</span></a>
+</li>
+
+<li @if ($pageSlug == 'listBarber') class="active " @endif>
+  <a href="{{route('admin-barber.index')}}" class="nav-link"><i class="fas fa-user"></i><span>Akun Tukang Cukur</span></a>
 </li>
 
 <li class="menu-header">Bisnis</li>

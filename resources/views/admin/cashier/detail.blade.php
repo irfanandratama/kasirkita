@@ -1,4 +1,4 @@
-@extends('layouts.app', ['pageSlug' => 'management'])
+@extends('layouts.app', ['pageSlug' => 'cashier'])
 
 @section('content')
 <div class="main-content">
@@ -19,35 +19,48 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group row align-items-center">
-                            <label class="form-control-label col-sm-3 text-md-right">Nama Outlet :</label>
+                            <label class="form-control-label col-sm-3 text-md-right">Nama Kasir :</label>
                             <div class="col-sm-6 col-md-9">
-                                <h5>{{$outlet->name}}</h5>
+                                <h5>{{$cashier->name}}</h5>
                             </div>
                         </div>
                         <div class="form-group row align-items-center">
-                            <label for="site-description" class="form-control-label col-sm-3 text-md-right">Alamat :</label>
+                            <label for="site-description" class="form-control-label col-sm-3 text-md-right">Email :</label>
                             <div class="col-sm-6 col-md-9">
-                                <h5>{{ $outlet->address}}</h5>
+                                <h5>{{ $cashier->email}}</h5>
                             </div>
                         </div>
                         <hr>
                         <div class="form-group">
-                            <h4>Akun Kasir</h4>
-                            <div class="col-12 text-right">
-                                <a href="{{route('management-outlet.edit', $outlet->id)}}" class="btn btn-icon icon-left btn-light"><i class="fas fa-plus"></i> <span>Tambah Kasir</span></a>
-                            </div>
-                            <br>
+                            <h4>Toko</h4>
                             <ul class="list-group">
-                            @foreach ($cashier as $kasir)
+                            @foreach ($outlets as $outlet)
+                            @if ($cashier->outlet_id == $outlet->id)
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    {{ $kasir->name }}
+                                    {{ $outlet->name }}
                                     <span>
                                         <span class="badge badge-success badge-pill">Aktif</span>
                                     </span>
                                 </li>
+                            @endif
                             @endforeach
                             </ul>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <h4>Bisnis</h4>
+                            <ul class="list-group">
+                            @foreach ($businesses as $business)
+                            @if ($cashier->business_id === $business->id)
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                {{ $business->name }}
+                                <span>
+                                    <span class="badge badge-success badge-pill">Aktif</span>
+                                </span>
+                            </li>
+                            @endif
+                            @endforeach
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

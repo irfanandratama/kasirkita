@@ -21,7 +21,7 @@
                     <div class="col-lg-12">
                       <div class="invoice-title">
                         <h2>{{Auth::user()->business->name}}</h2>
-                        <div class="invoice-number">Order #12345</div>
+                        <div class="invoice-number">Order #{{ date('Ymd')  }}-{{ $todayTransaction + 1 }}</div>
                       </div>
                       <hr>
                       <div class="row">
@@ -46,6 +46,17 @@
                           <address>
                             <strong>Cashier :</strong>
                             <p>#{{Auth::user()->id}} | {{Auth::user()->name}}</p>
+                          </address>
+                        </div>
+                        <div class="col-md-6 text-md-right">
+                          <address>
+                            <strong>Barber :</strong><br>
+                              <select class="form-control selectric" name='barber' required autofocus>
+                                  <option selected disabled>Pilih Tukang Cukur</option>
+                                  @foreach ($barber as $barb)
+                                    <option value={{$barb->id}}>{{$barb->name}}</option>
+                                  @endforeach
+                              </select>
                           </address>
                         </div>
                       </div>

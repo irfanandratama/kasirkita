@@ -48,7 +48,16 @@
                                         <input class="form-control" type="file" name="image" id="image-upload">
                                     </div>
                                 </div>
-
+                                <div class="form-group">
+                                    <label>Toko/Outlet</label>
+                                    <select class="form-control selectric" name='outlet_id' required="">
+                                        <option>Pilih Kategori Produk</option>
+                                        <option value='0'>Tanpa Kategori</option>
+                                        @foreach ($outlet as $outlet)
+                                        <option value={{$outlet->id}} {{ $outlet->id == $product->productDetail[0]['outlet_id'] ? 'selected' : '' }}>{{$outlet->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                                 <div class="text-right">
                                     <button type="submit" class="btn btn-icon icon-left btn-success">
                                         <i class="fas fa-check"></i> Simpan

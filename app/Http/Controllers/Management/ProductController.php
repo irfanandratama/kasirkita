@@ -23,10 +23,13 @@ class ProductController extends Controller
     public function index()
     {
         $bisnis = Auth::user()->business_id;
-        $produk = Product::where('business_id', $bisnis)->orderBy('id', 'asc')->paginate(10);
+        $product = Product::where('business_id', $bisnis)->orderBy('id', 'asc')->paginate(10);
+        $outlet = Outlet::where('business_id', $bisnis)->get();
+        
         return view('management.product.list.index',
             compact(
-                'produk'
+                'product',
+                'outlet'
             ));
     }
 
@@ -96,14 +99,14 @@ class ProductController extends Controller
         }
 
         File::delete(public_path('assets/img/product/' . $product->image));
-        $product->delete();
 
         foreach ($details as $detail) {
             $detail->delete();
         }
+        $product->delete();
 
-//        \Session::flash('danger', 'Data Dihapus');
-//        return redirect(route('management-product.index'));
+       \Session::flash('danger', 'Data Dihapus');
+       return redirect(route('management-product.index'));
     }
 
     public function detail($id)
@@ -126,11 +129,13 @@ class ProductController extends Controller
     {
         $bisnis = Auth::user()->business_id;
         $kategori = CategoryProduct::where('business_id', $bisnis)->get();
+        $outlet = Outlet::where('business_id', $bisnis)->get();
         $product = Product::where('id', $id)->first();
         return view('management.product.list.edit',
             compact(
                 'product',
-                'kategori'
+                'kategori',
+                'outlet'
             )
         );
     }
@@ -199,5 +204,26 @@ class ProductController extends Controller
             })
             ->rawColumns(['action','foto','harga','kategori'])
             ->make(true);
+    }
+
+    public function search(Request $request)
+    {
+        $bisnis = Auth::user()->business_id;
+        
+        $product = Product::where('business_id', $bisnis)
+            ->where('name', 'like', '%' . $request->get('search') . '%')
+            ->orWhere('price', 'like', '%' . $request->get('search') . '%')
+            ->paginate(10);
+
+        if (!$product) {
+            \Session::flash('danger', 'Data tidak ditemukan');
+            return view('management.product.list.index');
+        }
+
+        return view('management.product.list.index',
+        compact(
+            'product'
+        ));
+        
     }
 }

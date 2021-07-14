@@ -30,7 +30,10 @@
                                     <select class="form-control selectric" name='product_id' required="">
                                         <option selected disabled>Pilih Produk</option>
                                         @foreach ($details as $detail)
-                                            <option value="{{$detail->product['id']}}">{{$detail->product['name']}}</option>
+                                            @if ($detail->product->category->name !== 'Jasa')
+                                                <option value="{{$detail->product['id']}}">{{$detail->product['name']}}</option>
+                                            @endif
+                                            
                                         @endforeach
                                     </select>
                                 </div>

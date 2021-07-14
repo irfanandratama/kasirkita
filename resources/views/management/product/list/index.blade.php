@@ -1,10 +1,8 @@
 @extends('layouts.app', ['pageSlug' => 'listProduct'])
-
-@section('style')
+{{-- @section('style')
     <link rel="stylesheet"
           href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
-@endsection
-
+@endsection --}}
 @section('content')
     <div class="main-content">
         <section class="section">
@@ -23,9 +21,25 @@
                         <div class="card-header">
                             <h4>Data Produk</h4>
                         </div>
-                        <div class="col-12 text-right">
-                            <a href="{{route('management-product.create')}}" class="btn btn-icon icon-left btn-primary"><i
+                        <div class="col-12 row">
+                            <form class="form col-6" method="post" action="{{ route('management-product.search') }}">
+                                @csrf
+                                <div class="col-6">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="search" name="search" placeholder="Cari Produk" autocomplete="off">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-icon icon-left btn-primary" type="button">
+                                                <i class="fas fa-search"></i> Cari
+                                            </button>
+                                        </div>
+                                      </div>
+                                </div>
+                            </form>
+                                                    
+                            <div class="col-6 text-right">
+                                <a href="{{route('management-product.create')}}" class="btn btn-icon icon-left btn-primary"><i
                                     class="fas fa-plus"></i> <span>Tambah Produk</span></a>
+                            </div>
                         </div>
                         <div class="card-body">
                             @include('alerts.notification')
@@ -40,15 +54,49 @@
                                         <th>Foto</th>
                                         <th>Harga</th>
                                         <th>Kategori</th>
+                                        <th>Outlet</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                        @if ($product)
+                                            @foreach ($product as $row)                                 
+                                                <tr>
+                                                <td class="text-center">{{$loop->iteration}}</td>
+                                                <td>{{$row->name}}</td>
+                                                <td><img src="{{ asset('assets/img/product/' . $row->image) }}" height="100" /></td>
+                                                <td class="text-center">Rp. {{ number_format($row->price, 0, '.', '.')}}</td>
+                                                <td>{{ $row->category->name }}</td>
+                                                <td>
+                                                    @foreach ($outlet as $rows)
+                                                        @if ($rows->id == $row->productDetail[0]['outlet_id'])
+                                                            {{ $rows->name }}
+                                                        @else
+                                                            Toko tidak diketahui
+                                                        @endif
+                                                    @endforeach
+                                                </td>
+                                                <td>
+                                                    <form action="{{route('management-product.delete', $row->id)}}" method="post">
+                                                        @csrf
+                                                        @method('delete')
 
+                                                        <a href="{{route('management-product.edit', $row->id)}}" class="btn btn-icon btn-primary"><i class="fas fa-edit"></i> Ubah</a>
+                                                        <button type="submit" class="btn btn-icon btn-danger icon-left"></i> Hapus
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                                </tr>
+                                            @endforeach
+                                            
+                                        @else
+                                            <tr class="text-center">Data tidak ditemukan</tr>
+                                        @endif
+                                        
                                     </tbody>
                                 </table>
                                 <nav class="mt-4" aria-label="navigation">
-                                    {{$produk->links()}}
+                                    {{$product->links()}}
                                 </nav>
                             </div>
                         </div>
@@ -58,7 +106,7 @@
         </section>
     </div>
 @endsection
-@section('script')
+{{-- @section('script')
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready(function () {
@@ -94,4 +142,4 @@
             });
         });
     </script>
-@endsection
+@endsection --}}

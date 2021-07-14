@@ -9,7 +9,7 @@ class Transaction extends Model
     public $timestamps = true;
 
     protected $fillable = [
-        'cashier_id', 'customer_name', 'total', 'receipt', 'outlet_id'
+        'cashier_id', 'customer_name', 'total', 'receipt', 'outlet_id', 'barber_id', 'code'
     ];
 
     public function cashier()
@@ -23,5 +23,9 @@ class Transaction extends Model
 
     public function outlet(){
         return $this->belongsTo(Outlet::class);
+    }
+
+    public function barber(){
+        return $this->belongsTo(Barber::class);
     }
 }

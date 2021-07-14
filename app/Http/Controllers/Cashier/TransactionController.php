@@ -13,8 +13,10 @@ use App\Models\Outlet;
 use App\Models\Cashier;
 use App\Models\Transaction;
 use App\Models\VisitLog;
+use App\Models\Barber;
 use stdClass;
 use PDF;
+use Carbon\Carbon;
 
 class TransactionController extends Controller
 {
@@ -37,6 +39,7 @@ class TransactionController extends Controller
         $outlet = Auth::user()->outlet_id;
         $keyword = ($request->has('q')) ? $request->q : '';
         $produk = Product::where('name','like',"%$keyword%")
+            ->with('category')
             ->whereHas('productDetail',  function (Builder $query) use ($outlet) {
                 $query->where('outlet_id',  $outlet);
             })->orderBy('id', 'asc')->with(['productDetail' => function ($query) use ($outlet) {
@@ -50,6 +53,10 @@ class TransactionController extends Controller
         $item = $request->get('item');
         $qty = $request->get('qty');
         $product_id =$request->get('product');
+        $outlet = Auth::user()->outlet_id;
+        $barber = Barber::where('outlet_id', $outlet)->get();
+        $today = Carbon::today()->format('Y-m-d');
+        $todayTransaction = Transaction::where('outlet_id', $outlet)->whereDate('created_at', $today)->count();
 
         $products = [];
         for ($i=0; $i < $item; $i++) {
@@ -70,7 +77,9 @@ class TransactionController extends Controller
         return view('cashier.transaction.invoice',
             compact(
                 'products',
-                'item'
+                'item',
+                'barber',
+                'todayTransaction'
             )
         );
     }
@@ -84,6 +93,9 @@ class TransactionController extends Controller
         $qty = $request->get('qty');
         $product_id = $request->get('product_id');
         $amount = $request->get('amount');
+
+        $today = Carbon::today()->format('Ymd');
+        $todayTransaction = Transaction::where('outlet_id', $outlet_id)->whereDate('created_at', $today)->count();
 
         // $this->validate($request, [
         //     'customer_name' => 'string', 'max:255',
@@ -99,6 +111,8 @@ class TransactionController extends Controller
         $transaction->receipt = "receipt";
         $transaction->outlet_id = $outlet_id;
         $transaction->customer_name = $request->get('customer_name');
+        $transaction->barber_id = $request->get('barber');
+        $transaction->code = $today . '-' . ($todayTransaction + 1);
         $transaction->save();
 
         for ($i=0; $i < $item; $i++) {
@@ -108,10 +122,13 @@ class TransactionController extends Controller
             $detail->amount = $amount[$i];
             $detail->transaction_id = $transaction->id;
             $detail->save();
-
-            $product = ProductDetail::where('outlet_id',  $outlet_id)->where('product_id', $product_id[$i])->first();
-            $product->stock -= $qty[$i];
-            $product->save();
+            
+            $product = Product::find($product_id[$i]);
+            if ($product->category->name !== 'Jasa' && $product->category->name !== 'Layanan' && $product->category->name !== 'Service') {
+                $product_detail = ProductDetail::where('outlet_id',  $outlet_id)->where('product_id', $product_id[$i])->first();
+                $product_detail->stock -= $qty[$i];
+                $product_detail->save();
+            }
         }
 
         $run = true;
@@ -159,7 +176,7 @@ class TransactionController extends Controller
                 'outlet',
                 'total'
             )
-        );
+        )->setPaper('A8', 'portrait');
         \Session::flash('success', 'Transaksi Berhasil');
         return $pdf->download('invoice.pdf');
         sleep(3);

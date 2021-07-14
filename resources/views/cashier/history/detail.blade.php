@@ -14,7 +14,7 @@
                         <div class="col-lg-12">
                         <div class="invoice-title">
                             <h2>{{Auth::user()->business->name}}</h2>
-                            <div class="invoice-number">Order #12345</div>
+                            <div class="invoice-number">Order #{{ $transaction->code }}</div>
                         </div>
                         <hr>
                         <div class="row">
@@ -41,9 +41,15 @@
                             <div class="col-md-6">
                             <address>
                                 <strong>Cashier :</strong>
-                                <p>#{{ $transaction->cashier->name}} | {{ $transaction->cashier_id }}</p>
+                                <p>#{{ $transaction->cashier_id}} | {{ $transaction->cashier->name }}</p>
                             </address>
                             </div>
+                            <div class="col-md-6 text-md-right">
+                                <address>
+                                    <strong>Barber :</strong>
+                                    <p>#{{ $transaction->barber_id}} | {{ $transaction->barber->name }}</p>
+                                </address>
+                                </div>
                         </div>
                         </div>
                     </div>

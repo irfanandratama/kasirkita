@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use App\Models\Management;
+use App\Models\Business;
 
 class ManagementController extends Controller
 {
@@ -22,12 +24,45 @@ class ManagementController extends Controller
         ));
     }
 
+    public function create()
+    {
+        $businesses = Business::all();
+        return view('admin.management.create',
+            compact(
+                'businesses'
+            ));
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required', 'string', 'max:255',
+            'email' => 'required', 'string', 'email', 'max:255', 'unique:admins',
+            'business_id' => 'required',
+            'phone' => 'required',
+            'password' => 'required|confirmed'
+        ]);
+
+        $management = new Management();
+        $management->name = $request->get('name');
+        $management->email = $request->get('email');
+        $management->business_id = $request->get('business_id');
+        $management->phone = $request->get('phone');
+        $management->password = Hash::make($request->get('password'));
+        $management->save();
+        
+        \Session::flash('success', 'Berhasil Menambahkan Manajemen');
+        return redirect(route('admin-management.index'));
+    }
+
     public function detail($id)
     {
         $management = Management::where('id', $id)->first();
+        $businesses = Business::all();
         return view('admin.management.detail',
             compact(
-                'management'
+                'management',
+                'businesses'
         ));
     }
 }

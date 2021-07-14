@@ -8,6 +8,7 @@ use Auth;
 use App\Models\Outlet;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
+use App\Models\Barber;
 
 class HistoryController extends Controller
 {
@@ -23,10 +24,12 @@ class HistoryController extends Controller
         $transaction = Transaction::where('outlet_id', $outlet)
             ->orderBy('created_at', 'desc')
             ->paginate(10);
+        $barber = Barber::where('outlet_id', $outlet)->get();
         // return $transaction;
         return view('cashier.history.index',
             compact(
-                'transaction'
+                'transaction',
+                'barber'
             ));
     }
 

@@ -6,6 +6,6 @@ return [
     'project_author' => 'iMokhles',
     'project_description' => 'create multi authentication guards with dashboard panel',
     'enable_breadcrumb' => true,
-    'enable_registration' => false,
+    'enable_registration' => true,
     'theme_name' => 'stisla',
 ];

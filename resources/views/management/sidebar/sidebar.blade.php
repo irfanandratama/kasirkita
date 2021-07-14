@@ -25,6 +25,18 @@
   </ul>
 </li>
 
+<li @if ($pageSlug == 'listBarber' or $pageSlug == 'addBarber') class="dropdown active" @endif class="dropdown">
+  <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-users"></i> <span>Tukang Cukur</span></a>
+  <ul class="dropdown-menu">
+    <li @if ($pageSlug == 'listBarber') class="active " @endif>
+      <a class="nav-link" href="{{ route('management-barber.index') }}">Daftar Tukang Cukur</a>
+    </li>
+    <li @if ($pageSlug == 'addBarber') class="active " @endif>
+      <a class="nav-link" href="{{ route('management-barber.create') }}">Tambah Tukang Cukur</a>
+    </li>
+  </ul>
+</li>
+
 <li class="menu-header">Produk</li>
 <li  @if ($pageSlug == 'listProduct' or $pageSlug == 'addProduct') class="dropdown active" @endif class="dropdown">
   <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-boxes"></i> <span>Produk</span></a>
