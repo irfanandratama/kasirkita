@@ -24,7 +24,10 @@ class TransactionController extends Controller
     {
         $bisnis = Auth::user()->business_id;
         $outlet = Outlet::where('business_id', $bisnis)->pluck('id');
-        $barber = Barber::where('outlet_id', $outlet)->get();
+        $barber = Barber::all();
+        if ($outlet !== null) {
+            $barber = Barber::where('outlet_id', $outlet)->get();
+        }
         $transactions = Transaction::whereIn('outlet_id', $outlet)
             ->orderBy('created_at', 'desc');
 
