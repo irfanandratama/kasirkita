@@ -8,6 +8,10 @@ use Auth;
 use App\Models\Outlet;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
+use App\Models\Barber;
+
+use App\Exports\TransactionsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TransactionController extends Controller
 {
@@ -20,13 +24,20 @@ class TransactionController extends Controller
     {
         $bisnis = Auth::user()->business_id;
         $outlet = Outlet::where('business_id', $bisnis)->pluck('id');
-        $transaction = Transaction::whereIn('outlet_id', $outlet)
-            ->orderBy('created_at', 'desc')
+        $barber = Barber::where('outlet_id', $outlet)->get();
+        $transactions = Transaction::whereIn('outlet_id', $outlet)
+            ->orderBy('created_at', 'desc');
+
+        $sumIncome = $transactions->sum('total');
+        $transaction = $transactions
             ->paginate(10);
+
         // return $transaction;
         return view('management.transaction.index',
             compact(
-                'transaction'
+                'transaction',
+                'barber',
+                'sumIncome'
             ));
     }
 
@@ -35,6 +46,7 @@ class TransactionController extends Controller
         $transaction = Transaction::where('id', $id)->first();
         $detail = TransactionDetail::where('transaction_id', $id)->get();
 
+        echo $detail;
         // return $detail;
         return view('management.transaction.detail',
             compact(
@@ -42,5 +54,56 @@ class TransactionController extends Controller
                 'detail'
             )
         );
+    }
+
+    public function filter(Request $request)
+    {
+        if ($request->has('search')) {
+            return $this->search($request);
+        }
+        elseif ($request->has('excel')) {
+            return $this->export($request);
+        }
+    }
+
+    public function search(Request $request)
+    {
+        $bisnis = Auth::user()->business_id;
+        $outlet = Outlet::where('business_id', $bisnis)->pluck('id');
+        $barber = Barber::where('outlet_id', $outlet)->get();
+
+        $datef = $request->get('date-from');
+        $datet = $request->get('date-to');
+        $barber_id = $request->get('barber_id');
+        $transactions = Transaction::whereIn('outlet_id', $outlet)
+            ->when($datef, function ($query, $datef) {
+                $query->whereDate('created_at', '>=', $datef);
+            })
+            ->when($datet, function ($query, $datet) {
+                $query->whereDate('created_at', '<=', $datet);
+            })
+            ->when($barber_id, function ($query, $barber_id) {
+                $query->where('barber_id', $barber_id);
+            })
+            ->orderBy('created_at', 'desc');
+        
+        $sumIncome = $transactions->sum('total');
+        $transaction = $transactions
+            ->paginate(10);
+        // return $transaction;
+        return view('management.transaction.index',
+            compact(
+                'transaction',
+                'barber',
+                'sumIncome'
+            ));
+    }
+
+    public function export(Request $request)
+    {
+        $bisnis = Auth::user()->business_id;
+        $outlet = Outlet::where('business_id', $bisnis)->pluck('id');
+
+        return Excel::download(new TransactionsExport($outlet, $request), 'transactions.xlsx');
     }
 }

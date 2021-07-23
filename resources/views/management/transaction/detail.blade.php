@@ -61,7 +61,7 @@
                                 <th class="text-center">Jumlah</th>
                                 <th class="text-right">Total</th>
                             </tr>
-                            @foreach ($detail as $row)
+                            {{-- @foreach ($detail as $row)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{$row->product->name}}</td>
@@ -69,7 +69,7 @@
                                 <td class="text-center">{{$row->qty}}</td>
                                 <td class="text-right" value="{{$row->item['price']*$row->qty}}">Rp. {{ number_format($row->amount, 0, '.', '.')}}</td>
                             </tr>
-                            @endforeach
+                            @endforeach --}}
                             </table>
                         </div>
                         <div class="row mt-4">

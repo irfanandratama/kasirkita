@@ -97,6 +97,12 @@ Route::namespace('Management')->group(function () {
         ->name('management-transaction.index');
     Route::get('/management/trasaction/detail/{id}', 'TransactionController@detail')
         ->name('management-transaction.detail');
+    Route::post('/management/transaction/filter', 'TransactionController@filter')
+        ->name('management-transaction.filter');
+    Route::post('/management/transaction/search', 'TransactionController@search')
+        ->name('management-transaction.search');
+    Route::get('/management/transaction/export/', 'TransactionController@export')
+        ->name('management-transaction.export');
 
     //Cashier Management
     Route::get('/management/cashier/index', 'CashierController@index')

@@ -29,9 +29,9 @@ class TransactionController extends Controller
     {
 
         return view('cashier.transaction.index',
-            compact(
-                'produk'
-            )
+            // compact(
+            //     'produk'
+            // )
         );
     }
 
@@ -115,6 +115,10 @@ class TransactionController extends Controller
         $transaction->code = $today . '-' . ($todayTransaction + 1);
         $transaction->save();
 
+        $latest = $transaction->latest('created_at')->first();
+
+        $request->merge(["created_at"=>$latest->created_at]);
+
         for ($i=0; $i < $item; $i++) {
             $detail = new TransactionDetail();
             $detail->product_id = $product_id[$i];
@@ -151,6 +155,7 @@ class TransactionController extends Controller
         $outlet = Outlet::where('id', $outlet_id)->first();
         $qty = $request->get('qty');
         $cashier = Cashier::where('id', $cashier_id)->first();
+        $barber = Barber::where('id', $request->get('barber')->first());
         $total = $request->get('total');
 
         $products = [];
@@ -174,13 +179,22 @@ class TransactionController extends Controller
                 'products',
                 'cashier',
                 'outlet',
-                'total'
+                'total',
+                'barber',
+                'created_at'
             )
-        )->setPaper('A8', 'portrait');
+        )->setPaper('A4', 'portrait');
         \Session::flash('success', 'Transaksi Berhasil');
         return $pdf->download('invoice.pdf');
         sleep(3);
-        return redirect(route('cashier-transaction.index'));
+        return redirect(route('cashier-transaction.index')->with('products',
+        'cashier',
+        'outlet',
+        'total',
+        'barber',
+        'created_at'
+        )
+    );
 
     }
 }
