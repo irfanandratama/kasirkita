@@ -28,9 +28,20 @@ class TransactionController extends Controller
     public function index()
     {
 
+        $outlet = null;
+        $created_at = null;
+        $cashier = null;
+        $barber = null;
+        $transaction_num = null;
+
+
         return view('cashier.transaction.index',
             // compact(
-            //     'produk'
+            //     'outlet',
+            //     'created_at',
+            //     'cashier',
+            //     'barber',
+            //     'transaction_num'
             // )
         );
     }
@@ -117,7 +128,8 @@ class TransactionController extends Controller
 
         $latest = $transaction->latest('created_at')->first();
 
-        $request->merge(["created_at"=>$latest->created_at]);
+        $request->request->add(["transaction_num"=>$latest->code]);
+        $request->request->add(["created_at"=>$latest->created_at]);
 
         for ($i=0; $i < $item; $i++) {
             $detail = new TransactionDetail();
@@ -155,8 +167,10 @@ class TransactionController extends Controller
         $outlet = Outlet::where('id', $outlet_id)->first();
         $qty = $request->get('qty');
         $cashier = Cashier::where('id', $cashier_id)->first();
-        $barber = Barber::where('id', $request->get('barber')->first());
+        $barber = Barber::where('id', $request->get('barber'))->first();
         $total = $request->get('total');
+        $transaction_num = $request->get('transaction_num');
+        $created_at = $request->get('created_at')->format('d/M/Y H:i');
 
         $products = [];
         for ($i=0; $i < $item; $i++) {
@@ -174,25 +188,26 @@ class TransactionController extends Controller
             array_push($products, $product);
         }
 
-        $pdf = PDF::loadview('cashier.transaction.print',
-            compact(
-                'products',
-                'cashier',
-                'outlet',
-                'total',
-                'barber',
-                'created_at'
-            )
-        )->setPaper('A4', 'portrait');
+        // $pdf = PDF::loadview('cashier.transaction.print',
+        //     compact(
+        //         'products',
+        //         'cashier',
+        //         'outlet',
+        //         'total',
+        //         'barber',
+        //         'created_at'
+        //     )
+        // )->setPaper('A4', 'portrait');
         \Session::flash('success', 'Transaksi Berhasil');
-        return $pdf->download('invoice.pdf');
+        // return $pdf->download('invoice.pdf');
         sleep(3);
-        return redirect(route('cashier-transaction.index')->with('products',
+        return view('cashier.transaction.index', compact('products',
         'cashier',
         'outlet',
         'total',
         'barber',
-        'created_at'
+        'created_at',
+        'transaction_num'
         )
     );
 

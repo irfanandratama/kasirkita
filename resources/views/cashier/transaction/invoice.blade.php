@@ -111,7 +111,7 @@
                 <hr>
                 <div class="text-md-right">
                   <div class="float-lg-left mb-lg-0 mb-3">
-                    <button type="submit" onclick="printStruk()" class="btn btn-primary btn-icon icon-left done"><i class="fas fa-check"></i> Selesai</button>
+                    <button type="submit" class="btn btn-primary btn-icon icon-left done"><i class="fas fa-check"></i> Selesai</button>
                   </div>
                   <a href="{{ URL::previous() }}" class="btn btn-danger btn-icon icon-left cencel"><i class="fas fa-times"></i> Cancel</a>
                 </div>
@@ -122,7 +122,7 @@
       </div>
 @endsection
 
-@section('script')
+{{-- @section('script')
 <script src="{{ asset('assets/js/qz-tray.js') }}"></script>
 <script>
 // qz.websocket.connect().then(function() {
@@ -194,4 +194,4 @@ qz.print(config, data).catch(function(e) { console.error(e); });
 
 </script>
 
-@endsection
+@endsection --}}

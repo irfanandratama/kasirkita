@@ -25,7 +25,7 @@ class TransactionController extends Controller
         $bisnis = Auth::user()->business_id;
         $outlet = Outlet::where('business_id', $bisnis)->pluck('id');
         $barber = Barber::all();
-        if ($outlet !== null) {
+        if (!$outlet->isEmpty()) {
             $barber = Barber::where('outlet_id', $outlet)->get();
         }
         $transactions = Transaction::whereIn('outlet_id', $outlet)

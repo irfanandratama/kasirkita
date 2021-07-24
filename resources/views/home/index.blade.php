@@ -9,7 +9,7 @@
             {{-- <p>Nikmati kebebasan mengelola bisnis dari mana saja dengan aplikasi kasir online KasirQ. Mulai sekarang.</p> --}}
             <p>
                 <a href="#" class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#loginModal">Masuk</a>
-                <a href="#" class="btn btn-primary btn-ghost btn-lg" role="button" data-toggle="modal" data-target="#signupModal">Daftar</a>
+                {{-- <a href="#" class="btn btn-primary btn-ghost btn-lg" role="button" data-toggle="modal" data-target="#signupModal">Daftar</a> --}}
             </p>
             </div>
         </div>  
