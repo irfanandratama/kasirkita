@@ -71,7 +71,7 @@
         <!-- END row -->
         <div class="row">
           <div class="col-md-12 copyright probootstrap-animate">
-            <p><small>KasirQ &copy; 2017 .</small></p>
+            <p><small>KasirQ &copy; {{now()->year}} .</small></p>
           </div>
         </div>
       </div>
