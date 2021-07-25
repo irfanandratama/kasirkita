@@ -147,7 +147,29 @@
 @isset($total, $created_at, $transaction_num)
         <script src="{{ asset('assets/js/qz-tray.js') }}"></script>
         <script>
+            qz.security.setCertificatePromise(function(resolve, reject) {
+                //Preferred method - from server
+                fetch("{{asset('assets/signing/override.crt')}}", {cache: 'no-store', headers: {'Content-Type': 'text/plain'}})
+                    .then(function(data) { data.ok ? resolve(data.text()) : reject(data.text()); });
+            });
+            qz.security.setSignatureAlgorithm("SHA512"); // Since 2.1
+            qz.security.setSignaturePromise(function(toSign) {
+                return function(resolve, reject) {
+                    //Preferred method - from server
+        //            fetch("/secure/url/for/sign-message?request=" + toSign, {cache: 'no-store', headers: {'Content-Type': 'text/plain'}})
+        //              .then(function(data) { data.ok ? resolve(data.text()) : reject(data.text()); });
+                    $.post("{{asset('assets/signing/sign-message.php')}}", {request: toSign}).then(resolve, reject);
+
+
+                    //Alternate method - unsigned
+                    // resolve(); // remove this line in live environment
+                };
+            });
+        </script>
+        <script>
             function printStruk() {
+                
+
                 qz.websocket.connect().then(function() { 
                     return qz.printers.find("POS-E58");              // Pass the printer name into the next Promise
                     }).then(function(printer) {
@@ -206,8 +228,15 @@
                             // **for legacy drawer cable CD-005A.  Research before using.
                         ];
 
-                    qz.print(config, data).catch(function(e) { console.error(e); });
-                }).catch(function(e) { console.error(e); alert('Printer POS tidak ditemukan.') });
+                    qz.print(config, data).then(function(){
+                        if (qz.websocket.isActive()) {
+                            qz.websocket.disconnect().then(function() {
+                                
+                            }).catch(function (e) { console.error(e); });
+                        }
+                    }).catch(function(e) { console.error(e); });
+
+                }).catch(function(e) { console.error(e); });
             }
         </script>
 @endisset
