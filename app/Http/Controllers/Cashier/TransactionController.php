@@ -35,15 +35,7 @@ class TransactionController extends Controller
         $transaction_num = null;
 
 
-        return view('cashier.transaction.index',
-            // compact(
-            //     'outlet',
-            //     'created_at',
-            //     'cashier',
-            //     'barber',
-            //     'transaction_num'
-            // )
-        );
+        return view('cashier.transaction.index');
     }
 
     public function data(Request $request){
@@ -104,17 +96,15 @@ class TransactionController extends Controller
         $qty = $request->get('qty');
         $product_id = $request->get('product_id');
         $amount = $request->get('amount');
+        $pay = $request->get('pay');
 
         $today = Carbon::today()->format('Ymd');
         $todayTransaction = Transaction::where('outlet_id', $outlet_id)->whereDate('created_at', $today)->count();
 
-        // $this->validate($request, [
-        //     'customer_name' => 'string', 'max:255',
-        //     'product_id' => 'required',
-        //     'qty' => 'required',
-        //     'amount' => 'required',
-        //     'total' => 'required',
-        // ]);
+        $this->validate($request, [
+            'barber' => 'required',
+            'pay' => 'required|numeric',
+        ]);
 
         $transaction = new Transaction();
         $transaction->cashier_id = $cashier_id;
@@ -124,6 +114,8 @@ class TransactionController extends Controller
         $transaction->customer_name = $request->get('customer_name');
         $transaction->barber_id = $request->get('barber');
         $transaction->code = $today . '-' . ($todayTransaction + 1);
+        $transaction->pay = $pay;
+        $transaction->change =  $pay - $request->get('total');
         $transaction->save();
 
         $latest = $transaction->latest('created_at')->first();
@@ -169,6 +161,8 @@ class TransactionController extends Controller
         $cashier = Cashier::where('id', $cashier_id)->first();
         $barber = Barber::where('id', $request->get('barber'))->first();
         $total = $request->get('total');
+        $bayar = $request->get('pay');
+        $kembali = $bayar - $total;
         $transaction_num = $request->get('transaction_num');
         $created_at = $request->get('created_at')->format('d/M/Y H:i');
 
@@ -207,7 +201,9 @@ class TransactionController extends Controller
         'total',
         'barber',
         'created_at',
-        'transaction_num'
+        'transaction_num',
+        'bayar',
+        'kembali'
         )
     );
 

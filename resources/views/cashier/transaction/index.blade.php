@@ -186,21 +186,29 @@
                             '\x0A',                   // line break    
                             '\x1B' + '\x61' + '\x32', // right align
                             'Transaction # {{$transaction_num}}' + '\x0A',
+                            '\x1B' + '\x61' + '\x30', // left align
                             'Cashier:          {{$cashier->name}}' + '\x0A',
                             'Barber:          {{$barber->name}}' + '\x0A',
                             '\x1B' + '\x61' + '\x31', // center align
                             '--------------------------------', '\x0A',
                             '\x1B' + '\x61' + '\x30', // left align
                             @foreach ($products as $product)
-                                '{{$product->item["name"]}}  {{$product->qty}}        {{$product->item["price"]}}',
+                                '{{$product->item["name"]}}',
+                                '\x0A',
+                                'x{{$product->qty}}........................{{$product->item["price"]}}',
                                 '\x0A',
                             @endforeach
                             // 'Baklava (Qty 4)       9.00' + '\x1B' + '\x74' + '\x13' + '\xAA', //print special char symbol after numeric
                             // '\x0A',
-                            'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX' + '\x0A', 
-                            '\x1B' + '\x61' + '\x31', // center align      
+                            '================================' + '\x0A', 
+                            '\x1B' + '\x61' + '\x32', // right align
+                            'Total      {{$total}}' + '\x0A',
+                            'Bayar      {{$bayar}}' + '\x0A',
+                            'Kembali      {{$kembali}}' + '\x0A',
+                            '\x1B' + '\x61' + '\x31', // center align 
+                            '--------------------------------', '\x0A',     
                             '\x1B' + '\x45' + '\x0D', // bold on
-                            'Terima kasih',
+                            'Terima kasih' + '\x0A',
                             'Apabila ada kritik dan saran, bisa menghubungi kami langsung melalui toko.',
                             '\x1B' + '\x45' + '\x0A', // bold off
                             '\x0A' + '\x0A',

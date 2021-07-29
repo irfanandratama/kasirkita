@@ -201,6 +201,8 @@ Route::namespace('Cashier')->group(function(){
         ->name('cashier-transaction.data');
     Route::post('/cashier/transaction/invoice', 'TransactionController@invoice')
         ->name('cashier-transaction.invoice');
+    Route::get('/cashier/transaction/invoice', 'TransactionController@invoice')
+        ->name('cashier-transaction.invoice');
     Route::post('/cashier/transaction/store', 'TransactionController@store')
         ->name('cashier-transaction.store');
     Route::get('/cashier/transaction/print', 'TransactionController@print')

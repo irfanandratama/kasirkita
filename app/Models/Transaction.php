@@ -9,7 +9,7 @@ class Transaction extends Model
     public $timestamps = true;
 
     protected $fillable = [
-        'cashier_id', 'customer_name', 'total', 'receipt', 'outlet_id', 'barber_id', 'code'
+        'cashier_id', 'customer_name', 'total', 'receipt', 'outlet_id', 'barber_id', 'code', 'pay', 'change'
     ];
 
     public function cashier()
