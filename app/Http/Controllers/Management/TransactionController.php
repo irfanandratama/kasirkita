@@ -49,7 +49,6 @@ class TransactionController extends Controller
         $transaction = Transaction::where('id', $id)->first();
         $detail = TransactionDetail::where('transaction_id', $id)->get();
 
-        echo $detail;
         // return $detail;
         return view('management.transaction.detail',
             compact(

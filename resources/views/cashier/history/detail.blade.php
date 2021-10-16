@@ -19,22 +19,22 @@
                         <hr>
                         <div class="row">
                             <div class="col-md-6">
-                            <address>
-                                <strong >
-                                Customer
-                                @if ( $transaction->name == '')
-                                    <p class="font-weight-600 text-secondary">Tanpa Nama</p>
-                                @else
-                                    <p class="font-weight-600">{{ $transaction->name }}</p>
-                                @endif
-                                </strong>
-                            </address>
+                                <address>
+                                    <strong >
+                                    Customer
+                                    @if ( $transaction->name == '')
+                                        <p class="font-weight-600 text-secondary">Tanpa Nama</p>
+                                    @else
+                                        <p class="font-weight-600">{{ $transaction->name }}</p>
+                                    @endif
+                                    </strong>
+                                </address>
                             </div>
                             <div class="col-md-6 text-md-right">
-                            <address>
-                                <strong>Order Date:</strong><br>
-                                {{ $transaction->created_at->format('d/m/Y H:i') }}<br><br>
-                            </address>
+                                <address>
+                                    <strong>Order Date:</strong><br>
+                                    {{ $transaction->created_at->format('d/m/Y H:i') }}<br><br>
+                                </address>
                             </div>
                         </div>
                         <div class="row">
@@ -73,9 +73,9 @@
                                 <td>{{$row->product->name}}</td>
                                 <td class="text-center">Rp. {{ number_format($row->product->price, 0, '.', '.')}}</td>
                                 <td class="text-center">{{$row->qty}}</td>
-                                <td class="text-right" value="{{$row->item['price']*$row->qty}}">Rp. {{ number_format($row->amount, 0, '.', '.')}}</td>
+                                <td class="text-right" value="{{$row->product->price*$row->qty}}">Rp. {{ number_format($row->amount, 0, '.', '.')}}</td>
                             </tr>
-                            @endforeach
+                            @endforeach                                                                                   
                             </table>
                         </div>
                         <div class="row mt-4">
