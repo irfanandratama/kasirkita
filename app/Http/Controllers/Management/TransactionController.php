@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Management;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use App\Http\Controllers\Controller;
 use Auth;
 use App\Models\Outlet;
@@ -24,9 +25,17 @@ class TransactionController extends Controller
     {
         $bisnis = Auth::user()->business_id;
         $outlet = Outlet::where('business_id', $bisnis)->pluck('id');
-        $barber = Barber::all();
+        $barber = new Collection();
         if (!$outlet->isEmpty()) {
-            $barber = Barber::where('outlet_id', $outlet)->get();
+            foreach ($outlet as $out) {
+                $bar = Barber::where('outlet_id', $out)->get();
+
+                if ($bar) {
+                    $barber = $barber->merge($bar);
+                }
+            }
+        } else {
+            $barber = Barber::all();
         }
         $transactions = Transaction::whereIn('outlet_id', $outlet)
             ->orderBy('created_at', 'desc');
