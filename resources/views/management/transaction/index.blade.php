@@ -92,7 +92,7 @@
                                 @else
                                     <td class="font-weight-600">{{ $row->customer_name }}</td>
                                 @endif
-                                <td class="font-weight-600">{{ $row->barber->name }}</td>
+                                {{-- <td class="font-weight-600">{{ $row->barber->name }}</td> --}}
                                 <td class="text-center">
                                     <a href="{{ route('management-outlet.detail', $row->outlet_id) }}" class="text-primary">{{ $row->outlet->name }}</a>
                                 </td>
