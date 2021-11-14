@@ -48,6 +48,7 @@ class TransactionController extends Controller
         return view('management.transaction.index',
             compact(
                 'transaction',
+                'transactions',
                 'barber',
                 'sumIncome'
             ));
