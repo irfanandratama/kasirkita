@@ -44,7 +44,7 @@
                                         <tr>
                                         <td class="text-center">{{$row->id}}</td>
                                         <td>{{ $row->created_at->format('d/m/Y H:i') }}</td>
-                                        <td>{{ $row->cashier->name }}</td>
+                                        <td>{{ $row->cashier ? $row->cashier->name : '' }}</td>
                                         <td>{{ $row->total }}</td>
                                         <td>
                                             <a href="{{ route('management-outlet.transactionDetail', $row->id)}}" class="btn btn-icon btn-info"><i class="fas fa-eye"></i> Detail</a>
@@ -111,7 +111,7 @@
                             <ul class="list-group">
                             @foreach ($product as $produk)
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    {{ $produk->product->name }}
+                                    {{ $produk->product ? $produk->product->name : '' }}
                                     <span>
                                         Stock : 
                                         @if ($produk->stock == 0)

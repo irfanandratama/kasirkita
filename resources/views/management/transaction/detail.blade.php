@@ -41,7 +41,7 @@
                             <div class="col-md-6">
                             <address>
                                 <strong>Cashier :</strong>
-                                <p>#{{ $transaction->cashier->name}} | {{ $transaction->cashier_id }}</p>
+                                <p>#{{ $transaction->cashier ? $transaction->cashier->name : ''}} | {{ $transaction->cashier_id }}</p>
                             </address>
                             </div>
                         </div>
