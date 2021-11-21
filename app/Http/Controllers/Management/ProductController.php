@@ -153,7 +153,9 @@ class ProductController extends Controller
         ]);
         if (!empty($request->file('image'))) {
 
-            File::delete(public_path('assets/img/product/' . $product->image));
+            if (File::exists(public_path('assets/img/product/' . $product->image))) {
+                File::delete(public_path('assets/img/product/' . $product->image));
+            }
 
             $image = $request->file('image');
             $imageName = str_replace(" ", "-", $bisnis . '-' . $request->get('category_id') . '-' . $request->get('name'));
