@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use App\Models\Management;
 use App\Models\Business;
+use App\Models\Outlet;
 
 class ManagementController extends Controller
 {
@@ -64,5 +65,34 @@ class ManagementController extends Controller
                 'management',
                 'businesses'
         ));
+    }
+
+    public function assignOutlet($id)
+    {
+        $management = Management::where('id', $id)->first();
+        $businesses = Business::all();
+        $outlet = Outlet::where('business_id', $management->business_id)->get();
+
+        return view('admin.management.assign-outlet',
+            compact(
+                'management',
+                'businesses',
+                'outlet'
+        ));
+    }
+
+    public function assignNew(Request $request, $id)
+    {
+        $management = Management::where('id', $id)->first();
+
+        $this->validate($request, [
+            'outlet_id' => 'required',
+        ]);
+
+        $management->outlet_id = $request->get('outlet_id');
+        $management->save();
+
+        \Session::flash('status', 'Data Berhasil Disimpan');
+        return redirect(route('admin-management.index'));
     }
 }

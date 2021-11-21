@@ -45,6 +45,16 @@
                                 <td>
                                     <a href="{{ route('admin-management.detail', $row->id) }}" class="btn btn-icon btn-primary"><i class="fas fa-eye"></i> Detail</a>
                                 </td>
+                                @if ($row->outlet_id)
+                                    <td>
+                                        <a href="{{ route('admin-management.edit-outlet', $row->id) }}" class="btn btn-icon btn-primary"><i class="fas fa-pencil"></i> Assign Outlet</a>
+                                    </td>
+                                @else
+                                    <td>
+                                        <a href="{{ route('admin-management.assign-outlet', $row->id) }}" class="btn btn-icon btn-primary"><i class="fas fa-pencil"></i> Assign Outlet</a>
+                                    </td>
+                                @endif
+                                
                             </tr>
                         @endforeach
                         </tbody>

@@ -11,10 +11,10 @@
             </div>
             <div class="card-wrap">
                 <div class="card-header">
-                <h4>Kasir {{Auth::user()->business->name}} - {{Auth::user()->outlet->name}}</h4>
+                <h4>Kasir {{Auth::user()->business->name ? Auth::user()->business->name : '' }} - {{Auth::user()->outlet->name ? Auth::user()->outlet->name : ''}}</h4>
                 </div>
                 <div class="card-body">
-                {{Auth::user()->name}}
+                {{Auth::user()->name ? Auth::user()->name : ''}}
                 </div>
             </div>
             </div>

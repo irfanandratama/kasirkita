@@ -65,6 +65,12 @@ Route::namespace('Admin')->group(function () {
         ->name('admin-management.store');
     Route::get('/admin/management/detail/{id}', 'ManagementController@detail')
         ->name('admin-management.detail');
+    Route::get('/admin/management/assign/{id}', 'ManagementController@assignOutlet')
+        ->name('admin-management.assign-outlet');
+    Route::post('/admin/management/assign/new/{id}', 'ManagementController@assignNew')
+        ->name('admin-management.assign-new');
+    Route::get('/admin/management/assign/edit/{id}', 'ManagementController@assignOutlet')
+        ->name('admin-management.edit-outlet');
 
     //Cahiers
     Route::get('/admin/cashier/index', 'CashierController@index')
@@ -187,6 +193,16 @@ Route::namespace('Management')->group(function () {
         ->name('management-barber.edit');
     Route::put('/management/barber/update/{id}', 'BarberController@update')
         ->name('management-barber.update');
+
+    //Stok Masuk
+    Route::get('/management/stock/index', 'StockController@index')
+        ->name('management-stock.index');
+    Route::get('/management/stock/create', 'StockController@create')
+        ->name('management-stock.create');
+    Route::post('/management/stock/store', 'StockController@store')
+        ->name('management-stock.store');
+    Route::get('/management/stock/detail/{id}', 'StockController@detail')
+        ->name('management-stock.detail');
 });
 
 Route::namespace('Cashier')->group(function(){
@@ -209,14 +225,14 @@ Route::namespace('Cashier')->group(function(){
         ->name('cashier-transaction.print');
 
     //Stok Masuk
-    Route::get('/cashier/stock/index', 'StockController@index')
-        ->name('cashier-stock.index');
-    Route::get('/cashier/stock/create', 'StockController@create')
-        ->name('cashier-stock.create');
-    Route::post('/cashier/stock/store', 'StockController@store')
-        ->name('cashier-stock.store');
-    Route::get('/cashier/stock/detail/{id}', 'StockController@detail')
-        ->name('cashier-stock.detail');
+    // Route::get('/cashier/stock/index', 'StockController@index')
+    //     ->name('cashier-stock.index');
+    // Route::get('/cashier/stock/create', 'StockController@create')
+    //     ->name('cashier-stock.create');
+    // Route::post('/cashier/stock/store', 'StockController@store')
+    //     ->name('cashier-stock.store');
+    // Route::get('/cashier/stock/detail/{id}', 'StockController@detail')
+    //     ->name('cashier-stock.detail');
 
     //History
     Route::get('/cashier/history/index', 'HistoryController@index')

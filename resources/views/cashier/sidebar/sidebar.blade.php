@@ -13,7 +13,7 @@
     <a class="nav-link" href="{{route('cashier-history.index')}}"><i class="fas fa-history"></i> Riwayat Transaksi</a>
   </li>
 
-<li class="menu-header">Inventori</li>
+{{-- <li class="menu-header">Inventori</li>
 <li  @if ($pageSlug == 'stockHistory' or $pageSlug == 'addActivity') class="dropdown active" @endif class="dropdown">
   <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-boxes"></i> <span>Kelola Stok</span></a>
   <ul class="dropdown-menu">
@@ -24,7 +24,7 @@
       <a class="nav-link" href="{{route('cashier-stock.create')}}">Tambah Aktifitas</a>
     </li>
   </ul>
-</li>
+</li> --}}
 
 <!-- <li class="menu-header">Akun</li>
 <li>

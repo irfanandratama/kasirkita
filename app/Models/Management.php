@@ -33,7 +33,7 @@ class Management extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'business_id', 'phone',
+        'name', 'email', 'password', 'business_id', 'phone', 'outlet_id'
     ];
 
     /**
