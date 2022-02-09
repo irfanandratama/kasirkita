@@ -21,7 +21,6 @@
                     <div class="card-body">
                         <form method="post" action="{{route('management-product.update', $product->id)}}" autocomplete="off" enctype="multipart/form-data">
                             @csrf
-                            @method ('put')
                             <div class="pl-lg-4">
                                 <div class="form-group">
                                     <label>Nama Produk</label>

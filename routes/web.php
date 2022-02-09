@@ -145,7 +145,7 @@ Route::namespace('Management')->group(function () {
         ->name('management-product.detail');
     Route::get('/management/product/edit/{id}', 'ProductController@edit')
         ->name('management-product.edit');
-    Route::put('/management/product/update/{id}', 'ProductController@update')
+    Route::post('/management/product/update/{id}', 'ProductController@update')
         ->name('management-product.update');
 
     //Kategori Produk

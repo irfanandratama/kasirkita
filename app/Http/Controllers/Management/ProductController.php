@@ -149,15 +149,15 @@ class ProductController extends Controller
             'name' => 'required', 'string', 'max:255',
             'price' => 'required', 'numeric',
             'category_id' => 'required',
-            'image' => 'image'
+            // 'image' => 'image'
         ]);
-        if (!empty($request->file('image'))) {
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
 
             if (File::exists(public_path('assets/img/product/' . $product->image))) {
                 File::delete(public_path('assets/img/product/' . $product->image));
             }
 
-            $image = $request->file('image');
+            $image = $request->image;
             $imageName = str_replace(" ", "-", $bisnis . '-' . $request->get('category_id') . '-' . $request->get('name'));
             $fileName = $imageName . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('assets/img/product'), $fileName);
